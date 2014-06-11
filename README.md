@@ -1,2 +1,2 @@
 # jastso
-### a Sails application
+### Just A smart Than School Os
