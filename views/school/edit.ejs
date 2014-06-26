@@ -1,0 +1,40 @@
+<div class="row fullWidth">
+    <div class="large-12 columns">
+      
+      <h1>School Setup</h1>
+
+      <form data-abide action="/schools/<%=data._id%>/update" method="POST">
+        <div class="name-thai-field">
+          <label>ชื่อโรงเรียน ภาษาไทย <small>required</small>
+            <input name="school_name_th" type="text" value="<%=data.school_name_th%>" required>
+          </label>
+          <small class="error">ชื่อระบุเป็นภาษาไทยเท่านั้น.</small>
+        </div>
+      
+        <div class="name-thai-field">
+          <label>ชื่อโรงเรียน ภาษาอังกฤษ <small>required</small>
+            <input name="school_name_en"  type="text" value="<%=data.school_name_en%>" required>
+          </label>
+          <small class="error">ชื่อระบุเป็นภาษาอังกฤษเท่านั้น.</small>
+        </div>
+
+        <div class="address-field">
+          <label>ที่อยู่
+            <textarea  name="shool_address" required><%=data.shool_address%></textarea>
+          </label>
+          <small class="error">โปรดระบุที่อยู่.</small>
+        </div>
+
+        <div class="phone-field">
+          <label>เบอร์โทรศัพท์
+            <input name="shool_phone"  type="text" value="<%=data.shool_phone%>" required>
+          </label>
+          <small class="error">โปรดระบุที่เบอร์โทรศัพท์</small>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      
+    </div>
+</div>

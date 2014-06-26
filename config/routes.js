@@ -34,7 +34,55 @@ module.exports.routes = {
   // (This would also work if you had a file at: `/views/home.ejs`)
   '/': {
     view: 'home/index'
+  },
+
+
+  // Schools Route
+  'get /schools': {
+    controller: 'School',
+    action: 'index'
+  },
+  'get /schools/setup': {
+    controller: 'School',
+    action: 'setup'
+  },
+  'post /schools/build': {
+    controller: 'School',
+    action: 'build'
+  },
+
+  'get /schools/:id/edit': {
+    controller: 'School',
+    action: 'edit'
+  },
+
+  'post /schools/:id/update': {
+    controller: 'School',
+    action: 'update'
+  },
+  'get /schools/:id/destroy': {
+    controller: 'School',
+    action: 'destroy'
+  },
+
+  // Register Route
+  'get /register/new': {
+    controller: 'Register',
+    action: 'new'
+  },  
+  'post /register/create': {
+    controller: 'Register',
+    action: 'create'
+  },  
+
+
+
+  // manage 
+  'get /:sc_code/schools/dashboard': {
+    controller: 'SchoolManage',
+    action: 'dashboard'
   }
+
 
   /*
   // But what if you want your home page to display

@@ -1,0 +1,49 @@
+<div class="row fullWidth">
+    <div class="large-12 columns">
+      
+      <h1>Register</h1>
+
+
+      <form data-abide action="/register/create" method="POST">
+        <h4>ข้อมูลผู้ลงทะเบียน</h4> 
+        
+        <div class="name-thai-field">
+          <label>ชื่อ <small>required</small>
+            <input name="first_name" type="text" required>
+          </label>
+          <small class="error">ชื่อผู้ลงทะเบียน.</small>
+        </div>
+
+        <div class="name-thai-field">
+          <label>นามสกุล <small>required</small>
+            <input name="last_name" type="text" required>
+          </label>
+          <small class="error">นามสกุลผู้ลงทะเบียน.</small>
+        </div>
+
+        <div class="email-field">
+          <label>อีเมล์ <small>required</small>
+            <input name="email"  type="email" required>
+          </label>
+          <small class="error">An email address is required.</small>
+        </div>
+
+        <div class="email-field">
+          <label>รหัสผ่าน<small>required</small>
+            <input id="password" name="password"  type="password" required>
+          </label>
+          <small class="error">กรุณาระบุรหัสผ่าน.</small>
+        </div>
+
+        <div class="email-field">
+          <label>ยืนยันรหัสผ่าน<small>required</small>
+            <input name="eq_password"  type="password" required data-equalto="password">
+          </label>
+          <small class="error">รหัสผ่านไม่ตรงกัน.</small>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+
+    </div>
+</div>

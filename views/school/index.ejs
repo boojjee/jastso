@@ -1,0 +1,54 @@
+<div class="row">
+  <h1 id="switch">School Management</h1>
+
+  <div>
+    <a href="/schools/setup" class="button">
+      <i class="fi-plus"></i> New
+    </a>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th width="100">#</th>
+        <th width="200">ชื่อโรงเรียน</th>
+        <th width="150">ชื่อโรงเรียน ภาษาอังกฤษ</th>
+        <th>ที่อยู่</th>
+        <th width="150">เบอร์โทรศัพท์</th>
+        <th width="200" colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% _.each(data, function(data){ %>
+
+      <tr>
+        <td><%=data.sc_code %></td>
+        <td><%=data.school_name_th %></td>
+        <td><%=data.school_name_en %></td>
+        <td><%=data.shool_address %></td>
+        <td><%=data.shool_phone %></td>
+        <td>
+          <a href="/<%=data.sc_code%>/schools/dashboard" class="button" title="Setting">
+            <i class="fi-widget"></i>
+            จัดการ
+          </a>
+        </td>
+        <td>
+          <a href="/schools/<%=data._id%>/edit" class="button"  title="Edit">
+            <i class="fi-pencil"></i> แก้ไข
+          </a>
+        </td>
+        <td> 
+          <a href="/schools/<%=data._id %>/destroy" class="button"  title="delete">
+            <i class="fi-x"></i> ลบ
+          </a>
+        </td>
+      </tr>
+
+      <% }) %>
+
+    </tbody>
+  </table>
+
+</div>
