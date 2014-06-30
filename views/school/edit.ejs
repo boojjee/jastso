@@ -4,6 +4,7 @@
       <h1>School Setup</h1>
 
       <form data-abide action="/schools/<%=data._id%>/update" method="POST">
+      <input type="hidden" name="sc_code" value="<%=data.sc_code%>">
         <div class="name-thai-field">
           <label>ชื่อโรงเรียน ภาษาไทย <small>required</small>
             <input name="school_name_th" type="text" value="<%=data.school_name_th%>" required>
