@@ -42,7 +42,7 @@
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#"><%=data.school_name_en%></a></h1>
+          <h1><a href="#"><%=schoolData.school_name_en%></a></h1>
         </li>
          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -64,7 +64,13 @@
         <ul class="left">
           <li><a href="#">Class</a></li>
           <li><a href="#">Course</a></li>
-          <li><a href="#">Employee</a></li>
+          <li class="has-dropdown">
+            <a href="#">Employee</a>
+            <ul class="dropdown">
+							<li><a href="/<%=sc_code%>/employee">Employee</a></li>
+              <li><a href="/<%=sc_code%>/employee/new">New Employee</a></li>
+            </ul>
+          </li>
           <li><a href="#">Teacher</a></li>
           <li><a href="#">Student</a></li>
         </ul>

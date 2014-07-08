@@ -33,7 +33,6 @@ module.exports = {
    */
   dashboard: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body);
-    console.log(criteria)
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
 
@@ -42,7 +41,8 @@ module.exports = {
         
         res.view({
           title: schoolData.school_name_th,
-          data: schoolData,
+					sc_code: criteria.sc_code,
+          schoolData: schoolData,
           layout: '/layout/school_layout'
         })
 

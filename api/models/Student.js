@@ -1,5 +1,5 @@
 /**
- * School
+ * Student
  *
  * @module      :: Model
  * @description :: A short summary of how this model works and what it represents.
@@ -13,37 +13,31 @@ module.exports = {
   	/* e.g.
   	nickname: 'string'
   	*/
-    
     sc_code:{
       type: 'string'
     },
-    school_name_th:{
+    st_id:{
       type: 'string'
     },
-    school_name_en:{
+    id_card:{
       type: 'string'
     },
-    shool_phone:{
+    first_name:{
       type: 'string'
     },
-    shool_address:{
+    last_name:{
       type: 'string'
     },
-    shool_zone:{
+    birth_date:{
       type: 'string'
     },
-    shool_email:{
+    gender:{
       type: 'string'
     },
-    shool_fax:{
-      type: 'string'
-    },
-    shool_licence:{
-      type: 'string'
-    },
-    shool_opening:{
+    phone:{
       type: 'string'
     }
+
   }
 
 };

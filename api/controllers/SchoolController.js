@@ -20,7 +20,7 @@ MongoClient = require('mongodb').MongoClient;
 ObjectId = require('mongodb').ObjectID;
 Moment = require('moment');
 
-school_code_gen = require('../services/school_code_gen');
+code_gen = require('../services/code_gen');
 
 module.exports = {
 
@@ -105,7 +105,7 @@ module.exports = {
   },
 
   build: function(req, res, next) {
-    sc_code = school_code_gen.sc_code();
+    sc_code = code_gen.sc_code();
     criteria = _.merge({}, {
       sc_code: sc_code
     }, req.params.all(), req.body);
@@ -125,7 +125,6 @@ module.exports = {
   },
 
   destroy: function(req, res, next) {
-    sc_code = school_code_gen.sc_code();
     criteria = _.merge({}, req.params.all(), req.body);
     school_id = criteria.id
     console.log(criteria)

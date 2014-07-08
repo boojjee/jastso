@@ -55,7 +55,7 @@ module.exports.routes = {
     controller: 'School',
     action: 'edit'
   },
-
+	
   'post /schools/:id/update': {
     controller: 'School',
     action: 'update'
@@ -81,9 +81,32 @@ module.exports.routes = {
   'get /:sc_code/schools/dashboard': {
     controller: 'SchoolManage',
     action: 'dashboard'
-  }
-
-
+  },
+	
+	'get /:sc_code/employee':{
+		controller: 'Employee',
+		action: 'index'
+	},
+	'get /:sc_code/employee/new':{
+		controller: 'Employee',
+		action: 'new'
+	},
+	'post /:sc_code/employee/create':{
+		controller: 'Employee',
+		action: 'create'
+	},
+	'get /:sc_code/employee/:id/edit':{
+		controller: 'Employee',
+		action: 'edit'
+	},
+	'post /employee/update':{
+		controller: 'Employee',
+		action: 'update'
+	},
+  'get /:sc_code/employee/:id/destroy': {
+    controller: 'Employee',
+    action: 'destroy'
+  },
   /*
   // But what if you want your home page to display
   // a signup form located at `views/user/signup.ejs`?

@@ -10,9 +10,16 @@ module.exports = {
 
   attributes: {
   	
-  	/* e.g.
-  	nickname: 'string'
-  	*/
+    sc_code:{
+      type: 'string'
+    },
+    name:{
+      type: 'string'
+    },
+    description:{
+      type: 'string'
+    },
+
     
   }
 
