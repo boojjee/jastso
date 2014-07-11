@@ -31,7 +31,7 @@ module.exports = {
    */
   index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-   console.log(criteria)
+   
    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
@@ -40,7 +40,7 @@ module.exports = {
         db.collection('employee').find({ sc_code: criteria.sc_code }).toArray(function(err, employeeData){
          if(err) return next(err);
 
-         console.log(employeeData)
+         // console.log(employeeData)
          res.view({
            title: schoolData.school_name_th,
            sc_code: criteria.sc_code,
@@ -82,7 +82,13 @@ module.exports = {
 
 			db.collection('employee').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, employeeData){
 				if(err) return next(err);
-				res.redirect('/'+ criteria.sc_code +'/employee')
+
+        res.view({
+          title: "Edit School",
+          data: schoolData,
+          layout: '/layout/layout'
+        });
+
 			})
 
 

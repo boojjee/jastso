@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="large-12 columns">
+
+      <h1>เพิ่มข้อมูลห้องเรียน</h1>
+
+
+      <form data-abide action="/<%=sc_code%>/classroom/create" method="POST">
+        <h4>ข้อมูลของพนักงาน</h4>
+
+        <div class="name-thai-field">
+          <label>ชื่อห้องเรียน *<small>required</small>
+            <input name="name" type="text" required>
+          </label>
+          <small class="error">ชื่อห้องเรียน</small>
+        </div>
+
+        <div class="name-thai-field">
+          <label>คำอธิบาย *<small>required</small>
+            <input name="description" type="text" required>
+          </label>
+          <small class="error">คำอธิบายของรายวิชา</small>
+        </div>
+
+        <input type="hidden" name="sc_code" value="<%=sc_code%>">
+
+        <button type="submit">Submit</button>
+      </form>
+
+
+    </div>
+</div>

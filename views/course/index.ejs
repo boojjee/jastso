@@ -1,0 +1,50 @@
+<div class="row">
+  <h1 id="switch">การจัดการรายวิชา</h1>
+
+  <div>
+    <a href="/<%=sc_code%>/course/new" class="button">
+      <i class="fi-plus"></i> เพิ่ม
+    </a>
+  </div>
+
+  <table id="" class="data-table-ui" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th width="100">#</th>
+        <th width="200">หลักสูตร</th>
+        <th width="150">วิชา</th>
+        <th>BookStep</th>
+        <th width="150">Groups</th>
+        <th width="150">อัตราค่าเรียน</th>
+        <th width="200" colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% _.each(courseData, function(data){ %>
+
+      <tr>
+        <td><%=data.sc_code %></td>
+        <td><%=data.syllabus %></td>
+        <td><%=data.discription %></td>
+        <td><%=data.book_step %></td>
+        <td><%=data.groups %></td>
+        <td><%=data.cost %></td>
+        <td>
+          <a href="/<%=data.sc_code %>/course/<%=data._id%>/edit" class="button"  title="Edit">
+            <i class="fi-pencil"></i> แก้ไข
+          </a>
+        </td>
+        <td> 
+          <a href="/<%=data.sc_code %>/course/<%=data._id %>/destroy" class="button"  title="delete">
+            <i class="fi-x"></i> ลบ
+          </a>
+        </td>
+      </tr>
+
+      <% }) %>
+
+    </tbody>
+  </table>
+
+</div>

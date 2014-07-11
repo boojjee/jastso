@@ -36,13 +36,13 @@ module.exports.adapters = {
 //    password: 'YOUR_MYSQL_PASSWORD',
 //    database: 'YOUR_MYSQL_DB'
 //  }
-//    'default': 'mongo',
-//    mongo : {
-//        // OR
-//        module   : 'sails-mongo',
-//        schema: true,
-//        url      : 'mongodb://kugking:1234king@linus.mongohq.com:10029/Blink',
-//    }
+'default': 'mongo',
+   mongo : {
+       // OR
+       module   : 'sails-mongo',
+       schema: true,
+       url : "mongodb://127.0.0.1:27017/yamaha-school",
+   }
 
 
 };

@@ -1,5 +1,5 @@
 <div class="row">
-  <h1 id="switch">School Management</h1>
+  <h1 id="switch">การจัดการพนักงาน</h1>
 
   <div>
     <a href="/<%=sc_code%>/employee/new" class="button">
@@ -7,7 +7,7 @@
     </a>
   </div>
 
-  <table>
+  <table id="" class="data-table-ui" cellspacing="0" width="100%">
     <thead>
       <tr>
         <th width="100">#</th>
@@ -15,15 +15,16 @@
         <th width="150">นามสกุล</th>
         <th>ตำแหน่ง</th>
         <th width="150">เบอร์โทรศัพท์</th>
-        <th width="200" colspan="2"></th>
+        <th width="200"></th>
+        <th width="200"></th>
       </tr>
     </thead>
     <tbody>
       
-      <% _.each(employeeData, function(data){ %>
+      <% _.each(employeeData, function(data, i){ %>
 
       <tr>
-        <td><%=data.sc_code %></td>
+        <td><%=i+1 %></td>
         <td><%=data.first_name %></td>
         <td><%=data.last_name %></td>
         <td><%=data.position %></td>

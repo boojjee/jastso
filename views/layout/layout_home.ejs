@@ -12,8 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="/styles/foundation.css" />
     <link rel="stylesheet" href="/styles/foundation-icons.css" />
-    <link rel="stylesheet" href="/styles/dataTables.foundation.css" />
-    
+    <script src="/js/vendor/modernizr.js"></script>
     <!--
 
       Stylesheets
@@ -40,46 +39,6 @@
 
   <body>
     
-    <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/<%=sc_code%>/schools/dashboard"><%=schoolData.school_name_en%></a></h1>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-          <li class="active"><a href="#">User: </a></li>
-          <li class="has-dropdown">
-            <a href="#">User:</a>
-            <ul class="dropdown">
-              <li><a href="#">Log out</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <!-- Left Nav Section -->
-        <ul class="left">
-          <li><a href="/<%=sc_code%>/student">Student</a></li>
-          <li><a href="/<%=sc_code%>/teacher">Teacher</a></li>
-          <li><a href="/<%=sc_code%>/classroom">Classroom</a></li>
-          <li><a href="/<%=sc_code%>/course">Course</a></li>
-          <li class="has-dropdown">
-            <a href="#">Employee</a>
-            <ul class="dropdown">
-							<li><a href="/<%=sc_code%>/employee">Employee</a></li>
-              <li><a href="/<%=sc_code%>/employee/new">New Employee</a></li>
-            </ul>
-          </li>
-          
-          
-        </ul>
-      </section>
-    </nav>
-
     <!-- Include the view file for the current controller/route -->
     <%- body %>
 
@@ -101,19 +60,13 @@
     <!-- listen on socket.io for incoming messages -->
     <script type="text/javascript" src="/js/app.js"></script>
 
+    <!-- Your scripts here? -->
+    <!-- Your scripts here? -->
+    <!-- Your scripts here? -->
     <script src="/js/vendor/jquery.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>    
     <script src="/js/foundation.min.js"></script>
-    <script src="/js/vendor/jquery.dataTables.min.js"></script>
-    <script src="/js/foundation/dataTables.foundation.js"></script>
-
-
     <script>
       $(document).foundation();
-      $(document).ready(function(){
-        $('table.data-table-ui').dataTable();  
-      })
-      
     </script>
 
     <!--

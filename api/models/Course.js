@@ -19,10 +19,19 @@ module.exports = {
     description:{
       type: 'string'
     },
+    book_step:{
+      type: 'string'
+    },
+    groups:{
+      type: 'string'
+    },
+    syllabus:{
+      type: 'string'
+    },
     is_extend:{
       type: 'string'
     },
-    price:{
+    cost:{
       type: 'string'
     },
     

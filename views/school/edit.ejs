@@ -1,6 +1,6 @@
-<div class="row fullWidth">
+<div class="row">
     <div class="large-12 columns">
-      
+
       <h1>School Setup</h1>
 
       <form data-abide action="/schools/<%=data._id%>/update" method="POST">
@@ -11,7 +11,7 @@
           </label>
           <small class="error">ชื่อระบุเป็นภาษาไทยเท่านั้น.</small>
         </div>
-      
+
         <div class="name-thai-field">
           <label>ชื่อโรงเรียน ภาษาอังกฤษ <small>required</small>
             <input name="school_name_en"  type="text" value="<%=data.school_name_en%>" required>
@@ -36,6 +36,6 @@
         <button type="submit">Submit</button>
       </form>
 
-      
+
     </div>
 </div>

@@ -1,5 +1,5 @@
 /**
- * SchoolMangeController
+ * HomeController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -15,13 +15,6 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
-
-Mongo = require('mongodb')
-MongoClient = require('mongodb').MongoClient;
-ObjectId = require('mongodb').ObjectID;
-Moment = require('moment');
-
-
 module.exports = {
     
   
@@ -29,29 +22,13 @@ module.exports = {
 
   /**
    * Overrides for the settings in `config/controllers.js`
-   * (specific to SchoolMangeController)
+   * (specific to HomeController)
    */
-  dashboard: function(req, res, next){
-    criteria = _.merge({}, req.params.all(), req.body);
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      // db.collection('service').find( { });
-
-      db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
-        if(err) return next(err);
-        
-        res.view({
-          title: schoolData.school_name_en,
-					sc_code: criteria.sc_code,
-          schoolData: schoolData,
-          layout: '/layout/school_layout'
-        })
-
-
+  index: function(req, res, next) {
+    res.view({
+        title: "Welcome to School System",
+        layout: '/layout/layout_home'
       })
-
-    })// end connect mongodb 
-
-
   }
 
   

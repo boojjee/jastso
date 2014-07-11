@@ -32,8 +32,9 @@ module.exports.routes = {
   // located at `views/home/index.ejs`
   // 
   // (This would also work if you had a file at: `/views/home.ejs`)
-  '/': {
-    view: 'home/index'
+  'get /': {
+    controller: 'Home',
+    action: 'index'
   },
 
 
@@ -82,31 +83,140 @@ module.exports.routes = {
     controller: 'SchoolManage',
     action: 'dashboard'
   },
-	
-	'get /:sc_code/employee':{
-		controller: 'Employee',
-		action: 'index'
-	},
-	'get /:sc_code/employee/new':{
-		controller: 'Employee',
-		action: 'new'
-	},
-	'post /:sc_code/employee/create':{
-		controller: 'Employee',
-		action: 'create'
-	},
-	'get /:sc_code/employee/:id/edit':{
-		controller: 'Employee',
-		action: 'edit'
-	},
-	'post /employee/update':{
-		controller: 'Employee',
-		action: 'update'
-	},
+  
+  // Employee
+  'get /:sc_code/employee':{
+    controller: 'Employee',
+    action: 'index'
+  },
+  'get /:sc_code/employee/new':{
+    controller: 'Employee',
+    action: 'new'
+  },
+  'post /:sc_code/employee/create':{
+    controller: 'Employee',
+    action: 'create'
+  },
+  'get /:sc_code/employee/:id/edit':{
+    controller: 'Employee',
+    action: 'edit'
+  },
+  'post /employee/update':{
+    controller: 'Employee',
+    action: 'update'
+  },
   'get /:sc_code/employee/:id/destroy': {
     controller: 'Employee',
     action: 'destroy'
   },
+
+	
+  // Course
+	'get /:sc_code/course':{
+		controller: 'Course',
+		action: 'index'
+	},
+	'get /:sc_code/course/new':{
+		controller: 'Course',
+		action: 'new'
+	},
+	'post /:sc_code/course/create':{
+		controller: 'Course',
+		action: 'create'
+	},
+	'get /:sc_code/course/:id/edit':{
+		controller: 'Course',
+		action: 'edit'
+	},
+	'post /course/update':{
+		controller: 'Course',
+		action: 'update'
+	},
+  'get /:sc_code/course/:id/destroy': {
+    controller: 'Course',
+    action: 'destroy'
+  },
+
+  // classroom
+  'get /:sc_code/classroom':{
+    controller: 'Classroom',
+    action: 'index'
+  },
+  'get /:sc_code/classroom/new':{
+    controller: 'Classroom',
+    action: 'new'
+  },
+  'post /:sc_code/classroom/create':{
+    controller: 'Classroom',
+    action: 'create'
+  },
+  'get /:sc_code/classroom/:id/edit':{
+    controller: 'Classroom',
+    action: 'edit'
+  },
+  'post /classroom/update':{
+    controller: 'Classroom',
+    action: 'update'
+  },
+  'get /:sc_code/classroom/:id/destroy': {
+    controller: 'Classroom',
+    action: 'destroy'
+  },
+
+
+  // student
+  'get /:sc_code/student':{
+    controller: 'Student',
+    action: 'index'
+  },
+  'get /:sc_code/student/new':{
+    controller: 'Student',
+    action: 'new'
+  },
+  'post /:sc_code/student/create':{
+    controller: 'Student',
+    action: 'create'
+  },
+  'get /:sc_code/student/:id/edit':{
+    controller: 'Student',
+    action: 'edit'
+  },
+  'post /student/update':{
+    controller: 'Student',
+    action: 'update'
+  },
+  'get /:sc_code/student/:id/destroy': {
+    controller: 'Student',
+    action: 'destroy'
+  },
+
+  // teacher
+  'get /:sc_code/teacher':{
+    controller: 'Teacher',
+    action: 'index'
+  },
+  'get /:sc_code/teacher/new':{
+    controller: 'Teacher',
+    action: 'new'
+  },
+  'post /:sc_code/teacher/create':{
+    controller: 'Teacher',
+    action: 'create'
+  },
+  'get /:sc_code/teacher/:id/edit':{
+    controller: 'Teacher',
+    action: 'edit'
+  },
+  'post /teacher/update':{
+    controller: 'Teacher',
+    action: 'update'
+  },
+  'get /:sc_code/teacher/:id/destroy': {
+    controller: 'Teacher',
+    action: 'destroy'
+  },
+
+
   /*
   // But what if you want your home page to display
   // a signup form located at `views/user/signup.ejs`?
