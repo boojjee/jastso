@@ -1,0 +1,110 @@
+      <div class="row">
+        <div class="large-12 columns">
+          <h1>เพิ่มอาจารย์ผู้สอน</h1>
+        </div>
+      </div>
+      <form data-abide action="/employee/create" method="POST">
+        <div class="row">
+          <div class="large-12 columns">
+            <h4>ข้อมูลของพนักงาน</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>ชื่อ (ภาษาไทย)<small>required</small>
+                <input name="first_name_th" type="text" required>
+              </label>
+              <small class="error">ชื่ออาจารย์ผู้สอน</small>
+            </div>
+          </div>
+          
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>นามสกุล (ภาษาไทย)<small>required</small>
+                <input name="last_name_th" type="text" required>
+              </label>
+              <small class="error">นามสกุลอาจารย์ผู้สอน</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>ชื่อ (ภาษาอังกฤษ) <small>required</small>
+                <input name="first_name_en" type="text" required>
+              </label>
+              <small class="error">ชื่ออาจารย์ผู้สอน</small>
+            </div>
+          </div>
+          
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>นามสกุล (ภาษาอังกฤษ)<small>required</small>
+                <input name="last_name_en" type="text" required>
+              </label>
+              <small class="error">นามสกุลอาจารย์ผู้สอน</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="name-thai-field">
+              <label>ชื่อเล่น<small>required</small>
+                <input name="nickname" type="text" required>
+              </label>
+              <small class="error">ชื่อเล่นของอาจารย์ผู้สอน</small>
+            </div>
+
+            <div class="name-thai-field">
+              <label>อาชีพ <small>required</small>
+                <input name="position" type="text" required>
+              </label>
+              <small class="error">กรุณาระบุอาชีพ</small>
+            </div>
+
+            <div class="name-thai-field">
+              <label>เบอร์โทร <small>required</small>
+                <input name="phone" type="text" required>
+              </label>
+              <small class="error">กรุณาระบุเบอร์โทร</small>
+            </div>
+
+            <div class="name-thai-field">
+              <label>ที่อยู่ <small>required</small>
+                <textarea  name="address" required></textarea>
+              </label>
+              <small class="error">กรุณาระบุที่อยู่</small>
+            </div>
+
+            <div class="email-field">
+              <label>อีเมล์ <small>required</small>
+                <input name="email"  type="email" required>
+              </label>
+              <small class="error">กรุณาระบุอีเมล์.</small>
+            </div>
+
+            <div class="email-field">
+              <label>รหัสผ่าน<small>required</small>
+                <input id="password" name="password"  type="password" required>
+              </label>
+              <small class="error">กรุณาระบุรหัสผ่าน.</small>
+            </div>
+
+            <div class="email-field">
+              <label>ยืนยันรหัสผ่าน<small>required</small>
+                <input name="eq_password"  type="password" required data-equalto="password">
+              </label>
+              <small class="error">รหัสผ่านไม่ตรงกัน.</small>
+            </div>
+            <input type="hidden" name="sc_code" value="<%=sc_code%>">
+
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+
+
+    
