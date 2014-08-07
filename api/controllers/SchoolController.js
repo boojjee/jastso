@@ -36,7 +36,8 @@ module.exports = {
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
-
+      console.log(sails.config.native_mongodb.url)
+      console.log(err)
       db.collection('school').find().toArray(function(err, results) {
         if (err) return next(err);
 

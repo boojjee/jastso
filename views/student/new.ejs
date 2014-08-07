@@ -1,0 +1,161 @@
+<div class="row">
+
+      <h1>เพิ่มนักเรียน</h1>
+
+
+      <form data-abide action="/student/create" method="POST">
+        <h4>ข้อมูลของนักเรียน</h4>
+
+        <div class="row">
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>ชื่อ (ภาษาไทย) <small>required</small>
+                <input name="first_name_thai" type="text" required>
+              </label>
+              <small class="error">ชื่อพนักงาน</small>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>นามสกุล (ภาษาไทย) <small>required</small>
+                <input name="last_name_thai" type="text" required>
+              </label>
+              <small class="error">นามสกุลพนักงาน</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>ชื่อ (ภาษาอังกฤษ) <small>required</small>
+                <input name="first_name_eng" type="text" required>
+              </label>
+              <small class="error">ชื่อพนักงาน</small>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div class="name-thai-field">
+              <label>นามสกุล (ภาษาอังกฤษ) <small>required</small>
+                <input name="last_name_eng" type="text" required>
+              </label>
+              <small class="error">นามสกุลพนักงาน</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">  
+
+            <div class="name-thai-field">
+              <label>ชื่อเล่น
+                <input name="nickname" type="text">
+              </label>
+              <small class="error">กรุณาระบุชื่อเล่น</small>
+            </div>
+
+            <div class="row">
+              <div class="large-6 columns">
+                <div class="name-thai-field">
+                  <label>วันเดือนปีเกิด(พ.ศ.) <small>รูปแบบ วว/ดด/ปปปป เช่น 29/12/2525</small>
+                    <input id="birth_date" name="birth_date" type="text">
+                  </label>
+                  <small class="error">กรุณาระบุชื่อเล่น</small>
+                </div>
+              </div>
+              <div class="large-6 columns">
+                <div class="name-thai-field">
+                  <label>อายุ
+                    <input id="age" name="age" type="text">
+                  </label>
+                  <small class="error"></small>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="name-thai-field">
+              <label>เลขที่บัตรประชาชน <small>required</small>
+                <input name="thai_id_number" type="text" required>
+              </label>
+              <small class="error">กรุณาระบุเลขที่บัตรประชาชน</small>
+            </div>
+
+            <div class="name-thai-field">
+              <label>เบอร์โทร <small>required</small>
+                <input name="phone" type="text" required>
+              </label>
+              <small class="error">กรุณาระบุเบอร์โทร</small>
+            </div>
+
+            <div class="name-thai-field">
+              <label>ที่อยู่
+                <textarea  name="address"></textarea>
+              </label>
+              <small class="error">กรุณาระบุที่อยู่</small>
+            </div>
+
+            <div class="email-field">
+              <label>อีเมล์ <small>required</small>
+                <input name="email"  type="email" required>
+              </label>
+              <small class="error">กรุณาระบุอีเมล์.</small>
+            </div>
+
+            <input type="hidden" name="student_status" value="1">
+            <input type="hidden" name="sc_code" value="<%=sc_code%>">
+
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+
+
+
+      </form>
+
+
+</div>
+
+<script>
+  //http://stackoverflow.com/questions/7833709/calculating-age-in-months-and-days
+  function getAge(fromdate_dmy, todate){
+    if(todate) todate= new Date(todate);
+    else todate= new Date();
+
+    conv = fromdate_dmy.split("/");
+    fromdate = conv[1]+"/"+conv[0]+"/"+conv[2]
+    var age= [], fromdate= new Date(fromdate),
+    y= [todate.getFullYear()+543, fromdate.getFullYear()],
+
+    ydiff= y[0]-y[1],
+    m= [todate.getMonth(), fromdate.getMonth()],
+    mdiff= m[0]-m[1],
+    d= [todate.getDate(), fromdate.getDate()],
+    ddiff= d[0]-d[1];
+    console.log(todate.getFullYear()+543)
+    console.log(fromdate.getFullYear())
+
+    if(mdiff < 0 || (mdiff=== 0 && ddiff<0))--ydiff;
+    if(mdiff<0) mdiff+= 12;
+    if(ddiff<0){
+        fromdate.setMonth(m[1]+1, 0);
+        ddiff= fromdate.getDate()-d[1]+d[0];
+        --mdiff;
+    }
+    if(ydiff> 0) age.push(ydiff+ ' ปี');
+    if(mdiff> 0) age.push(mdiff+ ' เดือน');
+    if(ddiff> 0) age.push(ddiff+ ' วัน');
+    if(age.length>1) age.splice(age.length-1,0,' และ ');    
+    return age.join('');
+}
+
+
+$("#birth_date").on("change",function () {
+  var bd_value = $(this).val()
+  // getAge(bd_value)
+  $("#age").val(getAge(bd_value))
+})
+
+</script>

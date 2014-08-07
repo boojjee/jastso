@@ -34,7 +34,6 @@ module.exports = {
         db.collection('course').find({ sc_code: criteria.sc_code }).toArray(function(err, courseData){
          if(err) return next(err);
 
-         console.log(courseData)
          res.view({
            title: schoolData.school_name_th,
            sc_code: criteria.sc_code,

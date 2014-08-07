@@ -1,11 +1,5 @@
 <div class="row">
-  <h1 id="switch">การจัดนักเรียน</h1>
-
-  <div>
-    <a href="/<%=sc_code%>/student/new" class="button">
-      <i class="fi-plus"></i> New
-    </a>
-  </div>
+  <h1 id="switch">ลงทะเบียนเรียน</h1>
 
   <table id="" class="data-table-ui" cellspacing="0" width="100%">
     <thead>
@@ -15,7 +9,6 @@
         <th width="100">ชื่อ</th>
         <th width="150">นามสกุล</th>
         <th width="150">เบอร์โทรศัพท์</th>
-        <th width="200"></th>
         <th width="200"></th>
       </tr>
     </thead>
@@ -30,13 +23,8 @@
         <td><%=data.last_name_thai %></td>
         <td><%=data.phone %></td>
         <td>
-          <a href="/<%=data.sc_code %>/student/<%=data._id%>/edit" class="button"  title="Edit">
-            <i class="fi-pencil"></i> แก้ไข
-          </a>
-        </td>
-        <td> 
-          <a href="/<%=data.sc_code %>/employee/<%=data._id %>/destroy" class="button"  title="delete">
-            <i class="fi-x"></i> ลบ
+          <a href="/<%=data.sc_code %>/student/<%=data._id%>/register" class="button"  title="Edit">
+            <i class="fi-pencil"></i> ลงทะเบียน
           </a>
         </td>
       </tr>

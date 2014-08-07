@@ -190,6 +190,18 @@ module.exports.routes = {
     action: 'destroy'
   },
 
+  'get /:sc_code/student/register': {
+    controller: 'StudentRegister',
+    action: 'index'
+  },
+
+  'get /:sc_code/student/register/add': {
+    controller: 'StudentRegister',
+    action: 'add'
+  },
+
+
+
   // teacher
   'get /:sc_code/teacher':{
     controller: 'Teacher',
