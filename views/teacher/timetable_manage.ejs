@@ -1,0 +1,210 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h1>ข้อมูลส่วนตัว</h1>
+  </div>
+</div>
+<form data-abide action="/<%=sc_code%>/teacher/<%=teacherData._id  %>/timetable/edit" method="POST">
+<% var time_arr = ["07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "12.00", "13.00", "13.30", "14.00", "14.30", "15.00", "15.30", "16.00", "16.30", "17.00", "17.30", "18.00", "18.30", "19.00", "19.30", "20.00", "20.30", "21.00", "21.30" ]  %>
+
+<% if(_.isEmpty(teacher_timetable)){ %>
+
+<% _.each(my_course, function(mycourse){ %>
+<div class="row">
+  <div class="large-12 columns">
+    <h2>วิชา <%= mycourse.syllabus %></h2>
+  </div>
+</div>
+<div class="row">
+  <div class="my_course large-12 columns" data-mycourse="<%=mycourse._id%>">
+    
+    <div>
+      <a class="button add_times" href="#" data-mycourse="<%=mycourse._id%>">เพิ่มเวลา</a>
+      <input type="hidden" name="mycourse[<%=mycourse._id%>][course_id]" value="<%=mycourse._id%>">
+    </div>
+    <table>
+
+    </table>
+    
+  </div>
+</div>
+
+<% })  %>
+
+  <% var count_course = my_course.length  %>
+  <% if(count_course == 0){ %>
+    <div class="row">
+      <div class="large-12 columns">
+        <p>ยังไม่กำหนดรายวิชา <a href="/<%=sc_code%>/teacher/<%=teacherData._id  %>/edit">เพิ่มรายวิชา?</a></p>
+      </div>
+    </div>
+  <% }else{ %>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <input class="button" type="submit" value="Submit">
+      </div>
+    </div>
+
+  <% } %>
+
+<% }else{ %>
+
+  
+  <% _.each(teacher_timetable, function(t_times) {   %>
+    <% _.each(my_course, function(mycourse){ %>  
+      <% _.each(t_times.time_data, function(mytime){ %>  
+      <% if(mytime.course_id.toString() == mycourse._id.toString()){ %>
+        <div class="row">
+          <div class="large-12 columns">
+            <h2>วิชา <%= mycourse.syllabus %></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="my_course large-12 columns" data-mycourse="<%=mycourse._id%>">
+            <div>
+              <a class="button add_times" href="#">เพิ่มเวลา</a>
+              <input type="hidden" name="mycourse[<%=mycourse._id%>][course_id]" value="<%=mycourse._id%>">
+            </div>
+            <table>
+              <% _.each(mytime.time, function(time_t){ %>
+              <% times_data = time_t.times%>
+              <% tmp_time = times_data.split("-")  %>
+              <tr>
+                <td width="100">
+                  <select name="mycourse[<%=mycourse._id%>][day][]" id="">
+                    <option <% if(time_t.day=="monday") { %> selected <% }  %> value="monday">จันทร์</option>
+                    <option <% if(time_t.day=="tuesday") { %> selected <% }  %> value="tuesday">อังคาร</option>
+                    <option <% if(time_t.day=="wednesday") { %> selected <% }  %> value="wednesday">พุธ</option>
+                    <option <% if(time_t.day=="thursday") { %> selected <% }  %> value="thursday">พฤหัสบดี</option>
+                    <option <% if(time_t.day=="friday") { %> selected <% }  %> value="friday">ศุกร์</option>
+                    <option <% if(time_t.day=="saturday") { %> selected <% }  %> value="saturday">เสาร์</optin>
+                    <option <% if(time_t.day=="sunday") { %> selected <% }  %> value="sunday">อาทิตย์</option>
+                  </select>
+                </td>
+                <td width="100">
+                  <select name="mycourse[<%=mycourse._id%>][time_start][]" id="">
+                    <% for(var i = 0 ; i < time_arr.length; i++){%>
+                      <option <% if(tmp_time[0] == time_arr[i]){ %> selected <% }  %>value="<%=time_arr[i]  %>"><%=time_arr[i]%> </option>
+                    <% }  %>
+                  </select>
+                </td>
+                <td width="100">
+                  <select name="mycourse[<%=mycourse._id%>][time_end][]" id="">
+                    <% for(var i = 0 ; i < time_arr.length; i++){%>
+                      <option <% if(tmp_time[1] == time_arr[i]){ %> selected <% }  %> value="<%=time_arr[i]  %>"><%=time_arr[i]%> </option>
+                    <% }  %>
+                  </select>
+                </td>
+                <td>
+                  <a href="#" class="button btn_delete_<%=mycourse._id%> btn_delete_time" title="delete">
+                      <i class="fi-x"></i> ลบ
+                    </a>
+                </td>
+              </tr>
+              <% })  %>
+
+            </table>
+          </div>
+        </div> 
+      <% }  %>
+      <% }) %>
+
+    <% }) %>
+  <% })  %>
+  <div class="row">
+    <div class="large-12 columns">
+      <input class="button" type="submit" value="Submit">
+    </div>
+  </div>
+<% } %>
+
+
+
+
+
+</form>
+
+
+<script>
+    $(document).ready(function(){
+
+      $(".my_course").on( "click", ".add_times", function(){
+        var current_div_click = $(this).parent().parent();
+        var table_time_add = $(current_div_click).find('table');
+        var mycourse_id = $(current_div_click).data("mycourse");
+        if($(table_time_add).find('tr:first').length > 0){
+          $(table_time_add).find('tr:first').clone().insertAfter( $(table_time_add).find('tr:last'));
+        }else{
+          $(table_time_add).append("<tr></tr>")
+
+
+          var time_arr = ["07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "12.00", "13.00", "13.30", "14.00", "14.30", "15.00", "15.30", "16.00", "16.30", "17.00", "17.30", "18.00", "18.30", "19.00", "19.30", "20.00", "20.30", "21.00", "21.30" ] 
+          
+          var select_name = "mycourse["+mycourse_id+"][day][]";
+          var select_day = $('<select/>', {
+              name: select_name,
+          }).append('<option value="monday">จันทร์</option><option value="tuesday">อังคาร</option><option value="wednesday">พุธ</option><option value="thursday">พฤหัสบดี</option><option value="friday">ศุกร์</option><option value="saturday">เสาร์</optin><option value="sunday">อาทิตย์</option>');
+          var td_select_data = $('<td/>', {
+              width: 100,
+          }).append(select_day);
+          $(table_time_add).find('tr').append(td_select_data)   
+
+          var select_time_start = "mycourse["+mycourse_id+"][time_start][]";
+          var select_day_start = $('<select/>', {
+              name: select_time_start,
+          });
+
+          $.each(time_arr, function(index, value) {   
+             $(select_day_start)
+                 .append($("<option></option>")
+                 .attr("value", value)
+                 .text(value)); 
+          });
+          var td_select_time_start = $('<td/>', {
+              width: 100,
+          }).append(select_day_start);
+          $(table_time_add).find('tr').append(td_select_time_start) 
+
+          var select_time_end = "mycourse["+mycourse_id+"][time_end][]";
+          var select_day_end = $('<select/>', {
+              name: select_time_end,
+          });
+
+          $.each(time_arr, function(index, value) {   
+             $(select_day_end)
+                 .append($("<option></option>")
+                 .attr("value", value)
+                 .text(value)); 
+          });
+          var td_select_time_end = $('<td/>', {
+              width: 100,
+          }).append(select_day_end);
+          $(table_time_add).find('tr').append(td_select_time_end)   
+
+
+          var btn_delete_ = $('<a/>', {
+              href: "#",
+              class: "button btn_delete_"+mycourse_id+" btn_delete_time",
+              title: "delete"
+          }).append('<i class="fi-x"></i> ลบ')
+          var td_delete_btn = $('<td/>').append(btn_delete_);
+          $(table_time_add).find('tr').append(td_delete_btn)   
+
+        }
+        
+       
+
+      })  
+
+      $(".my_course").on( "click", ".btn_delete_time", function(){
+        console.log("fff")
+        count_tr = $(this).parent().parent().parent().find("tr").length;
+        // if(count_tr > 1 ){
+        //   $(this).parent().parent().remove();
+        // }
+        $(this).parent().parent().remove();
+      })  
+
+
+  })
+</script>

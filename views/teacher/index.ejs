@@ -3,25 +3,52 @@
 
   <div>
     <a href="/<%=sc_code%>/teacher/new" class="button">
-      <i class="fi-plus"></i> New
+      <i class="fi-plus"></i> เพิ่มอาจารย์ผู้สอน
     </a>
   </div>
 
   <table>
     <thead>
       <tr>
-        <th>#</th>
         <th>ชื่อ - นามสกุล</th>
-        <th>พิมพ์บัตร</th>
+        <th>ชื่อเล่น</th>
         <th>Email</th>
-        <th>วิชาที่สอน</th>
+        <th>เบอร์โทร</th>
         <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
 
-      <% _.each(schoolData, function(data){ %>
-
+      <% _.each(teacherData, function(data){ %>
+        <tr>
+          <td>
+            <%= data.first_name_th +' '+ data.last_name_th %>
+          </td>
+          <td>
+            <%= data.nickname%>
+          </td>
+          <td>
+            <%= data.email%>
+          </td>
+          <td>
+            <%= data.phone%>
+          </td>
+          <td>
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/timetable/manage" class="button"  title="Edit">
+              <i class="fi-pencil"></i> จัดเวลาการสอน
+            </a>
+          </td>
+          <td>
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/edit" class="button"  title="Edit">
+              <i class="fi-pencil"></i> แก้ไขข้อมูลส่วนตัว
+            </a>
+          </td>
+          <td> 
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id %>/destroy" class="button"  title="delete">
+              <i class="fi-x"></i> ลบ
+            </a>
+          </td>
+        </tr>
       
 
       <% }) %>

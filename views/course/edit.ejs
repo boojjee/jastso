@@ -1,0 +1,143 @@
+<div class="row">
+    <div class="large-12 columns">
+
+      <h1>เพิ่มรายวิชา</h1>
+
+
+      <form data-abide action="/course/update" method="POST">
+        <h4>ข้อมูลของรายวิชา</h4>
+        
+        <div class="name-thai-field">
+          <label>ชื่อ *<small>required</small>
+            <input name="syllabus" type="text" value="<%=data.syllabus %>" required>
+          </label>
+          <small class="error">ชื่อวิชา</small>
+        </div>
+
+        <div class="name-thai-field">
+          <label>คำอธิบาย *<small>required</small>
+            <textarea name="discription" id="" cols="30" rows="10"><%=data.discription %></textarea>
+          </label>
+          <small class="error">คำอธิบายของรายวิชา</small>
+        </div>
+        
+        <div class="name-thai-field">
+          <label>อายุ *<small>required</small>
+            <input name="course_age" type="text" required value="<%=data.course_age %>">
+          </label>
+          <small class="error">อายุ</small>
+        </div>
+        
+        <div class="name-thai-field">
+          <label>เทอม
+            <input name="course_term" type="text" value="<%=data.course_term %>">
+          </label>
+          <small class="error">เทอม</small>
+        </div>
+        
+        <% if(classroomData){%>
+        <div class="name-thai-field">
+          <label> ห้องเรียน
+            <select name="classroom" id="">
+              <% _.each(classroomData, function(cl_date){ %>
+                <option value="<%= cl_date._id  %>"><%=cl_date.name%></option>
+              <%  })  %>
+              
+            </select>
+          </label>
+          <small class="error">ห้องเรียน</small>
+        </div>
+        <% }  %>
+        <div class="name-thai-field">
+          <label>Lesson Charge <small>required</small></label>
+          <br>
+          <div id="add_lesson_course" class="button">+ Add Lesson course</div>
+          <table id="lesson_charge">
+            <tr>
+              <th>
+                Title
+              </th>
+              <th>
+                Price
+              </th>
+              <th>
+                BookStep
+              </th>
+              <th>
+                
+              </th>
+            </tr>
+
+            <% data.book_step.forEach(function(el, index) { %>
+            <tr>
+              <td>
+                <input type="text" name="course_title" placeholder="Beginer", value="<%=el.course_title%>">
+              </td>
+              <td>
+                <input type="text" name="course_price" placeholder="1800" value="<%=el.course_price%>">
+              </td>
+              <td>
+                <input type="text" name="course_bookstep" placeholder="1-3" value="<%=el.course_bookstep%>">
+              </td>
+              <td>
+                <div class="remove_tr">X</div>
+              </td>
+            </tr>
+            <% }) %>
+          </table>
+        </div>
+
+        <div class="name-thai-field">
+          <label>Maximum Student
+            <input name="no_of_student" type="text" value="<%=data.no_of_student%>">
+          </label>
+          <small class="error">No. of Student</small>
+        </div>
+
+        <div class="name-thai-field">
+          <label>Groups *<small>required</small>
+            <input name="groups" type="text" required value="<%=data.groups%>">
+          </label>
+          <small class="error">กรุณาระบุ Group</small>
+        </div>
+
+        <div class="name-thai-field">
+          <label>ราคา <small>required</small>
+            <textarea  name="cost"><%=data.cost%></textarea>
+          </label>
+          <small class="error">กรุณาระบุราคาของรายวิชานี้</small>
+        </div>
+
+
+  
+        <input type="hidden" name="sc_code" value="<%=sc_code%>">
+        <input type="hidden" name="course_id" value="<%=data._id%>">
+        <button type="submit">Submit</button>
+      
+      </form>
+
+
+    </div>
+</div>
+
+<script>
+ 
+  $("#add_lesson_course").click(function(){
+    var tr_number  = $("#lesson_charge tr").length + 1;
+    var tr_lesson = '<tr><td><input type="text" name="course_title" placeholder="Beginer"></td><td><input type="text" name="course_price" placeholder="1800"></td><td><input type="text" name="course_bookstep" placeholder="1-3"></td><td><div class="remove_tr">X</button></div></tr>'
+    $("#lesson_charge").append(tr_lesson)
+
+  });
+
+  $(document).ready(function(){
+
+      $("#lesson_charge").on( "click", ".remove_tr", function(){
+        if($("#lesson_charge tr").length > 2 ){
+          $(this).parent().parent().remove();
+        }
+      })  
+
+  })
+  
+
+</script>

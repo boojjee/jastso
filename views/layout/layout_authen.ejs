@@ -12,8 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="/styles/foundation.css" />
     <link rel="stylesheet" href="/styles/foundation-icons.css" />
+    <link rel="stylesheet" href="/styles/dataTables.foundation.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <!-- Bring in the socket.io client -->
     <script src="/js/vendor/jquery.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>
+    <script type="text/javascript" src="/js/socket.io.js"></script>
+    <!-- then beef it up with some convenience logic for talking to Sails.js -->
+    <script type="text/javascript" src="/js/sails.io.js"></script>
+    <!-- listen on socket.io for incoming messages -->
+    <script type="text/javascript" src="/js/app.js"></script>
+
+    <script src="/js/vendor/jquery.js"></script>
     <!--
 
       Stylesheets
@@ -40,15 +49,6 @@
 
   <body>
     
-    <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="#">YSchools System</a></h1>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-      </ul>
-    </nav>
 
     <!-- Include the view file for the current controller/route -->
     <%- body %>
@@ -64,20 +64,19 @@
 
       Here's an example of importing a few dependencies, in order:
     -->
-    <!-- Bring in the socket.io client -->
-    <script type="text/javascript" src="/js/socket.io.js"></script>
-    <!-- then beef it up with some convenience logic for talking to Sails.js -->
-    <script type="text/javascript" src="/js/sails.io.js"></script>
-    <!-- listen on socket.io for incoming messages -->
-    <script type="text/javascript" src="/js/app.js"></script>
 
-    <!-- Your scripts here? -->
-    <!-- Your scripts here? -->
-    <!-- Your scripts here? -->
-    <script src="/js/vendor/jquery.js"></script>
+    <script src="/js/vendor/modernizr.js"></script>    
     <script src="/js/foundation.min.js"></script>
+    <script src="/js/vendor/jquery.dataTables.min.js"></script>
+    <script src="/js/foundation/dataTables.foundation.js"></script>
+
+
     <script>
       $(document).foundation();
+      $(document).ready(function(){
+        $('table.data-table-ui').dataTable();  
+      })
+      
     </script>
 
     <!--

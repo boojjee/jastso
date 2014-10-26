@@ -1,18 +1,30 @@
+
+<script type="text/javascript" src="/js/say-cheese.js"></script>
 <div class="row">
 
       <h1>เพิ่มนักเรียน</h1>
 
 
-      <form data-abide action="/student/create" method="POST">
+      <form data-abide action="/student/create" method="POST" enctype="multipart/form-data">
         <h4>ข้อมูลของนักเรียน</h4>
-
+        <div class="row">
+          <div class="large-6 columns">
+            <div id="avt"></div>
+            <div>
+              <!-- <div id="take-snapshot" class="button">Snap</div> -->
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div id="avt_taked"></div>
+          </div>
+        </div>
         <div class="row">
           <div class="large-6 columns">
             <div class="name-thai-field">
               <label>ชื่อ (ภาษาไทย) <small>required</small>
                 <input name="first_name_thai" type="text" required>
               </label>
-              <small class="error">ชื่อพนักงาน</small>
+              <small class="error">ชื่อนักเรียน</small>
             </div>
           </div>
           <div class="large-6 columns">
@@ -20,7 +32,7 @@
               <label>นามสกุล (ภาษาไทย) <small>required</small>
                 <input name="last_name_thai" type="text" required>
               </label>
-              <small class="error">นามสกุลพนักงาน</small>
+              <small class="error">นามสกุลนักเรียน</small>
             </div>
           </div>
         </div>
@@ -31,7 +43,7 @@
               <label>ชื่อ (ภาษาอังกฤษ) <small>required</small>
                 <input name="first_name_eng" type="text" required>
               </label>
-              <small class="error">ชื่อพนักงาน</small>
+              <small class="error">ชื่อภาษาอังกฤษ</small>
             </div>
           </div>
           <div class="large-6 columns">
@@ -39,7 +51,7 @@
               <label>นามสกุล (ภาษาอังกฤษ) <small>required</small>
                 <input name="last_name_eng" type="text" required>
               </label>
-              <small class="error">นามสกุลพนักงาน</small>
+              <small class="error">นามสกุลภาษาอังกฤษ</small>
             </div>
           </div>
         </div>
@@ -157,5 +169,28 @@ $("#birth_date").on("change",function () {
   // getAge(bd_value)
   $("#age").val(getAge(bd_value))
 })
+
+
+// $('#birth_date').fdatepicker()
+
+$(function() {
+  var sayCheese = new SayCheese('#avt', { audio: false });
+  sayCheese.on('start', function() {
+    // this.takeSnapshot();
+    $('#take-snapshot').on('click', function(evt) {
+      sayCheese.takeSnapshot();
+    });
+  });
+
+  sayCheese.on('snapshot', function(snapshot) {
+    var img = document.createElement('img');
+    $(img).on('load', function() {
+      $('#avt_taked').prepend(img);
+    });
+    img.src = snapshot.toDataURL('image/png');
+  });
+
+  // sayCheese.start();
+});
 
 </script>

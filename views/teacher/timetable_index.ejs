@@ -1,0 +1,44 @@
+<div class="row">
+  <h1 id="switch">ตารางเวลาการสอน</h1>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>ชื่อ - นามสกุล</th>
+        <th>ชื่อเล่น</th>
+        <th>Email</th>
+        <th>เบอร์โทร</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% _.each(teacherData, function(data){ %>
+        <tr>
+          <td>
+            <%= data.first_name_th +' '+ data.last_name_th %>
+          </td>
+          <td>
+            <%= data.nickname%>
+          </td>
+          <td>
+            <%= data.email%>
+          </td>
+          <td>
+            <%= data.phone%>
+          </td>
+          <td>
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/timetable/show" class="button"  title="Edit">
+              <i class="fi-pencil"></i> ดูตารางเวลาการสอน
+            </a>
+          </td>
+        </tr>
+      
+
+      <% }) %>
+
+    </tbody>
+  </table>
+
+</div>

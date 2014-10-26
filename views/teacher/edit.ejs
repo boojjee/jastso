@@ -1,31 +1,19 @@
-<script type="text/javascript" src="/js/say-cheese.js"></script>
       <div class="row">
         <div class="large-12 columns">
           <h1>เพิ่มอาจารย์ผู้สอน</h1>
         </div>
       </div>
-      <form data-abide action="/teacher/create" method="POST" enctype="multipart/form-data">
+      <form data-abide action="/teacher/update" method="POST">
         <div class="row">
           <div class="large-12 columns">
-            <h4>ข้อมูลของครูผู้สอน</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-6 columns">
-            <div id="avt"></div>
-            <div>
-              <div id="take-snapshot" class="button">Snap</div>
-            </div>
-          </div>
-          <div class="large-6 columns">
-            <div id="avt_taked"></div>
+            <h4>ข้อมูลของพนักงาน</h4>
           </div>
         </div>
         <div class="row">
           <div class="large-6 columns">
             <div class="name-thai-field">
               <label>ชื่อ (ภาษาไทย)<small>required</small>
-                <input name="first_name_th" type="text" required>
+                <input name="first_name_th" type="text" value="<%= data.first_name_th %>" required>
               </label>
               <small class="error">ชื่ออาจารย์ผู้สอน</small>
             </div>
@@ -34,7 +22,7 @@
           <div class="large-6 columns">
             <div class="name-thai-field">
               <label>นามสกุล (ภาษาไทย)<small>required</small>
-                <input name="last_name_th" type="text" required>
+                <input name="last_name_th" type="text" value="<%= data.last_name_th %>" required>
               </label>
               <small class="error">นามสกุลอาจารย์ผู้สอน</small>
             </div>
@@ -45,7 +33,7 @@
           <div class="large-6 columns">
             <div class="name-thai-field">
               <label>ชื่อ (ภาษาอังกฤษ) <small>required</small>
-                <input name="first_name_en" type="text" required>
+                <input name="first_name_en" type="text" value="<%= data.first_name_en %>" required>
               </label>
               <small class="error">ชื่ออาจารย์ผู้สอน</small>
             </div>
@@ -54,7 +42,7 @@
           <div class="large-6 columns">
             <div class="name-thai-field">
               <label>นามสกุล (ภาษาอังกฤษ)<small>required</small>
-                <input name="last_name_en" type="text" required>
+                <input name="last_name_en" type="text" value="<%= data.last_name_en %>" required>
               </label>
               <small class="error">นามสกุลอาจารย์ผู้สอน</small>
             </div>
@@ -65,61 +53,77 @@
           <div class="large-12 columns">
             <div class="name-thai-field">
               <label>สอนวิชา <span><a href="/<%=sc_code %>/course/new">ต้องการเพิ่มวิชา?</a></span></label>
-                <% _.each(courseData, function(data){ %>            
-                  <input id="checkbox<%=data._id%>" type="checkbox" name="teacher_course" value="<%=data._id%>"><label for="checkbox<%=data._id%>"><%=data.syllabus%></label>
-                <% }) %>
+                <% var my_data_course = data.course  %>
+                
+                <% if(my_data_course == null){ %>
+                  <% _.each(courseData, function(data){ %>
+                    <input id="checkbox<%=data._id%>" type="checkbox" name="teacher_course" value="<%=data._id%>">
+                    <label for="checkbox<%=data._id%>"><%=data.syllabus%></label>
+                  <% }) %>
+                <% }else{ %>
+                <% var tmpcount = 0  %>
+                  <% _.each(courseData, function(data){ %>
+                    <% for(var i = 0 ; i < my_data_course.length; i++){ %> 
+                      <% if(my_data_course[i] == data._id) {  %>
+                          <% tmpcount++  %>
+                      <% } %>
+                    <% } %>
+
+                    <% if(tmpcount == 1) { %>
+                      
+                      <input id="checkbox<%=data._id%>" type="checkbox" name="teacher_course" checked value="<%=data._id%>">
+                      <label for="checkbox<%=data._id%>"><%=data.syllabus%></label>
+
+                    <% }else{%>
+
+                      <input id="checkbox<%=data._id%>" type="checkbox" name="teacher_course" value="<%=data._id%>">
+                      <label for="checkbox<%=data._id%>"><%=data.syllabus%></label>
+                    <% }%>
+
+                    <% tmpcount = 0  %>
+                  <% }) %>
+                <% } %>
+
               <small class="error">ชื่อเล่นของอาจารย์ผู้สอน</small>
             </div>
 
             <div class="name-thai-field">
               <label>ชื่อเล่น<small>required</small>
-                <input name="nickname" type="text" required>
+                <input name="nickname" type="text" value="<%= data.nickname %>" required>
               </label>
               <small class="error">ชื่อเล่นของอาจารย์ผู้สอน</small>
             </div>
 
             <div class="name-thai-field">
               <label>อาชีพ <small>required</small>
-                <input name="position" type="text" required>
+                <input name="position" type="text" value="<%= data.position %>" required>
               </label>
               <small class="error">กรุณาระบุอาชีพ</small>
             </div>
 
             <div class="name-thai-field">
               <label>เบอร์โทร <small>required</small>
-                <input name="phone" type="text" required>
+                <input name="phone" type="text" value="<%= data.phone %>" required>
               </label>
               <small class="error">กรุณาระบุเบอร์โทร</small>
             </div>
 
             <div class="name-thai-field">
               <label>ที่อยู่ <small>required</small>
-                <textarea  name="address" required></textarea>
+                <textarea  name="address" required><%= data.address %></textarea>
               </label>
               <small class="error">กรุณาระบุที่อยู่</small>
             </div>
 
             <div class="email-field">
               <label>อีเมล์ <small>required</small>
-                <input name="email"  type="email" required>
+                <input name="email"  type="email" value="<%= data.email %>" required>
               </label>
               <small class="error">กรุณาระบุอีเมล์.</small>
             </div>
 
-            <div class="email-field">
-              <label>รหัสผ่าน<small>required</small>
-                <input id="password" name="password"  type="password" required>
-              </label>
-              <small class="error">กรุณาระบุรหัสผ่าน.</small>
-            </div>
-
-            <div class="email-field">
-              <label>ยืนยันรหัสผ่าน<small>required</small>
-                <input name="eq_password"  type="password" required data-equalto="password">
-              </label>
-              <small class="error">รหัสผ่านไม่ตรงกัน.</small>
-            </div>
             <input type="hidden" name="sc_code" value="<%=sc_code%>">
+            <input type="hidden" name="teacher_id" value="<%=data._id%>">
 
             <button type="submit">Submit</button>
           </div>
@@ -127,25 +131,4 @@
       </form>
 
 
- <script>
-
-    $(function() {
-      var sayCheese = new SayCheese('#avt', { audio: false });
-      sayCheese.on('start', function() {
-        // this.takeSnapshot();
-        $('#take-snapshot').on('click', function(evt) {
-          sayCheese.takeSnapshot();
-        });
-      });
-
-      sayCheese.on('snapshot', function(snapshot) {
-        var img = document.createElement('img');
-        $(img).on('load', function() {
-          $('#avt_taked').prepend(img);
-        });
-        img.src = snapshot.toDataURL('image/png');
-      });
-
-      sayCheese.start();
-    });
- </script>   
+    

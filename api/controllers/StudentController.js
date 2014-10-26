@@ -14,6 +14,10 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+Mongo = require('mongodb')
+MongoClient = require('mongodb').MongoClient;
+ObjectId = require('mongodb').ObjectID;
+Moment = require('moment');
 
 module.exports = {
     

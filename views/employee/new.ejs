@@ -1,11 +1,24 @@
+<script type="text/javascript" src="/js/say-cheese.js"></script>
 <div class="row">
     <div class="large-12 columns">
 
       <h1>เพิ่มพนักงาน</h1>
 
 
-      <form data-abide action="/employee/create" method="POST">
+      <form data-abide action="/employee/create" method="POST" enctype="multipart/form-data">
         <h4>ข้อมูลของพนักงาน</h4>
+        
+        <div class="row">
+          <div class="large-6 columns">
+            <div id="avt"></div>
+            <div>
+              <!-- <div id="take-snapshot" class="button">Snap</div> -->
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <div id="avt_taked"></div>
+          </div>
+        </div>
 
         <div class="name-thai-field">
           <label>ชื่อ <small>required</small>
@@ -31,7 +44,12 @@
 
         <div class="name-thai-field">
           <label>ตำแหน่ง <small>required</small>
-            <input name="position" type="text" required>
+            <select name="position" id="" required>
+              <option value="2">ผู้จัดการ</option>
+              <option value="3">ผู้ช่วยผู้จัดการ</option>
+              <option value="4">หัวหน้าธุรการ</option>
+              <option value="5">ธุรการ</option>
+            </select>
           </label>
           <small class="error">กรุณาระบุตำแหน่งของพนักงาน</small>
         </div>
@@ -86,4 +104,33 @@
     </div>
 </div>
 
+ <script>
 
+    $(function() {
+      var sayCheese = new SayCheese('#avt', { audio: false });
+      sayCheese.on('start', function() {
+        // this.takeSnapshot();
+        $('#take-snapshot').on('click', function(evt) {
+          sayCheese.takeSnapshot();
+        });
+      });
+
+      sayCheese.on('snapshot', function(snapshot) {
+        var img = document.createElement('img');
+        var hidden_my_avatar = document.createElement('input');
+        hidden_my_avatar.type = "hidden";
+        hidden_my_avatar.name = "my_avatar";
+        hidden_my_avatar.value = "";
+        $(img).on('load', function() {
+          $('#avt_taked').prepend(img);
+          $('#avt_taked').prepend(hidden_my_avatar);
+        });
+        // hidden_my_avatar.value = snapshot.toDataURL('image/png');
+        img.src = snapshot.toDataURL('image/png');
+        hidden_my_avatar.value = img.src
+
+      });
+
+      // sayCheese.start();
+    });
+ </script>  

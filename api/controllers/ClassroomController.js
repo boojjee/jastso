@@ -69,18 +69,21 @@ module.exports = {
   edit: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-
-      db.collection('classroom').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, classroomData){
+      db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
         if(err) return next(err);
+        db.collection('classroom').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, classroomData){
+          if(err) return next(err);
 
-        console.log(classroomData)
-        res.view({
-          title: "Edit classroom",
-          sc_code: criteria.sc_code,
-          classroomData: classroomData,
-          layout: '/layout/layout'
-        });
+          console.log(classroomData)
+          res.view({
+            title: "Edit classroom",
+            sc_code: criteria.sc_code,
+            schoolData: schoolData,
+            classroomData: classroomData,
+            layout: '/layout/school_layout'
+          });
 
+        })
       })
 
 
@@ -92,15 +95,22 @@ module.exports = {
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       if(err)console.log(err);
       console.log(criteria);
-      db.collection('classroom').findAndModify({
-        _id: ObjectId.createFromHexString(criteria.id)
-      }, [
-      ['_id', 'asc']
-      ], criteria, {}, function(err, object) {
-        if (err) return err;
-        res.redirect('/'+criteria.sc_code+'/classroom/');
 
-      });
+      room_data = {
+        name : criteria.name,
+        description : criteria.description,
+        room_equipment : criteria.room_equipment,
+        sc_code : criteria.sc_code
+      }
+
+
+      db.collection('classroom').update( 
+          { _id :ObjectId.createFromHexString(criteria.classroom_id) }
+        , { $set: room_data }
+        , function(err, resultUpdate){
+        if(err) return next(err);
+        res.redirect('/'+ criteria.sc_code +'/classroom')
+      })
 
     })
   },
@@ -130,7 +140,7 @@ module.exports = {
       }, function(err, deletedClassroomData) {
         if (err) return next(err);
 
-        res.redirect('/employee')
+        res.redirect('/'+ criteria.sc_code +'/classroom')
 
 
       })

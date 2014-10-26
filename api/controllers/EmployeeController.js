@@ -18,6 +18,7 @@ Mongo = require('mongodb')
 MongoClient = require('mongodb').MongoClient;
 ObjectId = require('mongodb').ObjectID;
 Moment = require('moment');
+bcrypt = require('bcryptjs')
 
 code_gen = require('../services/code_gen');
 
@@ -79,17 +80,22 @@ module.exports = {
 	edit: function(req, res, next){
 		criteria = _.merge({}, req.params.all(), req.body);	
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+      db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
+        if(err) return next(err);
+  			db.collection('employee').findOne({ _id: ObjectId(criteria.id) }, function(err, employeeData){
+  				if(err) return next(err);
 
-			db.collection('employee').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, employeeData){
-				if(err) return next(err);
+          res.view({
+            title: "Edit School",
+            sc_code: criteria.sc_code,
+            data: schoolData,
+            schoolData: schoolData,
+            employeeData: employeeData,
+            layout: '/layout/school_layout'
+          });
 
-        res.view({
-          title: "Edit School",
-          data: schoolData,
-          layout: '/layout/layout'
-        });
-
-			})
+        })
+      })
 
 
     })// end connect mongodb 
@@ -99,8 +105,19 @@ module.exports = {
 	create: function(req, res, next){
 		criteria = _.merge({}, req.params.all(), req.body);	
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-
-			db.collection('employee').insert(criteria, function(err, employeeData){
+      var employee_data = {
+        first_name: criteria.first_name,
+        last_name: criteria.last_name,
+        thai_id_number: criteria.thai_id_number,
+        position: criteria.position,
+        line_id: criteria.line_id,
+        phone: criteria.phone,
+        address: criteria.address,
+        email: criteria.email,
+        password: bcrypt.hashSync(criteria.password),
+        sc_code: criteria.sc_code
+      }
+			db.collection('employee').insert(employee_data, function(err, employeeData){
 				if(err) return next(err);
 				res.redirect('/'+ criteria.sc_code +'/employee')
 			})
@@ -121,7 +138,7 @@ module.exports = {
       }, function(err, deletedSchoolData) {
         if (err) return next(err);
 
-        res.redirect('/employee')
+        res.redirect('/'+ criteria.sc_code +'/employee')
 
 
       })

@@ -14,6 +14,10 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+Mongo = require('mongodb')
+MongoClient = require('mongodb').MongoClient;
+ObjectId = require('mongodb').ObjectID;
+Moment = require('moment');
 
 module.exports = {
     
@@ -25,8 +29,8 @@ module.exports = {
    */
   index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-   console.log(criteria)
-   MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    console.log(criteria)
+    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
         if(err) return next(err);
@@ -60,13 +64,18 @@ module.exports = {
           db.collection('course').findOne({ sc_code: criteria.sc_code }, function(err, courseData){
             if(err) return next(err);
 
-            res.view({
-              title: schoolData.school_name_th,
-              sc_code: criteria.sc_code,
-              schoolData: schoolData,
-              layout: '/layout/school_layout'
-            })
+            db.collection('classroom').find({ sc_code: criteria.sc_code }).toArray(function(err, classroomData){
+              if(err) return next(err);
 
+              res.view({
+                title: schoolData.school_name_th,
+                sc_code: criteria.sc_code,
+                schoolData: schoolData,
+                classroomData: classroomData,
+                layout: '/layout/school_layout'
+              })
+
+            })
           })
       })
 
@@ -76,17 +85,30 @@ module.exports = {
 
   edit: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
 
-      db.collection('course').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, courseData){
+    // console.log(criteria);
+    
+    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+      db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
         if(err) return next(err);
 
-        res.view({
-          title: "Edit course",
-          data: courseData,
-          layout: '/layout/layout'
-        });
+        
+        db.collection('course').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, courseData){
+          if(err) return next(err);
 
+          db.collection('classroom').find({ sc_code: criteria.sc_code }).toArray(function(err, classroomData){
+              if(err) return next(err);
+              res.view({
+                title: "Edit course",
+                data: courseData,
+                sc_code: courseData.sc_code,
+                schoolData: schoolData,
+                classroomData: classroomData,
+                layout: '/layout/school_layout'
+              });
+          })
+        })
+    
       })
 
 
@@ -97,8 +119,78 @@ module.exports = {
   create: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+      // console.log(criteria)
+      var transform_data = [];
+      if(_.isArray(criteria.course_title)){
+        for (var i = 0; i < criteria.course_title.length; i++) {
+          transform_data.push( { course_title : criteria.course_title[i], course_price : criteria.course_price[i], course_bookstep: criteria.course_bookstep[i] })
+        }
+      }else{
+        transform_data.push({
+           course_title : criteria.course_title, 
+           course_price : criteria.course_price, 
+           course_bookstep: criteria.course_bookstep
+        });
+      }
 
-      db.collection('course').insert(criteria, function(err, courseData){
+      course_data = {
+        syllabus: criteria.syllabus,
+        discription: criteria.discription,
+        course_age: criteria.course_age,
+        course_term: criteria.course_term,
+        book_step: transform_data,
+        no_of_student: criteria.no_of_student,
+        groups: criteria.groups,
+        cost: criteria.cost,
+        classroom: ObjectId(criteria.classroom),
+        sc_code: criteria.sc_code,
+      }
+
+      // console.log(course_data);
+
+      db.collection('course').insert(course_data, function(err, courseData){
+        if(err) return next(err);
+        res.redirect('/'+ criteria.sc_code +'/course')
+      })
+
+
+    })// end connect mongodb 
+  },
+
+  update: function(req, res, next){
+    criteria = _.merge({}, req.params.all(), req.body); 
+    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+      // console.log(criteria)
+
+      var transform_data = [];
+      if(_.isArray(criteria.course_title)){
+        for (var i = 0; i < criteria.course_title.length; i++) {
+          transform_data.push( { course_title : criteria.course_title[i], course_price : criteria.course_price[i], course_bookstep: criteria.course_bookstep[i] })
+        }
+      }else{
+        transform_data.push({
+           course_title : criteria.course_title, 
+           course_price : criteria.course_price, 
+           course_bookstep: criteria.course_bookstep
+        });
+      }
+
+      course_data = {
+        syllabus: criteria.syllabus,
+        discription: criteria.discription,
+        course_age: criteria.course_age,
+        course_term: criteria.course_term,
+        book_step: transform_data,
+        no_of_student: criteria.no_of_student,
+        groups: criteria.groups,
+        cost: criteria.cost,
+        sc_code: criteria.sc_code,
+        classroom: ObjectId(criteria.classroom),
+      }
+
+      // console.log(course_data);
+
+      db.collection('course').update({ _id :ObjectId.createFromHexString(criteria.course_id) }, { $set: course_data }, function(err, courseData){
         if(err) return next(err);
         res.redirect('/'+ criteria.sc_code +'/course')
       })

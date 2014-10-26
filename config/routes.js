@@ -37,6 +37,10 @@ module.exports.routes = {
     action: 'index'
   },
 
+  'get /login': {
+    controller: 'Authentication',
+    action: 'login'
+  },
 
   // Schools Route
   'get /schools': {
@@ -154,7 +158,7 @@ module.exports.routes = {
     controller: 'Classroom',
     action: 'edit'
   },
-  'post /classroom/update':{
+  'post /:sc_code/classroom/:id/update':{
     controller: 'Classroom',
     action: 'update'
   },
@@ -207,6 +211,25 @@ module.exports.routes = {
     controller: 'Teacher',
     action: 'index'
   },
+  'get /:sc_code/teacher/timetable':{
+    controller: 'Teacher',
+    action: 'timetable_index'
+  },
+  'get /:sc_code/teacher/:id/timetable/show':{
+    controller: 'Teacher',
+    action: 'timetable_show'
+  },
+
+  'get /:sc_code/teacher/:id/timetable/manage':{
+    controller: 'Teacher',
+    action: 'timetable_manage'
+  },
+  'post /:sc_code/teacher/:id/timetable/edit':{
+    controller: 'Teacher',
+    action: 'timetable_edit'
+  },
+
+
   'get /:sc_code/teacher/new':{
     controller: 'Teacher',
     action: 'new'

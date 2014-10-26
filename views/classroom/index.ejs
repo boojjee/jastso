@@ -3,18 +3,17 @@
 
   <div>
     <a href="/<%=sc_code%>/classroom/new" class="button">
-      <i class="fi-plus"></i> เพิ่ม
+      <i class="fi-plus"></i> เพิ่มห้องเรียน
     </a>
   </div>
 
   <div>
-<table id="" class="data-table-ui" cellspacing="0" width="100%">
+      <table id="" class="data-table-ui" cellspacing="0" width="100%">
         <thead>
             <tr>
               <th>ลำดับ</th>
               <th>ชื่อห้องเรียน</th>
               <th>รายละเอียด</th>
-              <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
             </tr>
@@ -27,7 +26,6 @@
               <th>รายละเอียด</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
-              <th>&nbsp;</th>
             </tr>
         </tfoot>
  
@@ -37,12 +35,6 @@
             <td><%=1%></td>
             <td class="center"><%=data.name%></td>
             <td class="center"><%=data.description%></td>
-            <td>
-              <a href="/<%=sc_code%>/classroom/dashboard" class="button" title="Setting">
-                <i class="fi-widget"></i>
-                จัดการ
-              </a>
-            </td>
             <td>
               <a href="/<%=sc_code%>/classroom/<%=data._id%>/edit" class="button"  title="Edit">
                 <i class="fi-pencil"></i> แก้ไข
