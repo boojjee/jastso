@@ -4,7 +4,7 @@
     <label>Choose Your Favorite</label>
   </div>
   <div class="large-6 columns">
-    <form action="/authentication/process" method="POST">
+    <form action="/login" method="POST">
     
       <div class="row">
         <div class="small-8">
@@ -13,7 +13,7 @@
               <label for="right-label" class="right inline">Username</label>
             </div>
             <div class="small-9 columns">
-              <input type="text" id="right-label" placeholder="username">
+              <input name="username" type="text" id="right-label" placeholder="email">
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
               <label for="right-label" class="right inline">Password</label>
             </div>
             <div class="small-9 columns">
-              <input type="text" id="right-label" placeholder="password">
+              <input name="password" type="password" id="right-label" placeholder="password">
             </div>
           </div>
         </div>

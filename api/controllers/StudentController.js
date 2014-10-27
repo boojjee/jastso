@@ -149,6 +149,15 @@ module.exports = {
 
   },
 
+  timetable: function(req, res, next) {
+    criteria = _.merge({}, req.params.all(), req.body);
+    std_id : criteria.id;
+    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+
+
+    })
+  }
+
 
 
 

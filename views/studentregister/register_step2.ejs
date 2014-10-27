@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h1>ข้อมูลส่วนตัว</h1>
+  </div>
+</div>
+<form data-abide action="/<%=sc_code%>/student/<%=studentData._id%>/register/3" method="POST">
+
+    
+    <% duration_study_loop = duration_study * 4  %>
+    <% time_arr = ["07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "12.00", "13.00", "13.30", "14.00", "14.30", "15.00", "15.30", "16.00", "16.30", "17.00", "17.30", "18.00", "18.30", "19.00", "19.30", "20.00", "20.30", "21.00", "21.30" ]  %>
+
+    <% for (var i = 0; i < duration_study_loop; i++) { %>
+    <div class="row">
+    <table>
+      <tr>
+        <td width="100">
+          <label>ครั้งที่ <%=i+1  %></label>
+          
+        </td>
+        <td width="150">
+          <label>วันที่เรียน</label>
+          <input type="text" class="calendar_regist" name="date" placeholder="วว/ดด/ปี" style="width:100px;">
+        </td>
+        <td width="300">
+          <label>เวลา</label>
+          <select name="mycourse_start[]" id="" style="width:130px;">
+            <% for(var j = 0 ; j < time_arr.length; j++){%>
+            <option  value="<%=time_arr[j]  %>"><%=time_arr[j]%> </option>
+            <% }  %>
+          </select> - 
+          <select name="mycourse_end[]" id="" style="width:130px;">
+            <% for(var j = 0 ; j < time_arr.length; j++){%>
+            <option  value="<%=time_arr[j]  %>"><%=time_arr[j]%> </option>
+            <% }  %>
+          </select>
+        </td>
+        <td width="200">
+          <label>อาจารย์</label>
+          <select name="teacher" id="">
+            <% _.each(teacherData, function(taData){  %>
+            <option value="<%=taData._id%>"><%=taData.first_name_th+" "+taData.last_name_th %></option>
+            <% })  %>
+          </select>  
+        </td>
+      </tr>
+    </table>
+    </div>
+    <% }  %>
+<div class="row">
+  <div class="large-12 columns">
+    <button type="submit">Next</button>
+  </div>
+</div>     
+</form>
+
+
+
+<script>
+  $('.calendar_regist').fdatepicker({
+    format: 'dd-mm-yyyy'
+  });
+  
+</script>

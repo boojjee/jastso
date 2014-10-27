@@ -42,6 +42,15 @@ module.exports.routes = {
     action: 'login'
   },
 
+  'post /login': {
+    controller: 'Authentication',
+    action: 'process'
+  },
+  'get /logout': {
+    controller: 'Authentication',
+    action: 'logout'
+  },
+
   // Schools Route
   'get /schools': {
     controller: 'School',
@@ -193,10 +202,27 @@ module.exports.routes = {
     controller: 'Student',
     action: 'destroy'
   },
+  'get /:sc_code/student/:id/show/timetable': {
+    controller: 'Student',
+    action: 'timetable'
+  },
 
   'get /:sc_code/student/register': {
     controller: 'StudentRegister',
     action: 'index'
+  },
+  'get /:sc_code/student/:id/register': {
+    controller: 'StudentRegister',
+    action: 'register'
+  },
+  'post /:sc_code/student/:id/register/2': {
+    controller: 'StudentRegister',
+    action: 'register_step2'
+  },
+
+  'post /:sc_code/student/:id/register/3': {
+    controller: 'StudentRegister',
+    action: 'register_step3'
   },
 
   'get /:sc_code/student/register/add': {

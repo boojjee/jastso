@@ -1,0 +1,43 @@
+
+<form data-abide action="/<%=sc_code%>/student/<%=studentData._id%>/register/2" method="POST" enctype="multipart/form-data">
+<div class="row">
+  <h3>วิชาที่ต้องการสมัคร</h3>
+  
+  <% _.each(courseData, function(courseData){ %>
+  <div class="large-3 columns">
+    <input type="radio" name="course" id="<%=courseData._id  %>" value="<%=courseData._id  %>">
+    <label for="<%=courseData._id%>"><%=courseData.syllabus  %></label>
+  </div>    
+  <% })  %> 
+</div>
+
+<div class="row">
+
+  <div class="large-4 columns">
+
+  <label for="">ระยะเวลา</label>
+    <select name="duration_study" id="">
+      <option value="1">1 เดือน</option>
+      <option value="2">2 เดือน</option>
+      <option value="3">3 เดือน</option>
+      <option value="4">4 เดือน</option>
+      <option value="5">5 เดือน</option>
+      <option value="6">6 เดือน</option>
+      <option value="7">7 เดือน</option>
+      <option value="8">8 เดือน</option>
+      <option value="9">9 เดือน</option>
+      <option value="10">10 เดือน</option>
+      <option value="11">11 เดือน</option>
+      <option value="12">12 เดือน</option>
+    </select>
+  </div> 
+</div> 
+<div class="row">
+
+  <div class="large-4 columns">
+    <button type="submit">Next</button>
+  </div> 
+  
+
+</div>  
+</form>

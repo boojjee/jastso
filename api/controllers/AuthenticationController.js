@@ -15,6 +15,9 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 var bcrypt = require('bcryptjs')
+Mongo = require('mongodb')
+MongoClient = require('mongodb').MongoClient;
+ObjectId = require('mongodb').ObjectID;
 
 module.exports = {
 
@@ -26,9 +29,45 @@ module.exports = {
     },
 
     process: function(req, res, next) {
-      res.json("terst")
+      criteria = _.merge({}, req.params.all(), req.body);
+
+      if(criteria.username == "sadmin" && criteria.password == "12345"){
+        req.session.authenticated = true;
+        req.session.user_role = "0";
+        res.redirect("/");
+      }else{
+        MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+          db.collection('employee').findOne({ email: criteria.username }, function(err, employeeData){
+
+            if(_.isEmpty(employeeData)){
+              res.redirect('/login')
+            }else{
+              console.log(criteria.password)
+              console.log(employeeData.password)
+              if( bcrypt.compareSync(criteria.password, employeeData.password) ){
+                req.session.authenticated = true;
+                req.session.user_role = employeeData.position;
+                req.session.sc_code = employeeData.sc_code;
+
+                res.redirect(req.session.sc_code+"/schools/dashboard");
+              }else{
+                res.redirect('/login')
+              }
+            }
+
+          })
+        })
+      }
+
+
+      
+
+      // req.session.authenticated = true;
     },
 
-
+    logout: function(req, res, next){
+      req.session.destroy();
+      res.redirect('/login');
+    }
 
 }
