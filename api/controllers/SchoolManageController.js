@@ -33,15 +33,19 @@ module.exports = {
    */
   dashboard: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body);
+    req.session.sc_code = criteria.sc_code;
+    
+    console.log(req.session)
+    my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
 
-      db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
+      db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) return next(err);
         
         res.view({
           title: schoolData.school_name_en,
-					sc_code: criteria.sc_code,
+					sc_code: my_sc_code,
           schoolData: schoolData,
           layout: '/layout/school_layout'
         })

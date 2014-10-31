@@ -25,7 +25,7 @@ module.exports = {
 
   index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-
+    my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
@@ -53,6 +53,7 @@ module.exports = {
 
   new: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body); 
+    my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
 
@@ -73,6 +74,7 @@ module.exports = {
 
   create: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
+    my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
 
       db.collection('student').insert(criteria, function(err, employeeData){
@@ -86,6 +88,7 @@ module.exports = {
 
   edit: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
+    my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       if (err) return next(err);
       db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
@@ -112,6 +115,7 @@ module.exports = {
 
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
+    my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       if(err)console.log(err);
       console.log(criteria);
@@ -130,6 +134,7 @@ module.exports = {
 
   destroy: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
+    my_sc_code = req.session.sc_code;
     school_id = criteria.id
     console.log(criteria)
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
@@ -151,6 +156,7 @@ module.exports = {
 
   timetable: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
+    my_sc_code = req.session.sc_code;
     std_id : criteria.id;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
 

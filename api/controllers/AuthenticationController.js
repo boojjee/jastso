@@ -35,6 +35,7 @@ module.exports = {
         req.session.authenticated = true;
         req.session.user_role = "0";
         res.redirect("/");
+        
       }else{
         MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
           db.collection('employee').findOne({ email: criteria.username }, function(err, employeeData){
@@ -42,12 +43,15 @@ module.exports = {
             if(_.isEmpty(employeeData)){
               res.redirect('/login')
             }else{
-              console.log(criteria.password)
-              console.log(employeeData.password)
               if( bcrypt.compareSync(criteria.password, employeeData.password) ){
+
                 req.session.authenticated = true;
                 req.session.user_role = employeeData.position;
                 req.session.sc_code = employeeData.sc_code;
+
+                req.session.employee_data = employeeData;
+                console.log(req.session)
+                // console.log(employeeData)
 
                 res.redirect(req.session.sc_code+"/schools/dashboard");
               }else{

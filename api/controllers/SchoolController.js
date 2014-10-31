@@ -34,24 +34,30 @@ module.exports = {
 
   index: function(req, res, next) {
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      // db.collection('service').find( { });
-      console.log(sails.config.native_mongodb.url)
-      console.log(err)
-      db.collection('school').find().toArray(function(err, results) {
-        if (err) return next(err);
+    if(req.session.user_role == "0" || req.session.user_role == "1"){
+      MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+        // db.collection('service').find( { });
+        console.log(sails.config.native_mongodb.url)
+        console.log(err)
+        db.collection('school').find().toArray(function(err, results) {
+          if (err) return next(err);
 
-        console.log(results);
+          console.log(results);
 
-        res.view({
-          title: "การจัดการโรงเรียนในเครือ",
-          data: results,
-          layout: '/layout/layout'
-        });
+          res.view({
+            title: "การจัดการโรงเรียนในเครือ",
+            data: results,
+            layout: '/layout/layout'
+          });
 
-      })
+        })
 
-    }) // end connect mongodb 
+      }) // end connect mongodb 
+
+    }else{
+      res.redirect('/'+req.session.sc_code+'/schools/dashboard')
+    }
+
 
 
 

@@ -25,6 +25,7 @@
 
     <script src="/js/vendor/jquery.js"></script>
     <script src="/js/foundation/foundation-datepicker.js"></script>
+    <script src="/js/moment.min.js"></script>
     <!--
 
       Stylesheets
@@ -63,9 +64,30 @@
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-          <li class="active"><a href="#">User: </a></li>
+          <li class="active">
+
+              <% if(req.session.user_role == "0" || req.session.user_role == "1"){  %>
+                  <a href="#">
+                    <i class="fi-adult"></i> 
+                      Admin
+                  </a>
+                <% }else{  %>
+                  <a href="#">
+                    <i class="fi-adult"></i> 
+                    <%= req.session.employee_data.first_name + " " + req.session.employee_data.last_name %>
+                  </a>
+                <% }  %>
+          </li>
+          <% if(req.session.user_role == "0"){  %>
           <li class="has-dropdown">
-            <a href="#">User:</a>
+            <a href="#"><i class="fi-widget"></i></a>
+            <ul class="dropdown">
+              <li><a href="/logout">School Management</a></li>
+            </ul>
+          </li>
+           <% }  %>
+          <li class="has-dropdown">
+            <a href="#"><i class="fi-widget"></i></a>
             <ul class="dropdown">
               <li><a href="/logout">Log out</a></li>
             </ul>
@@ -78,6 +100,7 @@
             <a href="#">Student</a>
             <ul class="dropdown">
               <li><a href="/<%=sc_code%>/student/register"><i class="fi-download"></i> ลงทะเบียนเรียน</a></li>
+              <li><a href="/<%=sc_code%>/student/new"><i class="fi-plus"></i> เพิ่มนักเรียน</a></li>
               <li><a href="/<%=sc_code%>/student"><i class="fi-folder"></i> การจัดการนักเรียน</a></li>
               <!-- <li><a href="/<%=sc_code%>/student/timetable"><i class="fi-list"></i> ตารางเรียนนักเรียน</a></li> -->
               <!-- <li><a href="/<%=sc_code%>/student/studytoday"><i class="fi-checkbox"></i> นักเรียนทีเรียนวันนี้</a></li> -->
@@ -97,9 +120,13 @@
               </li>
             </ul>
           </li>
+          <li><a href="/<%=sc_code%>/course">Course</a></li>
           <li  class="has-dropdown"> 
             <a href="#">Classroom</a>
             <ul class="dropdown">
+              <li>
+                <a href="/<%=sc_code%>/classroom"><i class="fi-map"></i> แผนผังห้องรวม</a>
+              </li>
               <li>
                 <a href="/<%=sc_code%>/classroom"><i class="fi-folder"></i> การจัดการห้องเรียน</a>
               </li><!-- 
@@ -108,9 +135,9 @@
               </li> -->
             </ul>
           </li>
-          <li><a href="/<%=sc_code%>/course">Course</a></li>
+          <% if(req.session.user_role != "5"){  %>
           <li><a href="/<%=sc_code%>/employee">Employee</a></li>
-          
+          <% }  %>
           
         </ul>
       </section>

@@ -25,10 +25,15 @@ module.exports = {
    * (specific to HomeController)
    */
   index: function(req, res, next) {
-    res.view({
+    if(req.session.user_role == "0" || req.session.user_role == "1"){
+      res.view({
         title: "Welcome to School System",
         layout: '/layout/layout_home'
       })
+    }else{
+      res.redirect(req.session.sc_code+"/schools/dashboard");
+    } 
+    
   }
 
   

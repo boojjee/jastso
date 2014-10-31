@@ -32,6 +32,17 @@
     </select>
   </div> 
 </div> 
+
+<div class="row">
+
+  <div class="large-4 columns">
+
+  <label for="">วันที่เริ่มเรียน</label>
+    <input type="text" class="start_study_day" name="start_study_day" placeholder="วว/ดด/ปี" style="width:100px;">
+  </div> 
+</div> 
+
+
 <div class="row">
 
   <div class="large-4 columns">
@@ -41,3 +52,10 @@
 
 </div>  
 </form>
+
+
+<script>
+  $('.start_study_day').fdatepicker({
+    format: 'dd-mm-yyyy'
+  });  
+</script>

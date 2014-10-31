@@ -8,7 +8,9 @@
     
     <% duration_study_loop = duration_study * 4  %>
     <% time_arr = ["07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "12.00", "13.00", "13.30", "14.00", "14.30", "15.00", "15.30", "16.00", "16.30", "17.00", "17.30", "18.00", "18.30", "19.00", "19.30", "20.00", "20.30", "21.00", "21.30" ]  %>
-
+    
+    <% var result = moment(start_study_day, "D-MM-YYYY")   %>
+    
     <% for (var i = 0; i < duration_study_loop; i++) { %>
     <div class="row">
     <table>
@@ -19,7 +21,9 @@
         </td>
         <td width="150">
           <label>วันที่เรียน</label>
-          <input type="text" class="calendar_regist" name="date" placeholder="วว/ดด/ปี" style="width:100px;">
+          <input type="text" class="calendar_regist" name="date" placeholder="วว/ดด/ปี" style="width:100px;" 
+            value="<%= moment(result).format("D-MM-YYYY") %>">
+          <% result = moment(result).add(7, 'days') %>  
         </td>
         <td width="300">
           <label>เวลา</label>
