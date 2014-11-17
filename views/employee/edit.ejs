@@ -4,7 +4,7 @@
       <h1>เพิ่มพนักงาน</h1>
 
 
-      <form data-abide action="/employee/create" method="POST">
+      <form data-abide action="/employee/update" method="POST">
         <h4>ข้อมูลของพนักงาน</h4> 
 
         <div class="name-thai-field">
@@ -20,6 +20,8 @@
           </label>
           <small class="error">นามสกุลพนักงาน</small>
         </div>
+
+        <% if(req.session.user_role == 1){ %>
         <div class="name-thai-field">
           <label>ตำแหน่ง <small>required</small>
             <select name="position" id="" required>
@@ -31,6 +33,9 @@
           </label>
           <small class="error">กรุณาระบุตำแหน่งของพนักงาน</small>
         </div>
+        <% } %>
+
+        
 
         <div class="name-thai-field">
           <label>เบอร์โทร <small>required</small>

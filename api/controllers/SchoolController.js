@@ -37,12 +37,15 @@ module.exports = {
     if(req.session.user_role == "0" || req.session.user_role == "1"){
       MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
         // db.collection('service').find( { });
-        console.log(sails.config.native_mongodb.url)
-        console.log(err)
-        db.collection('school').find().toArray(function(err, results) {
-          if (err) return next(err);
+        // reset sc_code
+        delete req.session.sc_code;
 
-          console.log(results);
+        // console.log(req.session)
+
+        db.collection('school').find().toArray(function(err, results) {
+          if (err) { console.log(err)}
+
+          db.close();
 
           res.view({
             title: "การจัดการโรงเรียนในเครือ",
@@ -66,14 +69,14 @@ module.exports = {
   edit: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      if (err) return next(err);
+      if (err) { console.log(err)}
 
       db.collection('school').findOne({
         _id: ObjectId.createFromHexString(criteria.id)
       }, function(err, schoolData) {
-        if (err) return next(err);
+        if (err) { console.log(err)}
 
-        console.log(schoolData)
+        db.close();
         res.view({
           title: "Edit School",
           data: schoolData,
@@ -96,6 +99,8 @@ module.exports = {
         ['_id', 'asc']
       ], criteria, {}, function(err, object) {
         if (err) return err;
+        
+        db.close();
         res.redirect('/schools/');
 
       });
@@ -120,8 +125,9 @@ module.exports = {
       // db.collection('service').find( { });
 
       db.collection('school').insert(criteria, function(err, insertedSchoolData) {
-        if (err) return next(err);
-        console.log(insertedSchoolData);
+        if (err) { console.log(err)}
+        
+        db.close();
         res.redirect('/schools');
 
 
@@ -136,13 +142,14 @@ module.exports = {
     school_id = criteria.id
     console.log(criteria)
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      if (err) return next(err);
+      if (err) { console.log(err)}
 
       db.collection('school').remove({
         _id: ObjectId.createFromHexString(school_id)
       }, function(err, insertedSchoolData) {
-        if (err) return next(err);
-
+        if (err) { console.log(err)}
+        
+        db.close();
         res.redirect('/schools')
 
 

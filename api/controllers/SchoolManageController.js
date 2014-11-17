@@ -45,7 +45,7 @@ module.exports = {
         
         res.view({
           title: schoolData.school_name_en,
-					sc_code: my_sc_code,
+	        sc_code: my_sc_code,
           schoolData: schoolData,
           layout: '/layout/school_layout'
         })

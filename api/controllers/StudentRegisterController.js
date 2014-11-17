@@ -30,18 +30,18 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     school_id = criteria.id;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      if (err) return next(err);
+      if (err){ console.log(err)};
       db.collection('school').findOne({
         sc_code: my_sc_code
       }, function(err, schoolData) {
-          if (err) return next(err);
+          if (err){ console.log(err)};
 
           db.collection('student').find({
             sc_code: my_sc_code
           }).toArray(function(err, studentData) {
-            if (err) return next(err);
+            if (err){ console.log(err)};
 
-            console.log(studentData);
+            db.close();
 
             res.view({
               title: schoolData.school_name_th,
@@ -77,7 +77,8 @@ module.exports = {
               sc_code: my_sc_code,
               _id: ObjectId(criteria.id)
             }, function(err, studentData) {
-
+              
+                db.close();
                 res.view({
                   title: schoolData.school_name_th,
                   sc_code: my_sc_code,
@@ -123,7 +124,9 @@ module.exports = {
                       $in: [course_selected]
                     }
                   }).toArray(function(err, teacherData) {
-                    console.log(teacherData)
+                    
+                    db.close();
+                    
                     res.view({
                       title: schoolData.school_name_th,
                       sc_code: my_sc_code,
@@ -164,7 +167,7 @@ module.exports = {
         sc_code: my_sc_code,
 
       }
-
+      console.log(student_regis_data)
       // db.collection('student_regis_course').findOne({
       //   student_id: ObjectId(criteria.id)
       // }, function(err, findSTDregist){
@@ -172,12 +175,12 @@ module.exports = {
       // })
 
       db.collection('student_regis_course').insert(student_regis_data, function(err, employeeData) {
-        if (err) return next(err);
+        if (err){ console.log(err)};
+        db.close();
         res.redirect('/' + my_sc_code + '/student')
       })
 
 
     });
-    console.log(criteria)
   }
 };

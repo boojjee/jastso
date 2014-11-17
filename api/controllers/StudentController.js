@@ -33,7 +33,8 @@ module.exports = {
 
         db.collection('student').find({ sc_code: criteria.sc_code }).toArray(function(err, studentData){
           if(err) return next(err);
-
+          
+          db.close();
           res.view({
             title: schoolData.school_name_th,
             sc_code: criteria.sc_code,
@@ -59,13 +60,14 @@ module.exports = {
 
       db.collection('school').findOne({ sc_code: criteria.sc_code }, function(err, schoolData){
         if(err) return next(err);
-
-          res.view({
-            title: schoolData.school_name_th,
-            sc_code: criteria.sc_code,
-            schoolData: schoolData,
-            layout: '/layout/school_layout'
-          })
+          
+        db.close();
+        res.view({
+          title: schoolData.school_name_th,
+          sc_code: criteria.sc_code,
+          schoolData: schoolData,
+          layout: '/layout/school_layout'
+        })
       })
 
 
@@ -79,6 +81,8 @@ module.exports = {
 
       db.collection('student').insert(criteria, function(err, employeeData){
         if(err) return next(err);
+        
+        db.close();
         res.redirect('/'+ criteria.sc_code +'/student')
       })
 
@@ -98,7 +102,8 @@ module.exports = {
           _id: ObjectId.createFromHexString(criteria.id)
         }, function(err, studentData) {
           if (err) return next(err);
-
+          
+          db.close();
           res.view({
             title: schoolData.school_name_th,
             sc_code: criteria.sc_code,
@@ -118,13 +123,15 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       if(err)console.log(err);
-      console.log(criteria);
+      
       db.collection('student').findAndModify({
         _id: ObjectId.createFromHexString(criteria.id)
       }, [
         ['_id', 'asc']
       ], criteria, {}, function(err, object) {
         if (err) return err;
+        
+        db.close();
         res.redirect('/student');
 
       });
@@ -144,7 +151,8 @@ module.exports = {
         _id: ObjectId.createFromHexString(school_id)
       }, function(err, insertedTeacherData) {
         if (err) return next(err);
-
+        
+        db.close();
         res.redirect('/student')
 
 
@@ -159,7 +167,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     std_id : criteria.id;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-
+      db.close();
 
     })
   }

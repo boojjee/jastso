@@ -16,10 +16,38 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  // '*': true
-  Home :{
-  	'*': 'employeeAuthen'
+//  '*': false,
+  Home : {
+    '*': 'employeeAuthen'
   },
+  School: {
+    '*': 'employeeAuthen'
+  },
+  Classroom: {
+    '*': 'employeeAuthen'
+  },
+  Course: {
+    '*': 'employeeAuthen'
+  }, 
+  SchoolManage: {
+    '*': 'employeeAuthen'
+  },
+  Student: {
+    '*': 'employeeAuthen'
+  },
+  StudentRegister: {
+    '*': 'employeeAuthen'
+  },
+  Teacher: {
+    '*': 'employeeAuthen'
+  },
+  Employee: {
+    '*': 'employeeAuthen'
+  }
+  
+  
+  
+  
   
   /*
 	// Here's an example of adding some policies to a controller

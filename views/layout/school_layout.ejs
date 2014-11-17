@@ -64,7 +64,7 @@
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-          <li class="active">
+          <li class="active has-dropdown">
 
               <% if(req.session.user_role == "0" || req.session.user_role == "1"){  %>
                   <a href="#">
@@ -76,13 +76,16 @@
                     <i class="fi-adult"></i> 
                     <%= req.session.employee_data.first_name + " " + req.session.employee_data.last_name %>
                   </a>
+                  <ul class="dropdown">
+                    <li><a href="/<%=sc_code%>/employee/<%=req.session.user_id%>/edit">Edit Profile</a></li>
+                  </ul>
                 <% }  %>
           </li>
           <% if(req.session.user_role == "0"){  %>
           <li class="has-dropdown">
             <a href="#"><i class="fi-widget"></i></a>
             <ul class="dropdown">
-              <li><a href="/logout">School Management</a></li>
+              <li><a href="/school">School Management</a></li>
             </ul>
           </li>
            <% }  %>

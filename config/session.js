@@ -37,18 +37,21 @@ module.exports.session = {
   // Uncomment the following lines to use your Mongo adapter as a session store
   // adapter: 'mongo',
   
-  // host: 'localhost',
-  // port: 27017,
-  // db: 'yamaha-schools',
-  // collection: 'sessions',  
+  host: 'localhost',
+  port: 27017,
+  db: 'yamaha-schools',
+  collection: 'sessions',  
+  cookie: {
+    maxAge: 60 * 60 * 1000  // example: 60 mins in miliseconds
+  }
 
-  adapter: 'mongo',
-  host: 'ds047440.mongolab.com',
-  port: 47440,
-  db: 'yamaha-school',
-  collection: 'sessions',
-  username: 'admin',
-  password: 'AdminAdmin',
+  // adapter: 'mongo',
+  // host: 'ds047440.mongolab.com',
+  // port: 47440,
+  // db: 'yamaha-school',
+  // collection: 'sessions',
+  // username: 'admin',
+  // password: 'AdminAdmin',
 
   //
   // Optional Values:

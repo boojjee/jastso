@@ -14,7 +14,7 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
-Mongo = require('mongodb')
+Mongo = require('mongodb');
 MongoClient = require('mongodb').MongoClient;
 ObjectId = require('mongodb').ObjectID;
 Moment = require('moment');
@@ -33,11 +33,12 @@ module.exports = {
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err){ console.log(err)}
 
         db.collection('course').find({ sc_code: my_sc_code }).toArray(function(err, courseData){
-         if(err) return next(err);
-
+         if(err){ console.log(err)}
+        
+         db.close();  
          res.view({
            title: schoolData.school_name_th,
            sc_code: my_sc_code,
@@ -60,14 +61,15 @@ module.exports = {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err){ console.log(err) }
 
           db.collection('course').findOne({ sc_code: my_sc_code }, function(err, courseData){
-            if(err) return next(err);
+            if(err){ console.log(err) }
 
             db.collection('classroom').find({ sc_code: my_sc_code }).toArray(function(err, classroomData){
-              if(err) return next(err);
-
+              if(err){ console.log(err) }
+              
+              db.close();
               res.view({
                 title: schoolData.school_name_th,
                 sc_code: my_sc_code,
@@ -91,22 +93,24 @@ module.exports = {
     
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err){ console.log(err) }
 
         
         db.collection('course').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, courseData){
-          if(err) return next(err);
+          if(err){ console.log(err) }
 
           db.collection('classroom').find({ sc_code: my_sc_code }).toArray(function(err, classroomData){
-              if(err) return next(err);
-              res.view({
-                title: "Edit course",
-                data: courseData,
-                sc_code: courseData.sc_code,
-                schoolData: schoolData,
-                classroomData: classroomData,
-                layout: '/layout/school_layout'
-              });
+              if(err){ console.log(err) }
+            
+            db.close();
+            res.view({
+              title: "Edit course",
+              data: courseData,
+              sc_code: courseData.sc_code,
+              schoolData: schoolData,
+              classroomData: classroomData,
+              layout: '/layout/school_layout'
+            });
           })
         })
     
@@ -151,7 +155,8 @@ module.exports = {
       // console.log(course_data);
 
       db.collection('course').insert(course_data, function(err, courseData){
-        if(err) return next(err);
+        if(err){ console.log(err) }
+        db.close();
         res.redirect('/'+ my_sc_code +'/course')
       })
 
@@ -194,7 +199,9 @@ module.exports = {
       // console.log(course_data);
 
       db.collection('course').update({ _id :ObjectId.createFromHexString(criteria.course_id) }, { $set: course_data }, function(err, courseData){
-        if(err) return next(err);
+        if(err){ console.log(err)}
+        
+        db.close();
         res.redirect('/'+ my_sc_code +'/course')
       })
 
@@ -208,13 +215,14 @@ module.exports = {
     my_sc_code = req.session.sc_code;
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      if (err) return next(err);
+      if(err){ console.log(err) }
 
       db.collection('course').remove({
         _id: ObjectId.createFromHexString(course_id)
       }, function(err, deletedCourseData) {
-        if (err) return next(err);
-
+        if(err){ console.log(err) }
+        
+        db.close();
         res.redirect('/'+ my_sc_code +'/course')
 
 

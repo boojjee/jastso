@@ -25,11 +25,12 @@ module.exports = {
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err){ console.log(err); }
 
         db.collection('classroom').find({ sc_code: my_sc_code }).toArray(function(err, classroomData){
-         if(err) return next(err);
+         if(err){ console.log(err); }
          
+         db.close();                    
          res.view({
            title: schoolData.school_name_th,
            sc_code: criteria.sc_code,
@@ -49,19 +50,17 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code; 
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      // db.collection('service').find( { });
-
+      
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err) { console.log(err) }
 
-
+        db.close();  
         res.view({
           title: schoolData.school_name_th,
           sc_code: my_sc_code,
           schoolData: schoolData,
           layout: '/layout/school_layout'
         })
-
 
       })
 
@@ -74,11 +73,11 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err) { console.log(err) }
         db.collection('classroom').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, classroomData){
-          if(err) return next(err);
+          if(err) { console.log(err) }
 
-          console.log(classroomData)
+          db.close();
           res.view({
             title: "Edit classroom",
             sc_code: my_sc_code,
@@ -99,7 +98,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       if(err)console.log(err);
-      console.log(criteria);
+     
 
       room_data = {
         name : criteria.name,
@@ -108,12 +107,14 @@ module.exports = {
         sc_code : my_sc_code
       }
 
-
+      
       db.collection('classroom').update( 
           { _id :ObjectId.createFromHexString(criteria.classroom_id) }
         , { $set: room_data }
         , function(err, resultUpdate){
-        if(err) return next(err);
+        if(err) { console.log(err) }
+            
+        db.close();    
         res.redirect('/'+ my_sc_code +'/classroom')
       })
 
@@ -126,7 +127,9 @@ module.exports = {
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
 
       db.collection('classroom').insert(criteria, function(err, classroomData){
-        if(err) return next(err);
+        if(err) { console.log(err) }
+        
+        db.close();
         res.redirect('/'+ my_sc_code +'/classroom')
       })
 
@@ -146,9 +149,9 @@ module.exports = {
         _id: ObjectId.createFromHexString(classroom_id)
       }, function(err, deletedClassroomData) {
         if (err) return next(err);
-
+          
+        db.close();  
         res.redirect('/'+ my_sc_code +'/classroom')
-
 
       })
 

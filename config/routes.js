@@ -225,10 +225,10 @@ module.exports.routes = {
     action: 'register_step3'
   },
 
-  'get /:sc_code/student/register/add': {
-    controller: 'StudentRegister',
-    action: 'add'
-  },
+  // 'get /:sc_code/student/register/add': {
+  //   controller: 'StudentRegister',
+  //   action: 'add'
+  // },
 
 
 

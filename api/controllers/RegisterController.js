@@ -44,8 +44,9 @@ module.exports = {
       // db.collection('service').find( { });
 
       db.collection('register').insert(criteria,  function(err, insertedSchoolData){
-        if(err) return next(err);
-
+        if(err) { console.log(err)};
+        
+        db.close();
         res.redirect('/')
 
 

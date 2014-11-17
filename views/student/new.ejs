@@ -131,22 +131,27 @@
 </div>
 
 <script>
+  //birth_date
+  $('#birth_date').fdatepicker({
+    format: 'dd-mm-yyyy'
+  });
+  
   //http://stackoverflow.com/questions/7833709/calculating-age-in-months-and-days
   function getAge(fromdate_dmy, todate){
     if(todate) todate= new Date(todate);
     else todate= new Date();
 
-    conv = fromdate_dmy.split("/");
+    conv = fromdate_dmy.split("-");
     fromdate = conv[1]+"/"+conv[0]+"/"+conv[2]
     var age= [], fromdate= new Date(fromdate),
-    y= [todate.getFullYear()+543, fromdate.getFullYear()],
+    y= [todate.getFullYear(), fromdate.getFullYear()],
 
     ydiff= y[0]-y[1],
     m= [todate.getMonth(), fromdate.getMonth()],
     mdiff= m[0]-m[1],
     d= [todate.getDate(), fromdate.getDate()],
     ddiff= d[0]-d[1];
-    console.log(todate.getFullYear()+543)
+    console.log(todate.getFullYear())
     console.log(fromdate.getFullYear())
 
     if(mdiff < 0 || (mdiff=== 0 && ddiff<0))--ydiff;
@@ -165,8 +170,11 @@
 
 
 $("#birth_date").on("change",function () {
+
   var bd_value = $(this).val()
   // getAge(bd_value)
+  console.log(bd_value);
+  console.log(getAge(bd_value));
   $("#age").val(getAge(bd_value))
 })
 

@@ -22,6 +22,7 @@ ObjectId = require('mongodb').ObjectID;
 module.exports = {
 
     login: function(req, res, next) {
+ 
       res.view({
          title: "login",
          layout: '/layout/layout_authen'
@@ -34,8 +35,9 @@ module.exports = {
       if(criteria.username == "sadmin" && criteria.password == "12345"){
         req.session.authenticated = true;
         req.session.user_role = "0";
+        req.session.user_id = "super admin";
         res.redirect("/");
-        
+          
       }else{
         MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
           db.collection('employee').findOne({ email: criteria.username }, function(err, employeeData){
@@ -48,13 +50,14 @@ module.exports = {
                 req.session.authenticated = true;
                 req.session.user_role = employeeData.position;
                 req.session.sc_code = employeeData.sc_code;
+                req.session.user_id = employeeData._id;
 
                 req.session.employee_data = employeeData;
-                console.log(req.session)
-                // console.log(employeeData)
 
+                db.close();
                 res.redirect(req.session.sc_code+"/schools/dashboard");
               }else{
+                db.close();  
                 res.redirect('/login')
               }
             }
@@ -70,7 +73,7 @@ module.exports = {
     },
 
     logout: function(req, res, next){
-      req.session.destroy();
+      req.session.destroy(); 
       res.redirect('/login');
     }
 

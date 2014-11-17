@@ -42,9 +42,9 @@ module.exports = {
             if (err) {
               console.log(err)
             }
-            ;
+            
 
-
+            db.close();
 
             res.view({
               title: schoolData.school_name_th,
@@ -88,7 +88,7 @@ module.exports = {
             ;
 
 
-
+            db.close();
             res.view({
               title: schoolData.school_name_th,
               sc_code: my_sc_code,
@@ -131,7 +131,7 @@ module.exports = {
             ;
 
 
-
+            db.close();
             res.view({
               title: schoolData.school_name_th,
               sc_code: my_sc_code,
@@ -214,7 +214,8 @@ module.exports = {
                       console.log(err)
                     }
                     ;
-
+                    
+                    db.close();
                     res.view({
                       title: schoolData.school_name_th,
                       sc_code: my_sc_code,
@@ -305,7 +306,8 @@ module.exports = {
                       console.log(err)
                     }
                     ;
-
+                    
+                    db.close();
                     res.view({
                       title: schoolData.school_name_th,
                       sc_code: my_sc_code,
@@ -347,8 +349,8 @@ module.exports = {
 
     teacher_id = criteria.id;
     tmp = [];
-    tmp_time_data = [];
-    console.log(dd)
+    tmp_time_data = []; 
+    
     _.each(dd, function(data) {
       var tmp_day = [];
       var tmp_times = [];
@@ -385,18 +387,18 @@ module.exports = {
       }).toArray(function(err, courseData) {
         if (err) {
           console.log(err)
-        }
-        ;
+        } 
 
         if (_.isEmpty(courseData)) {
           console.log("insert");
           db.collection('teacher_timetable').insert(timetable_data, function(err, insertedtimetable_data) {
             // res.json(insertedtimetable_data)
+            db.close();
             res.redirect('/' + my_sc_code + '/teacher')
           })
         } else {
           console.log("update");
-          console.log(tmp);
+ 
           db.collection('teacher_timetable').update({
             teacher_id: ObjectId.createFromHexString(teacher_id)
           },
@@ -409,7 +411,8 @@ module.exports = {
                 console.log(err)
               }
               ;
-
+              
+              db.close();
               res.redirect('/' + my_sc_code + '/teacher')
             })
         }
@@ -445,7 +448,8 @@ module.exports = {
               console.log(err)
             }
             ;
-
+            
+            db.close();
             res.view({
               title: schoolData.school_name_th,
               sc_code: my_sc_code,
@@ -486,7 +490,8 @@ module.exports = {
                   console.log(err)
                 }
                 ;
-
+                
+                db.close();
                 res.view({
                   title: "Edit Teacher",
                   courseData: courseData,
@@ -545,8 +550,9 @@ module.exports = {
         }, function(err, resultUpdate) {
           if (err) {
             console.log(err)
-          }
-          ;
+          } 
+        
+          db.close();
           res.redirect('/' + my_sc_code + '/teacher')
         })
 
@@ -598,8 +604,8 @@ module.exports = {
             if (err) {
               console.log(err)
             }
-            ;
-            console.log(insertedTeacherData);
+            
+            db.close();
 
             res.redirect('/' + my_sc_code + '/teacher');
 
@@ -630,7 +636,7 @@ module.exports = {
             console.log(err)
           }
           ;
-
+          db.close();
           res.redirect('/' + my_sc_code + '/teacher');
 
 

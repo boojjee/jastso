@@ -32,16 +32,18 @@
    */
    index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
+    console.log("DDDD")
+    console.log(req.session)
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err) { console.log(err)}
 
         db.collection('employee').find({ sc_code: my_sc_code }).toArray(function(err, employeeData){
-         if(err) return next(err);
+         if(err) { console.log(err)}
 
-         // console.log(employeeData)
+         db.close();
          res.view({
            title: schoolData.school_name_th,
            sc_code: my_sc_code,
@@ -63,8 +65,9 @@
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
-
+        if(err) { console.log(err)}
+        
+        db.close();
         res.view({
           title: schoolData.school_name_th,
           sc_code: my_sc_code,
@@ -74,7 +77,6 @@
 
       })
 
-
     })// end connect mongodb 
   },
 
@@ -83,10 +85,11 @@
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
-        if(err) return next(err);
+        if(err) { console.log(err)}
         db.collection('employee').findOne({ _id: ObjectId(criteria.id) }, function(err, employeeData){
-          if(err) return next(err);
-
+          if(err) { console.log(err)}
+          
+          db.close();
           res.view({
             title: "Edit School",
             sc_code: my_sc_code,
@@ -105,7 +108,7 @@
 
 
   create: function(req, res, next){
-    criteria = _.merge({}, req.params.all(), req.body);	
+    criteria = _.merge({}, req.params.all(), req.body); 
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       var employee_data = {
         first_name: criteria.first_name,
@@ -120,9 +123,39 @@
         sc_code: my_sc_code
       }
       db.collection('employee').insert(employee_data, function(err, employeeData){
-        if(err) return next(err);
+        if(err) { console.log(err)}
+        
+        db.close();
         res.redirect('/'+ my_sc_code +'/employee')
       })
+
+
+    })// end connect mongodb 
+  },
+
+  update: function(req, res, next){
+    criteria = _.merge({}, req.params.all(), req.body);	
+    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+      var employee_data = {
+        first_name: criteria.first_name,
+        last_name: criteria.last_name,
+        thai_id_number: criteria.thai_id_number,
+        position: criteria.position,
+        line_id: criteria.line_id,
+        phone: criteria.phone,
+        address: criteria.address,  
+      }
+  
+      db.collection('employee').update( 
+          { _id :ObjectId(criteria.classroom_id) }
+        , { $set: employee_data }
+        , function(err, resultUpdate){
+        if(err) { console.log(err) }
+            
+        db.close();    
+        res.redirect('/'+ my_sc_code +'/employee')
+      })
+
 
 
     })// end connect mongodb 
@@ -140,7 +173,8 @@
         _id: ObjectId.createFromHexString(employee_id)
       }, function(err, deletedSchoolData) {
         if (err) return next(err);
-
+        
+        db.close();
         res.redirect('/'+ my_sc_code +'/employee')
 
 
