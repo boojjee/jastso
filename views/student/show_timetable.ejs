@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="large-12 columns">
+    <h1>ตารางเรียน ของ <%=studentData.first_name_thai  %></h1>
+  </div>
+  <div class="large-12 columns">
+    <table>
+      
+      <tr>
+        <td>ชื่อ</td>
+        <td>
+          <%=studentData.first_name_thai  %>
+        </td>
+      </tr>
+      <tr>
+        <td>นามสกุล</td>
+        <td>
+          <%=studentData.last_name_thai  %>
+        </td>
+      </tr>
+      <tr>
+        <td>ชื่อเล่น</td>
+        <td>
+          <%=studentData.nickname  %>
+        </td>
+      </tr>
+      <tr>
+        <td>เบอร์โทรศัพท์</td>
+        <td>
+          <%=studentData.phone  %>
+        </td>
+      </tr>
+      <tr>
+        <td>ผู้ปกครอง</td>
+        <td>
+          <%=studentData.phone  %>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+  <% if(studentRegistCostData.length == 0){ %>
+    <div>
+      <p> ไม่มีข้อมูล</p>
+    </div>
+  <% }else{  %>
+    <table>
+    
+      <% var count_length = parseInt(studentRegistCostData[0].mycourse_start.length) / 2  %>
+     
+      <tr>
+        <td>วันที่</td>
+        <td>
+           เวลาเรียน
+        </td>
+      </tr>
+      <% var counter = 0  %>
+      <% _.each(studentRegistCostData[0].date, function(mycourse){ %>
+
+        <tr>
+          
+          <td>
+            <%= moment(mycourse, "D-MM-YYYY").lang('th').format('dddd D-MM-YYYY')  %>  
+          </td>
+
+          <td>
+            <%= studentRegistCostData[0].mycourse_start[counter]  %>
+             - 
+            <%= studentRegistCostData[0].mycourse_end[counter]  %>
+          </td>
+        </tr>
+        <%  counter++  %>
+      <%  })  %>
+
+
+    </table>
+  <% }  %>
+  </div>
+</div>

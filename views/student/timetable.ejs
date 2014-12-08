@@ -1,0 +1,35 @@
+<div class="row">
+  <h1 id="switch">ตารางเรียนของนักเรียน</h1>
+
+  <table id="" class="data-table-ui" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th width="100">#</th>        
+        <th width="100">ชื่อ</th>
+        <th width="150">นามสกุล</th>
+        <th width="150">เบอร์โทรศัพท์</th>
+        <th width="200"></th> 
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% _.each(studentData, function(data, i){ %>
+
+      <tr>
+        <td><%=i+1 %></td>         
+        <td><%=data.first_name_thai %></td>
+        <td><%=data.last_name_thai %></td>
+        <td><%=data.phone %></td>
+        <td>
+          <a href="/<%=data.sc_code %>/student/<%=data._id%>/timetable" class="button"  title="Edit">
+            <i class="fi-pencil"></i> ดูตารางเรียน
+          </a>
+        </td> 
+      </tr>
+
+      <% }) %>
+
+    </tbody>
+  </table>
+
+</div>
