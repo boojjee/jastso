@@ -110,10 +110,41 @@
             </div>
 
             <div class="email-field">
-              <label>อีเมล์ <small>required</small>
-                <input name="email"  type="email" required>
+              <label>อีเมล์ 
+                <input name="email"  type="email" >
               </label>
               <small class="error">กรุณาระบุอีเมล์.</small>
+            </div>
+
+
+            <hr/>
+
+            <div class="row">
+              <div class="large-12 columns"> 
+                <h4>ข้อมูลผู้ปกครอง</h4>
+              </div>
+              <div class="large-6 columns">
+                <div class="name-thai-field">
+                  <label>ชื่อผู้ปกครอง <small>required</small>
+                    <input name="parrent_first_name" type="text" required>
+                  </label>
+                  <small class="error">ชื่อผู้ปกครอง</small>
+                </div>
+              </div>
+              <div class="large-6 columns">
+                <div class="name-thai-field">
+                  <label>นามสกุล  <small>required</small>
+                    <input name="parrent_last_name" type="text" required>
+                  </label>
+                  <small class="error">นามสกุลผู้ปกครอง</small>
+                </div>
+              </div>
+            </div>
+            <div class="name-thai-field">
+              <label>เบอร์โทรติดต่อ <small>required</small>
+                <input name="parrent_phone" type="text" required>
+              </label>
+              <small class="error">กรุณาระบุเบอร์โทร</small>
             </div>
 
             <input type="hidden" name="student_status" value="1">

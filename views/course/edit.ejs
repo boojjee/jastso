@@ -6,7 +6,21 @@
 
       <form data-abide action="/course/update" method="POST">
         <h4>ข้อมูลของรายวิชา</h4>
-        
+        <div class="row">
+          <div class="large-6 columns">
+            <label>
+              <input type="radio" <%= (data.is_yamaha_course == "yes") ? "checked": "" %> name="is_yamaha_course" id="" value="yes">
+              Yamaha
+            </label>
+          </div>
+          <div class="large-6 columns">
+             <label>
+              <input type="radio" <%= (data.is_yamaha_course == "no") ? "checked": "" %> name="is_yamaha_course" id="" value="no">
+              Non Yamaha
+            </label>
+          </div>
+        </div> 
+
         <div class="name-thai-field">
           <label>ชื่อ *<small>required</small>
             <input name="syllabus" type="text" value="<%=data.syllabus %>" required>

@@ -36,19 +36,42 @@ module.exports = {
     req.session.sc_code = criteria.sc_code;
     
     console.log(req.session)
+    
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) return next(err);
+        // console.log(schoolData)
         
-        res.view({
-          title: schoolData.school_name_en,
-	        sc_code: my_sc_code,
-          schoolData: schoolData,
-          layout: '/layout/school_layout'
-        })
+        req.session.is_yamaha_school_network = schoolData.is_yamaha_school_network;
+        
+        db.collection('student').find({ sc_code: my_sc_code }).toArray(function(err, studentData){
+          student_count = studentData.length;
+          
+          db.collection('teacher').find({ sc_code: my_sc_code }).toArray(function(err, teacherData){
+          teacher_count = teacherData.length;
+            
+            db.close();
+
+            res.view({
+              title: schoolData.school_name_en,
+              sc_code: my_sc_code,
+              schoolData: schoolData,
+              counting:{
+                student: student_count,
+                teacher: teacher_count
+              },
+              layout: '/layout/school_layout'
+            })
+
+
+
+          });
+        });
+        
+    
 
 
       })

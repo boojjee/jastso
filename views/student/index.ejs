@@ -11,7 +11,6 @@
     <thead>
       <tr>
         <th width="100">#</th>        
-        <th width="100">Status</th>
         <th width="100">ชื่อ</th>
         <th width="150">นามสกุล</th>
         <th width="150">เบอร์โทรศัพท์</th>
@@ -24,18 +23,17 @@
       <% _.each(studentData, function(data, i){ %>
 
       <tr>
-        <td><%=i+1 %></td>        
-        <td><%=data.student_status %></td>
+        <td><%=i+1 %></td>         
         <td><%=data.first_name_thai %></td>
         <td><%=data.last_name_thai %></td>
         <td><%=data.phone %></td>
         <td>
           <a href="/<%=data.sc_code %>/student/<%=data._id%>/edit" class="button"  title="Edit">
-            <i class="fi-pencil"></i> แก้ไข
+            <i class="fi-pencil"></i> แก้ไขข้อมูล
           </a>
         </td>
         <td> 
-          <a href="/<%=data.sc_code %>/employee/<%=data._id %>/destroy" class="button"  title="delete">
+          <a href="/<%=data.sc_code %>/student/<%=data._id %>/destroy" class="button"  title="delete">
             <i class="fi-x"></i> ลบ
           </a>
         </td>

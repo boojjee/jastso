@@ -186,6 +186,18 @@ module.exports.routes = {
     controller: 'Student',
     action: 'new'
   },
+  'get /:sc_code/student/:id/finish':{
+    controller: 'Student',
+    action: 'finishAdd'
+  },
+  'get /:sc_code/student/timetable':{
+    controller: 'Student',
+    action: 'timetable'
+  },
+  'get /:sc_code/student/:id/timetable':{
+    controller: 'Student',
+    action: 'show_timetable'
+  },
   'post /:sc_code/student/create':{
     controller: 'Student',
     action: 'create'
@@ -202,10 +214,10 @@ module.exports.routes = {
     controller: 'Student',
     action: 'destroy'
   },
-  'get /:sc_code/student/:id/show/timetable': {
-    controller: 'Student',
-    action: 'timetable'
-  },
+  // 'get /:sc_code/student/:id/show/timetable': {
+  //   controller: 'Student',
+  //   action: 'timetable'
+  // },
 
   'get /:sc_code/student/register': {
     controller: 'StudentRegister',

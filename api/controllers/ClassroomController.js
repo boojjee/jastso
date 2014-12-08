@@ -33,7 +33,7 @@ module.exports = {
          db.close();                    
          res.view({
            title: schoolData.school_name_th,
-           sc_code: criteria.sc_code,
+           sc_code: my_sc_code,
            schoolData: schoolData,
            classroomData: classroomData,
            layout: '/layout/school_layout'

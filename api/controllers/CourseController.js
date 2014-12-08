@@ -141,6 +141,7 @@ module.exports = {
 
       course_data = {
         syllabus: criteria.syllabus,
+        is_yamaha_course: criteria.is_yamaha_course,
         discription: criteria.discription,
         course_age: criteria.course_age,
         course_term: criteria.course_term,
@@ -185,6 +186,7 @@ module.exports = {
 
       course_data = {
         syllabus: criteria.syllabus,
+        is_yamaha_course: criteria.is_yamaha_course,
         discription: criteria.discription,
         course_age: criteria.course_age,
         course_term: criteria.course_term,

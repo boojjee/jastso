@@ -6,7 +6,23 @@
 
       <form data-abide action="/course/create" method="POST">
         <h4>ข้อมูลของรายวิชา</h4>
-        
+
+        <% if(req.session.is_yamaha_school_network == 'yes'){  %>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>
+              <input type="radio" name="is_yamaha_course" id="" value="yes">
+              Yamaha
+            </label>
+          </div>
+          <div class="large-6 columns">
+             <label>
+              <input type="radio" name="is_yamaha_course" id="" value="no">
+              Non Yamaha
+            </label>
+          </div>
+        </div>  
+        <% }  %>
         <div class="name-thai-field">
           <label>ชื่อ *<small>required</small>
             <input name="syllabus" type="text" required>

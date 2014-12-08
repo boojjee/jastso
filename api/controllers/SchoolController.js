@@ -91,8 +91,8 @@ module.exports = {
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
-      if(err)console.log(err);
-      console.log(criteria);
+      if(err)console.log(err); 
+      
       db.collection('school').findAndModify({
         _id: ObjectId.createFromHexString(criteria.id)
       }, [
@@ -111,7 +111,8 @@ module.exports = {
   setup: function(req, res, next) {
 
     res.view({
-      title: "School Setup"
+      title: "Setup School", 
+      layout: '/layout/layout'
     });
 
   },
@@ -121,6 +122,7 @@ module.exports = {
     criteria = _.merge({}, {
       sc_code: sc_code
     }, req.params.all(), req.body);
+
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });
 

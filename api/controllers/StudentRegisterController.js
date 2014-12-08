@@ -23,8 +23,6 @@ Moment = require('moment');
 module.exports = {
 
 
-
-
   index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
@@ -61,8 +59,8 @@ module.exports = {
 
   register: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-    req.session.register_step = 1;
-    req.session.register_isfinish = false;
+    // req.session.register_step = 1;
+    // req.session.register_isfinish = false;
 
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
@@ -98,8 +96,8 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    req.session.register_step = 2;
-    req.session.register_isfinish = false;
+    // req.session.register_step = 2;
+    // req.session.register_isfinish = false;
 
     course_selected = criteria.course;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
@@ -153,13 +151,13 @@ module.exports = {
   register_step3: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    req.session.register_step = 3;
-    req.session.register_isfinish = false;
+    // req.session.register_step = 3;
+    // req.session.register_isfinish = false;
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       student_regis_data = {
         date_create: new Date(),
-        student_id: criteria.id,
+        student_id: ObjectId(criteria.id),
         date: criteria.date,
         mycourse_start: criteria.mycourse_start,
         mycourse_end: criteria.mycourse_end,
@@ -167,7 +165,7 @@ module.exports = {
         sc_code: my_sc_code,
 
       }
-      console.log(student_regis_data)
+      // console.log(student_regis_data)
       // db.collection('student_regis_course').findOne({
       //   student_id: ObjectId(criteria.id)
       // }, function(err, findSTDregist){

@@ -51,7 +51,7 @@ module.exports = {
                 req.session.user_role = employeeData.position;
                 req.session.sc_code = employeeData.sc_code;
                 req.session.user_id = employeeData._id;
-
+                
                 req.session.employee_data = employeeData;
 
                 db.close();

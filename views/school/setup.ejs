@@ -5,6 +5,21 @@
 
 
 			<form data-abide action="/schools/build" method="POST">
+				<div class="row">
+          <div class="large-6 columns">
+            <label>
+              <input type="radio" checked name="is_yamaha_school_network" id="" value="yes" >
+              โรงเรียนในเครือยามาฮ่า
+            </label>
+          </div>
+          <div class="large-6 columns">
+             <label>
+              <input type="radio" name="is_yamaha_school_network" id="" value="no">
+              โรงเรียนนอกเครือยามาฮ่า
+            </label>
+          </div>
+        </div>  
+
 			  <div class="name-thai-field">
 			    <label>ชื่อโรงเรียน ภาษาไทย <small>required</small>
 			      <input name="school_name_th" type="text" required>

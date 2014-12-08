@@ -101,11 +101,11 @@
         <ul class="left">
           <li class="has-dropdown">
             <a href="#">Student</a>
-            <ul class="dropdown">
-              <li><a href="/<%=sc_code%>/student/register"><i class="fi-download"></i> ลงทะเบียนเรียน</a></li>
+            <ul class="dropdown">              
               <li><a href="/<%=sc_code%>/student/new"><i class="fi-plus"></i> เพิ่มนักเรียน</a></li>
+              <li><a href="/<%=sc_code%>/student/register"><i class="fi-download"></i> ลงทะเบียนเรียน</a></li>
+              <li><a href="/<%=sc_code%>/student/timetable"><i class="fi-list"></i> ตารางเรียนนักเรียน</a></li>
               <li><a href="/<%=sc_code%>/student"><i class="fi-folder"></i> การจัดการนักเรียน</a></li>
-              <!-- <li><a href="/<%=sc_code%>/student/timetable"><i class="fi-list"></i> ตารางเรียนนักเรียน</a></li> -->
               <!-- <li><a href="/<%=sc_code%>/student/studytoday"><i class="fi-checkbox"></i> นักเรียนทีเรียนวันนี้</a></li> -->
             </ul>
           </li>
@@ -171,7 +171,9 @@
     <script>
       $(document).foundation();
       $(document).ready(function(){
-        $('table.data-table-ui').dataTable();  
+        $('table.data-table-ui').dataTable({
+
+        });  
       })
       
     </script>

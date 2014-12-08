@@ -1,7 +1,37 @@
+.top-bar{
+  background: #0b4f69;
+}
+.top-bar-section li:not(.has-form) a:not(.button){
+  background: #0b4f69;
+}
+
 .remove_tr{
   padding: 10px;
   cursor:pointer;
 }
 #avt video {
   width: 480px;
+}
+
+.widget .header-container{
+  padding: 15px 30px 10px 30px;
+  background: #0b4f69;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color:#fff;
+}
+.header-container h3{
+  color:#fff;
+}
+.widget-container {
+  font-size: .95rem;
+  background: #fafafa;
+  list-style: none;
+  margin: 0 0 20px 0;
+  padding: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.widget .green{
+  background: green;
 }
