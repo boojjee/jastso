@@ -1,2 +1,3 @@
-# jastso
-### Just A smart Than School Os
+# pj
+
+a [Sails](http://sailsjs.org) application
