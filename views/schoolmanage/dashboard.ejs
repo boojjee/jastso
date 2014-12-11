@@ -20,7 +20,20 @@
         </h3> 
       </div>
       <div class="widget-container">
-        asdfkalksdfj
+        <% 
+          var i = 0;
+          _.each(student, function(std) { 
+            if(i < 10){
+        %>
+          <p>
+            <%= std.first_name_thai %> 
+            <%= std.last_name_thai %>
+          </p>
+        <% 
+            i++;
+            }
+          })  
+        %>
       </div>
     </div>
   </div>
@@ -34,7 +47,20 @@
         </h3> 
       </div>
       <div class="widget-container">
-        asdfkalksdfj
+        <% 
+          var i = 0;
+          _.each(teacher, function(teachr) { 
+            if(i < 10){
+        %>
+          <p>
+            <%= teachr.first_name_th %> 
+            <%= teachr.last_name_th %>
+          </p>
+        <% 
+            i++;
+            }
+          })  
+        %>
       </div>
     </div>
   </div>

@@ -59,6 +59,8 @@ module.exports = {
               title: schoolData.school_name_en,
               sc_code: my_sc_code,
               schoolData: schoolData,
+              student: studentData,
+              teacher: teacherData,
               counting:{
                 student: student_count,
                 teacher: teacher_count
