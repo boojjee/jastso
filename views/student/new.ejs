@@ -69,8 +69,8 @@
             <div class="row">
               <div class="large-6 columns">
                 <div class="name-thai-field">
-                  <label>วันเดือนปีเกิด(พ.ศ.) <small>รูปแบบ วว/ดด/ปปปป เช่น 29/12/2525</small>
-                    <input id="birth_date" name="birth_date" type="text">
+                  <label>วันเดือนปีเกิด(พ.ศ.) <small>รูปแบบ วว/ดด/ปปปป เช่น 1-12-2014</small>
+                    <input id="birth_date" name="birth_date" type="text" placeholder="1-12-2014">
                   </label>
                   <small class="error">กรุณาระบุชื่อเล่น</small>
                 </div>
@@ -85,9 +85,6 @@
               </div>
             </div>
 
-
-
-
             <div class="name-thai-field">
               <label>เลขที่บัตรประชาชน <small>required</small>
                 <input name="thai_id_number" type="text" required>
@@ -97,7 +94,7 @@
 
             <div class="name-thai-field">
               <label>เบอร์โทร <small>required</small>
-                <input name="phone" type="text" required>
+                <input maxlength="10" name="phone" type="text" required placeholder="Example:0812345678">
               </label>
               <small class="error">กรุณาระบุเบอร์โทร</small>
             </div>
@@ -110,10 +107,10 @@
             </div>
 
             <div class="email-field">
-              <label>อีเมล์ 
-                <input name="email"  type="email" >
+              <label>อีเมล 
+                <input name="email"  type="email" placeholder="example@email.com">
               </label>
-              <small class="error">กรุณาระบุอีเมล์.</small>
+              <small class="error">กรุณาระบุอีเมล.</small>
             </div>
 
 
@@ -142,7 +139,7 @@
             </div>
             <div class="name-thai-field">
               <label>เบอร์โทรติดต่อ <small>required</small>
-                <input name="parrent_phone" type="text" required>
+                <input name="parrent_phone" type="text" required maxlength="10" placeholder="Example:0812345678">
               </label>
               <small class="error">กรุณาระบุเบอร์โทร</small>
             </div>

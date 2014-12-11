@@ -33,8 +33,8 @@ module.exports = {
 
         db.collection('student').find({ sc_code: my_sc_code }).toArray(function(err, studentData){
           if (err) { console.log(err)}
-          
-          db.close();
+          console.log();
+          db.close(studentData);
           res.view({
             title: schoolData.school_name_th,
             sc_code: my_sc_code,

@@ -10,10 +10,10 @@
   <table id="" class="data-table-ui" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th width="200">หลักสูตร</th>
-        <th width="150">วิชา</th>
-        <th width="150">Groups</th>
-        <th width="150">อัตราค่าเรียน</th>
+        <th width="200"><center>วิชา</center></th>
+        <th width="150"><center>คำอธิบาย</center></th>
+        <th width="150"><center>Groups</center></th>
+        <th width="150"><center>จำนวนนักเรียน</center></th>
         <th width="200" colspan="2"></th>
       </tr>
     </thead>
@@ -22,10 +22,10 @@
       <% _.each(courseData, function(data){ %>
 
       <tr>
-        <td><%=data.syllabus %></td>
-        <td><%=data.discription %></td>
-        <td><%=data.groups %></td>
-        <td><%=data.cost %></td>
+        <td><center><%=data.syllabus %></center></td>
+        <td><center><%=data.discription %></center></td>
+        <td><center><%=data.groups %></center></td>
+        <td><center><%=data.no_of_student %></center></td>
         <td>
           <a href="/<%=data.sc_code %>/course/<%=data._id%>/edit" class="button"  title="Edit">
             <i class="fi-pencil"></i> แก้ไข

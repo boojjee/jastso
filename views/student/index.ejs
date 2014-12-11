@@ -10,10 +10,11 @@
   <table id="" class="data-table-ui" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th width="100">#</th>        
-        <th width="100">ชื่อ</th>
-        <th width="150">นามสกุล</th>
-        <th width="150">เบอร์โทรศัพท์</th>
+        <th width="100"><center>#</center></th>        
+        <th width="100"><center>ชื่อ</center></th>
+        <th width="150"><center>นามสกุล</center></th>
+         <th width="150"><center>ชื่อเล่น</center></th>
+        <th width="150"><center>เบอร์โทรศัพท์</center></th>
         <th width="200"></th>
         <th width="200"></th>
       </tr>
@@ -23,10 +24,11 @@
       <% _.each(studentData, function(data, i){ %>
 
       <tr>
-        <td><%=i+1 %></td>         
-        <td><%=data.first_name_thai %></td>
-        <td><%=data.last_name_thai %></td>
-        <td><%=data.phone %></td>
+        <td><center><%=i+1 %></center></td>         
+        <td><center><%=data.first_name_thai %></center></td>
+        <td><center><%=data.last_name_thai %></center></td>
+        <td><center><%=data.nickname %></center></td>
+        <td><center><%=data.phone %></center></td>
         <td>
           <a href="/<%=data.sc_code %>/student/<%=data._id%>/edit" class="button"  title="Edit">
             <i class="fi-pencil"></i> แก้ไขข้อมูล

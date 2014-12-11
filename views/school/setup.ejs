@@ -50,35 +50,35 @@
 
 			  <div class="phone-field">
 		      <label>เบอร์โทรศัพท์
-		        <input name="shool_phone"  type="text" required>
+		        <input maxlength="10" name="shool_phone"  type="text" required placeholder="Tel: 0811234567">
 		      </label>
 		      <small class="error">โปรดระบุที่เบอร์โทรศัพท์</small>
 		    </div>
 				
 				<div class="phone-field">
 		      <label>อีเมล์
-		        <input name="shool_email"  type="text" >
+		        <input name="shool_email"  type="email" placeholder="example@email.com">
 		      </label>
 		      <small class="error">โปรดระบุอีเมล์</small>
 		    </div>
 
 			  <div class="phone-field">
 		      <label>แฟกซ์
-		        <input name="shool_fax"  type="text" >
+		        <input maxlength="10" id="phone" name="shool_fax"  type="text" placeholder="Fax: 0811234567">
 		      </label>
 		      <small class="error">โปรดระบุที่เบอร์แฟกซ์</small>
 		    </div>
 	
 				<div class="phone-field">
 		      <label>วันที่เซ็นสัญญา
-		        <input name="shool_licence"  type="text" required>
+		        <input id="date" name="shool_licence"  type="text" required placeholder="1-12-2014">
 		      </label>
 		      <small class="error">โปรดระบุวันที่เซ็นสัญญา</small>
 		    </div>
 				
 				<div class="phone-field">
 		      <label>วันที่เปิดดำเนินการ
-		        <input name="shool_opening"  type="text" required>
+		        <input id="date2" name="shool_opening"  type="text" required placeholder="2-12-2014">
 		      </label>
 		      <small class="error">โปรดระบุวันที่เปิดดำเนินการ</small>
 		    </div>
@@ -88,3 +88,85 @@
 
     </div>
 </div>
+<script>
+  //birth_date
+  $('#date').fdatepicker({
+    format: 'dd-mm-yyyy'
+  });
+  
+  //http://stackoverflow.com/questions/7833709/calculating-age-in-months-and-days
+ 
+
+
+$("#date").on("change",function () {
+
+  var bd_value = $(this).val()
+  // getAge(bd_value)
+  console.log(bd_value); 
+})
+
+
+// $('#birth_date').fdatepicker()
+
+$(function() {
+  var sayCheese = new SayCheese('#avt', { audio: false });
+  sayCheese.on('start', function() {
+    // this.takeSnapshot();
+    $('#take-snapshot').on('click', function(evt) {
+      sayCheese.takeSnapshot();
+    });
+  });
+
+  sayCheese.on('snapshot', function(snapshot) {
+    var img = document.createElement('img');
+    $(img).on('load', function() {
+      $('#avt_taked').prepend(img);
+    });
+    img.src = snapshot.toDataURL('image/png');
+  });
+
+  // sayCheese.start();
+});
+
+</script>
+<script>
+  //birth_date
+  $('#date2').fdatepicker({
+    format: 'dd-mm-yyyy'
+  });
+  
+  //http://stackoverflow.com/questions/7833709/calculating-age-in-months-and-days
+ 
+
+
+$("#date2").on("change",function () {
+
+  var bd_value = $(this).val()
+  // getAge(bd_value)
+  console.log(bd_value); 
+})
+
+
+// $('#birth_date').fdatepicker()
+
+$(function() {
+  var sayCheese = new SayCheese('#avt', { audio: false });
+  sayCheese.on('start', function() {
+    // this.takeSnapshot();
+    $('#take-snapshot').on('click', function(evt) {
+      sayCheese.takeSnapshot();
+    });
+  });
+
+  sayCheese.on('snapshot', function(snapshot) {
+    var img = document.createElement('img');
+    $(img).on('load', function() {
+      $('#avt_taked').prepend(img);
+    });
+    img.src = snapshot.toDataURL('image/png');
+  });
+
+  // sayCheese.start();
+});
+
+</script>
