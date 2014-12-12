@@ -124,7 +124,8 @@
 
             <input type="hidden" name="sc_code" value="<%=sc_code%>">
             <input type="hidden" name="teacher_id" value="<%=data._id%>">
-
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            
             <button type="submit">Submit</button>
           </div>
         </div>

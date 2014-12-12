@@ -40,6 +40,7 @@
             <input name="eq_password"  type="password" required data-equalto="password">
           </label>
           <small class="error">รหัสผ่านไม่ตรงกัน.</small>
+          <input type="hidden" name="_csrf" value="<%= _csrf %>" />
         </div>
         <button type="submit">Submit</button>
       </form>
