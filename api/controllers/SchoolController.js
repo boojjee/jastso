@@ -142,7 +142,7 @@ module.exports = {
   destroy: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     school_id = criteria.id
-    console.log(criteria)
+    // console.log(criteria)
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       if (err) { console.log(err)}
 
@@ -163,7 +163,7 @@ module.exports = {
 
   manage: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-    console.log(criteria)
+    // console.log(criteria)
   }
 
 };

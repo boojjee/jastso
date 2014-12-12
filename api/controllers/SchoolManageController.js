@@ -35,7 +35,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     req.session.sc_code = criteria.sc_code;
     
-    console.log(req.session)
+    // console.log(req.session)
     
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {

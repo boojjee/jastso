@@ -32,8 +32,8 @@
    */
    index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-    console.log("DDDD")
-    console.log(req.session)
+    // console.log("DDDD")
+    //console.log(req.session)
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       // db.collection('service').find( { });

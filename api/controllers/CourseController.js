@@ -47,9 +47,9 @@ module.exports = {
             }
 
             db.close();
-            console.log(courseData);
-            console.log(schoolData);
-            console.log(my_sc_code);
+            // console.log(courseData);
+            // console.log(schoolData);
+            // console.log(my_sc_code);
             res.view({
               title: schoolData.school_name_th,
               sc_code: my_sc_code,
