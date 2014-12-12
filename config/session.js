@@ -20,32 +20,32 @@ module.exports.session = {
 
   // In production, uncomment the following lines to set up a shared redis session store
   // that can be shared across multiple Sails.js servers
-  // adapter: 'redis',
+  adapter: 'redis',
   //
   // The following values are optional, if no options are set a redis instance running
   // on localhost is expected.
   // Read more about options at: https://github.com/visionmedia/connect-redis
   //
-  // host: 'localhost',
-  // port: 6379,
-  // ttl: <redis session TTL in seconds>,
-  // db: 0,
+  host: '127.0.0.1',
+  port: 6379,
+  ttl: 3600,
+  db: 0,
   // pass: <redis auth password>
-  // prefix: 'sess:'
+  prefix: 'sess:'
 
 
   // Uncomment the following lines to use your Mongo adapter as a session store
   // adapter: 'mongo',
   
-  host: '128.199.152.6',
-  port: 27017,
-  db: 'yamaha-school-production',
-  collection: 'sessions',
-  username: 'yamaha-admin',
-  password: 'AdminAdmin',  
-  cookie: {
-    maxAge: 60 * 60 * 1000  // example: 60 mins in miliseconds
-  }
+  // host: '128.199.152.6',
+  // port: 27017,
+  // db: 'yamaha-school-production',
+  // collection: 'sessions',
+  // username: 'yamaha-admin',
+  // password: 'AdminAdmin',  
+  // cookie: {
+  //   maxAge: 60 * 60 * 1000  // example: 60 mins in miliseconds
+  // }
 
   // adapter: 'mongo',
   // host: 'ds047440.mongolab.com',
