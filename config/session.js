@@ -37,10 +37,12 @@ module.exports.session = {
   // Uncomment the following lines to use your Mongo adapter as a session store
   // adapter: 'mongo',
   
-  host: 'localhost',
+  host: '128.199.152.6',
   port: 27017,
-  db: 'yamaha-schools',
-  collection: 'sessions',  
+  db: 'yamaha-school-production',
+  collection: 'sessions',
+  username: 'yamaha-admin',
+  password: 'AdminAdmin',  
   cookie: {
     maxAge: 60 * 60 * 1000  // example: 60 mins in miliseconds
   }
