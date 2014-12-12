@@ -32,9 +32,9 @@ module.exports.session = {
   ttl: 3600,
   db: 2,
   prefix: 'sess:',
-  cookie: {
-    maxAge: 60 * 60 * 1000  // example: 60 mins in miliseconds
-  }
+  // cookie: {
+  //   maxAge: 60 * 60 * 1000  // example: 60 mins in miliseconds
+  // }
   // pass: <redis auth password>
 
   // Uncomment the following lines to use your Mongo adapter as a session store
