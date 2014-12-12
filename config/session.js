@@ -20,19 +20,22 @@ module.exports.session = {
 
   // In production, uncomment the following lines to set up a shared redis session store
   // that can be shared across multiple Sails.js servers
-  adapter: 'redis',
+
   //
   // The following values are optional, if no options are set a redis instance running
   // on localhost is expected.
   // Read more about options at: https://github.com/visionmedia/connect-redis
-  //
+  
+  adapter: 'redis',
   host: '127.0.0.1',
   port: 6379,
   ttl: 3600,
-  db: 0,
+  db: 2,
+  prefix: 'sess:',
+  cookie: {
+    maxAge: 60 * 60 * 1000  // example: 60 mins in miliseconds
+  }
   // pass: <redis auth password>
-  prefix: 'sess:'
-
 
   // Uncomment the following lines to use your Mongo adapter as a session store
   // adapter: 'mongo',

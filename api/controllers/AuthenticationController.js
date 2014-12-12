@@ -36,6 +36,11 @@ module.exports = {
         req.session.authenticated = true;
         req.session.user_role = "0";
         req.session.user_id = "super admin";
+
+        // req.session.cookie.expires = new Date(new Date().getTime() * 60000 );
+        
+
+
         res.redirect("/");
           
       }else{
