@@ -15,6 +15,7 @@
     "bcryptjs": "*",
     "request": "*",
     "moment": "*",
+    "connect-redis": "1.4.5",
     "grunt": "0.4.2",
     "grunt-sync": "~0.0.4",
     "grunt-contrib-copy": "~0.5.0",
