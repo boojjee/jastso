@@ -40,33 +40,7 @@
 
   <body>
     
-    <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="#">My Site</a></h1>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-          <li class="active"><a href="#">Right Button Active</a></li>
-          <li class="has-dropdown">
-            <a href="#">Right Button Dropdown</a>
-            <ul class="dropdown">
-              <li><a href="#">First link in dropdown</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <!-- Left Nav Section -->
-        <ul class="left">
-          <li><a href="#">Left Nav Button</a></li>
-        </ul>
-      </section>
-    </nav>
+  
 
     <!-- Include the view file for the current controller/route -->
     <%- body %>
@@ -98,34 +72,7 @@
       $(document).foundation();
     </script>
 
-    <!--
-
-      Looking for client-side CoffeeScript or TypeScript?
-      ================================================
-
-      CoffeeScript and TypeScript precompilation are not installed by default,
-      but if you'd like to mix those features in, it is straightforward to
-      `npm install` the relevant grunt community modules and modify your Gruntfile
-      to use them.
-
-    -->
-
-
-
-    <!--
-
-      Another way: The Asset Linker
-      ========================
-
-      Sails supports a Grunt-based asset linker, to automatically inject 
-      <link> and <script> tags, as well any client-side templates you're using
-      into your HTML layouts and views, respecting dependencies.
-
-      You created this Sails app with the asset linker disabled.
-      If you change your mind, check out the docs on the subject:
-      http://sailsjs.org/#!documentation/asset-management
-
-    -->
+ 
 
     </body>
 </html>

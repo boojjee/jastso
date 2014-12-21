@@ -35,7 +35,7 @@
           </a>
         </td>
         <td> 
-          <a href="/<%=data.sc_code %>/employee/<%=data._id %>/destroy" class="button"  title="delete">
+          <a href="/<%=data.sc_code %>/employee/<%=data._id %>/destroy" class="button delete_btn"  title="delete">
             <i class="fi-x"></i> ลบ
           </a>
         </td>
@@ -47,3 +47,18 @@
   </table>
 
 </div>
+
+
+
+<script type="text/javascript">
+
+  $(".delete_btn").on("click", function () {
+    var r = confirm("ยืนยันการลบข้อมูล!");
+    if (r == true) {
+      return true;
+    } else {
+      return false;
+    }
+  })
+
+</script>

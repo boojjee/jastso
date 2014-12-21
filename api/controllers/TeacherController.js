@@ -43,6 +43,9 @@ module.exports = {
               console.log(err)
             }
             
+            db.collection('course').find({
+              sc_code: my_sc_code
+              }).toArray(function(err, courseData) {
 
             db.close();
 
@@ -51,11 +54,13 @@ module.exports = {
               sc_code: my_sc_code,
               schoolData: schoolData,
               teacherData: teacherData,
+              courseData: courseData,
               layout: '/layout/school_layout'
             })
 
 
 
+            })
           })
 
         })
@@ -446,8 +451,7 @@ module.exports = {
           }).toArray(function(err, courseData) {
             if (err) {
               console.log(err)
-            }
-            ;
+            } 
             
             db.close();
             res.view({
@@ -485,7 +489,9 @@ module.exports = {
           db.collection('school').findOne({
             sc_code: my_sc_code
           }, function(err, schoolData) {
-              db.collection('course').find({ }).toArray(function(err, courseData) {
+              db.collection('course').find({
+                sc_code: my_sc_code
+               }).toArray(function(err, courseData) {
                 if (err) {
                   console.log(err)
                 }

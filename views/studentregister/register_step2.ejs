@@ -1,7 +1,28 @@
 <div class="row">
   <div class="large-12 columns">
-    <h1>ข้อมูลส่วนตัว</h1>
+    <h1>กำหนดเวลาเรียน วิชา: <%= mycourse.syllabus  %></h1>
+  </div>  
+    <div class="large-4 columns">
+      <p>ชื่อ : <%=studentData.first_name_thai  %></p>
+    </div>
+    <div class="large-4 columns">
+      <p>นามสกุล : <%=studentData.last_name_thai  %></p>
+    </div>
+    <div class="large-4 columns">
+      <p>ชื่อเล่น : <%=studentData.nickname  %></p>
+    </div> 
+    <div class="large-4 columns">
+      <p>เบอร์โทรศัพท์ : <%=studentData.phone  %></p>
+    </div>  
+    <div class="large-4 columns end">
+      <p>Email : <%= studentData.email  %></p>
+    </div>  
   </div>
+
+  <div class="row">
+    <br/>
+    <hr/>
+  </div> 
 </div>
 <form data-abide action="/<%=sc_code%>/student/<%=studentData._id%>/register/3" method="POST">
 

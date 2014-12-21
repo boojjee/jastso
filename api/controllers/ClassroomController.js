@@ -14,6 +14,7 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+var uuid = require('uuid');
 
 module.exports = {
 
@@ -98,25 +99,36 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
       if(err)console.log(err);
-     
-
-      room_data = {
-        name : criteria.name,
-        description : criteria.description,
-        room_equipment : criteria.room_equipment,
-        sc_code : my_sc_code
-      }
-
       
-      db.collection('classroom').update( 
-          { _id :ObjectId.createFromHexString(criteria.classroom_id) }
-        , { $set: room_data }
-        , function(err, resultUpdate){
-        if(err) { console.log(err) }
-            
-        db.close();    
-        res.redirect('/'+ my_sc_code +'/classroom')
-      })
+      req.file('room_plan').upload( { 
+        dirname: sails.config.appPath +"/assets/uploads/classroom", 
+        saveAs:  function(file, cb){ 
+          cb(null, file.filename);
+        }
+
+      }, function (err, files) {
+        if (err) console.log(err);
+        console.log(files)
+        room_data = {
+          name : criteria.name,
+          description : criteria.description,
+          room_equipment : criteria.room_equipment,
+          sc_code : my_sc_code,
+          room_plan: files
+        }
+
+        
+        db.collection('classroom').update( 
+            { _id :ObjectId.createFromHexString(criteria.classroom_id) }
+          , { $set: room_data }
+          , function(err, resultUpdate){
+          if(err) { console.log(err) }
+              
+          db.close();    
+          res.redirect('/'+ my_sc_code +'/classroom')
+        })
+
+      });
 
     })
   },
@@ -125,14 +137,26 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body); 
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+      
+      req.file('room_plan').upload( { 
+        dirname: sails.config.appPath +"/assets/uploads/classroom", 
+        saveAs:  function(file, cb){ 
+          cb(null, file.filename);
+        }
+      }, function (err, files) {
+        if (err) console.log(err);
 
-      db.collection('classroom').insert(criteria, function(err, classroomData){
-        if(err) { console.log(err) }
-        
-        db.close();
-        res.redirect('/'+ my_sc_code +'/classroom')
-      })
+      
 
+        room_data = _.merge({}, criteria, { room_plan: files })
+        db.collection('classroom').insert(room_data, function(err, classroomData){
+          if(err) { console.log(err) }
+          
+          db.close();
+          res.redirect('/'+ my_sc_code +'/classroom')
+        })
+
+      });
 
     })// end connect mongodb 
   },

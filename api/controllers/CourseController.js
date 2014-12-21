@@ -124,7 +124,9 @@ module.exports = {
 
 
           db.collection('course').findOne({
-            _id: ObjectId.createFromHexString(criteria.id)
+            _id: ObjectId.createFromHexString(criteria.id),
+            sc_code: my_sc_code
+
           }, function(err, courseData) {
             if (err) {
               console.log(err)

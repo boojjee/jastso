@@ -11,9 +11,10 @@
     <thead>
       <tr>
         <th width="150"><center>ชื่อ - นามสกุล</center></th>
-        <th width="150"><center>ชื่อเล่น</center></th>
+        <th width="100"><center>ชื่อเล่น</center></th>
         <th width="150"><center>Email</center></th>
         <th width="150"><center>เบอร์โทร</center></th>
+        <th width="150"><center>สอนวิชา</center></th>
         <th width="200" colspan="3"><center>รายการ</center></th>
       </tr>
     </thead>
@@ -34,6 +35,25 @@
             <center><%= data.phone%></center>
           </td>
           <td>
+            <center>
+            <% var cCount = 1  %>
+            <% _.each(data.course, function(course){ %>
+              <%_.each(courseData, function(cData){   %>
+                <%if(cData._id == course){ %>
+                  <%=cData.syllabus %>
+                <% }  %>
+
+              <%}) %>
+              <% if(data.course.length > 1 && cCount < data.course.length){ %>
+                ,
+              <% }else if(data.course.length > 1 && (cCount == data.course.length)){ %>
+
+              <% }  %>
+              <% cCount++  %>
+            <%}) %>
+            </center>
+          </td>
+          <td>
             <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/timetable/manage" class="button"  title="Edit">
               <i class="fi-pencil"></i> จัดเวลาการสอน
             </a>
@@ -44,7 +64,7 @@
             </a>
           </td>
           <td> 
-            <a href="/<%=data.sc_code %>/teacher/<%=data._id %>/destroy" class="button"  title="delete">
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id %>/destroy" class="button delete_btn"  title="delete">
               <i class="fi-x"></i> ลบ
             </a>
           </td>
@@ -57,3 +77,17 @@
   </table>
 
 </div>
+
+
+<script type="text/javascript">
+
+  $(".delete_btn").on("click", function () {
+    var r = confirm("ยืนยันการลบข้อมูล!");
+    if (r == true) {
+      return true;
+    } else {
+      return false;
+    }
+  })
+
+</script>

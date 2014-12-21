@@ -2,7 +2,7 @@
       <div class="row">
         <div class="large-12 columns">
           <h1>เพิ่มอาจารย์ผู้สอน</h1>
-        </div>
+        </div> 
       </div>
       <form data-abide action="/teacher/create" method="POST" enctype="multipart/form-data">
         <div class="row">
@@ -61,22 +61,38 @@
           </div>
         </div>
         
+
         <div class="row">
           <div class="large-12 columns">
-            <div class="name-thai-field">
               <label>สอนวิชา 
                 <span>
                   <a href="/<%=sc_code %>/course/new">ต้องการเพิ่มวิชา?</a>
                 </span>
               </label>
-                <% _.each(courseData, function(data){ %>            
-                  <input 
-                    id="checkbox<%=data._id%>" 
-                    type="checkbox" 
-                    name="teacher_course" 
-                    value="<%=data._id%>">
-                  <label for="checkbox<%=data._id%>"><%=data.syllabus%></label>
-                <% }) %>
+          </div>    
+        </div>
+
+        <div class="row" style="padding-top:10px;">
+            <% _.each(courseData, function(data){ %>
+
+                <div class="large-2 columns end"> 
+              
+                <input 
+                  id="checkbox<%=data._id%>" 
+                  type="checkbox" 
+                  name="teacher_course" 
+                  value="<%=data._id%>">
+                <label for="checkbox<%=data._id%>"><%=data.syllabus%></label>
+              </div>
+
+            <% }) %>
+
+        </div>
+
+        <div class="row"> 
+
+          <div class="large-12 columns">
+            <div class="name-thai-field">    
               <small class="error">ชื่อเล่นของอาจารย์ผู้สอน</small>
             </div>
 

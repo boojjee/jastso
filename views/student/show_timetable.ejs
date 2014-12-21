@@ -1,43 +1,40 @@
 <div class="row">
   <div class="large-12 columns">
-    <h1>ตารางเรียน ของ <%=studentData.first_name_thai  %></h1>
+    <h1>ตารางเรียน ของ </h1>
+  </div>  
+    <div class="large-4 columns">
+      <p>ชื่อ : <%=studentData.first_name_thai  %></p>
+    </div>
+    <div class="large-4 columns">
+      <p>นามสกุล : <%=studentData.last_name_thai  %></p>
+    </div>
+    <div class="large-4 columns">
+      <p>ชื่อเล่น : <%=studentData.nickname  %></p>
+    </div> 
+    <div class="large-4 columns">
+      <p>เบอร์โทรศัพท์ : <%=studentData.phone  %></p>
+    </div>  
+    <div class="large-4 columns end">
+      <p>Email : <%= studentData.email  %></p>
+    </div>
+    <div class="large-12 columns">
+      <h4>ข้อมูลผู้ปกครอง</h4> 
+    </div> 
+    <div class="large-4 columns">
+      <p>ชื่อผู้ปกครอง : <%=studentData.parrent_first_name  %></p>
+    </div>  
+    <div class="large-4 columns">
+      <p>นามสกุล : <%=studentData.parrent_last_name  %></p>
+    </div>  
+    <div class="large-4 columns">
+      <p>เบอร์โทรศัพท์ : <%=studentData.parrent_phone  %></p>
+    </div>  
   </div>
-  <div class="large-12 columns">
-    <table>
-      
-      <tr>
-        <td>ชื่อ</td>
-        <td>
-          <%=studentData.first_name_thai  %>
-        </td>
-      </tr>
-      <tr>
-        <td>นามสกุล</td>
-        <td>
-          <%=studentData.last_name_thai  %>
-        </td>
-      </tr>
-      <tr>
-        <td>ชื่อเล่น</td>
-        <td>
-          <%=studentData.nickname  %>
-        </td>
-      </tr>
-      <tr>
-        <td>เบอร์โทรศัพท์</td>
-        <td>
-          <%=studentData.phone  %>
-        </td>
-      </tr>
-      <tr>
-        <td>ผู้ปกครอง</td>
-        <td>
-          <%=studentData.phone  %>
-        </td>
-      </tr>
 
-    </table>
-  </div>
+  <div class="row">
+    <br/>
+    <hr/>
+  </div> 
 </div>
 
 <div class="row">

@@ -3,7 +3,7 @@
 
       <h1>เพิ่มข้อมูลห้องเรียน</h1>
 
-      <form data-abide action="/<%=sc_code%>/classroom/<%=classroomData._id%>/update" method="POST">
+      <form data-abide action="/<%=sc_code%>/classroom/<%=classroomData._id%>/update" method="POST" enctype="multipart/form-data" >
         <h4>ข้อมูลของพนักงาน</h4>
 
         <div class="name-thai-field">
@@ -28,7 +28,11 @@
         </div>
         <div class="name-thai-field">
           <div>
-              <img src="<%=classroomData.room_plan%>" alt="">
+            <% if( classroomData.room_plan){ %>
+              <% if( classroomData.room_plan.length != 0 ){ %>
+              <img src="/uploads/classroom/<%=classroomData.room_plan[0].filename%>" alt="" class="large-6">
+              <% }  %>
+            <% }  %>
           </div>
           <label>รูปแผนผังห้องเรียน 
             <input type="file" name="room_plan" id="">

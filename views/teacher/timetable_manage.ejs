@@ -1,17 +1,45 @@
 <div class="row">
-
-  <div class="small-2 large-4 columns">
     
-    <div class="widget">
-    </div>
-
+  <div class="large-12 columns">
+    <h2>อาจารย์ผู้สอน</h2>
   </div>
 
+  
+  <div class="large-4 columns">
+    <p>ชื่อ : <%= teacherData.first_name_th  %></p>
+  </div>
+  <div class="large-4 columns">
+    <p>นามสกุล : <%= teacherData.last_name_th  %></p>
+  </div>
+  <div class="large-4 columns">
+    <p>ชื่อเล่น : <%= teacherData.nickname  %></p>
+  </div> 
+  <div class="large-4 columns">
+    <p>เบอร์โทรศัพท์ : <%= teacherData.phone  %></p>
+  </div>  
+  <div class="large-4 columns end">
+    <p>Email : <%= teacherData.email  %></p>
+  </div>   
+</div>
+
+<div class="row">
+  <br/>
+  <hr/>
 </div>
 
 
 <form data-abide action="/<%=sc_code%>/teacher/<%=teacherData._id  %>/timetable/edit" method="POST">
-<% var time_arr = ["07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "12.00", "13.00", "13.30", "14.00", "14.30", "15.00", "15.30", "16.00", "16.30", "17.00", "17.30", "18.00", "18.30", "19.00", "19.30", "20.00", "20.30", "21.00", "21.30" ]  %>
+
+<% var time_arr = [ "07.00", "07.30", "08.00", 
+                    "08.30", "09.00", "09.30", 
+                    "10.00", "10.30", "11.00", 
+                    "12.00", "13.00", "13.30", 
+                    "14.00", "14.30", "15.00", 
+                    "15.30", "16.00", "16.30", 
+                    "17.00", "17.30", "18.00", 
+                    "18.30", "19.00", "19.30", 
+                    "20.00", "20.30", "21.00", 
+                    "21.30" ]  %>
 
 <% if(_.isEmpty(teacher_timetable)){ %>
 
@@ -25,7 +53,7 @@
   <div class="my_course large-12 columns" data-mycourse="<%=mycourse._id%>">
     
     <div>
-      <a class="button add_times" href="#" data-mycourse="<%=mycourse._id%>">เพิ่มเวลา</a>
+      <a class="button add_times" href="#" data-mycourse="<%=mycourse._id%>">+ เพิ่มเวลา</a>
       <input type="hidden" name="mycourse[<%=mycourse._id%>][course_id]" value="<%=mycourse._id%>">
     </div>
     <table>
@@ -47,7 +75,12 @@
   <% }else{ %>
 
     <div class="row">
+      <br/>
+      <hr/>
+    </div>
+    <div class="row">
       <div class="large-12 columns">
+        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
         <input class="button" type="submit" value="Submit">
       </div>
     </div>
@@ -118,6 +151,12 @@
 
     <% }) %>
   <% })  %>
+
+  <div class="row">
+    <br/>
+    <hr/>
+  </div>
+
   <div class="row">
     <div class="large-12 columns">
       <input type="hidden" name="_csrf" value="<%= _csrf %>" />

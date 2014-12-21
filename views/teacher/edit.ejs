@@ -52,7 +52,8 @@
         <div class="row">
           <div class="large-12 columns">
             <div class="name-thai-field">
-              <label>สอนวิชา <span><a href="/<%=sc_code %>/course/new">ต้องการเพิ่มวิชา?</a></span></label>
+              <label>สอนวิชา <span>
+                <a href="/<%=sc_code %>/course/new">ต้องการเพิ่มวิชา?</a></span></label>
                 <% var my_data_course = data.course  %>
                 
                 <% if(my_data_course == null){ %>
@@ -63,6 +64,7 @@
                 <% }else{ %>
                 <% var tmpcount = 0  %>
                   <% _.each(courseData, function(data){ %>
+                    
                     <% for(var i = 0 ; i < my_data_course.length; i++){ %> 
                       <% if(my_data_course[i] == data._id) {  %>
                           <% tmpcount++  %>
@@ -78,6 +80,7 @@
 
                       <input id="checkbox<%=data._id%>" type="checkbox" name="teacher_course" value="<%=data._id%>">
                       <label for="checkbox<%=data._id%>"><%=data.syllabus%></label>
+
                     <% }%>
 
                     <% tmpcount = 0  %>
