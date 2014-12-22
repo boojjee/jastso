@@ -125,7 +125,7 @@ module.exports = {
 
 
           db.collection('course').findOne({
-            _id: ObjectId.createFromHexString(criteria.id),
+            _id: ObjectId(criteria.id),
             sc_code: my_sc_code
 
           }, function(err, courseData) {
@@ -249,7 +249,7 @@ module.exports = {
         // console.log(course_data);
 
         db.collection('course').update({
-          _id: ObjectId.createFromHexString(criteria.course_id)
+          _id: ObjectId(criteria.course_id)
         }, {
           $set: course_data
         }, function(err, courseData) {
@@ -276,7 +276,7 @@ module.exports = {
         }
 
         db.collection('course').remove({
-          _id: ObjectId.createFromHexString(course_id)
+          _id: ObjectId(course_id)
         }, function(err, deletedCourseData) {
           if (err) {
             console.log(err)

@@ -130,7 +130,7 @@ module.exports = {
         if (err) { console.log(err)}
 
         db.collection('student').findOne({
-          _id: ObjectId.createFromHexString(criteria.id)
+          _id: ObjectId(criteria.id)
         }, function(err, studentData) {
           if (err) { console.log(err)}
           
@@ -179,7 +179,7 @@ module.exports = {
       if (err_con) { console.log(err_con)}
 
       db.collection('student').remove({
-        _id: ObjectId.createFromHexString(school_id)
+        _id: ObjectId(school_id)
       }, function(err, insertedTeacherData) {
         if (err) { console.log(err)}
         

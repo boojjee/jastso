@@ -170,7 +170,7 @@
       if (err_con) return next(err_con);
 
       db.collection('employee').remove({
-        _id: ObjectId.createFromHexString(employee_id)
+        _id: ObjectId(employee_id)
       }, function(err, deletedSchoolData) {
         if (err) return next(err);
         

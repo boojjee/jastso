@@ -173,7 +173,7 @@ module.exports = {
 
           db.collection('teacher').findOne({
             sc_code: my_sc_code,
-            _id: ObjectId.createFromHexString(teacher_id)
+            _id: ObjectId(teacher_id)
           }, function(err, teacherData) {
               if (err) {
                 console.log(err)
@@ -265,7 +265,7 @@ module.exports = {
 
           db.collection('teacher').findOne({
             sc_code: my_sc_code,
-            _id: ObjectId.createFromHexString(teacher_id)
+            _id: ObjectId(teacher_id)
           }, function(err, teacherData) {
               if (err) {
                 console.log(err)
@@ -405,7 +405,7 @@ module.exports = {
           console.log("update");
  
           db.collection('teacher_timetable').update({
-            teacher_id: ObjectId.createFromHexString(teacher_id)
+            teacher_id: ObjectId(teacher_id)
           },
             {
               $set: {
@@ -480,7 +480,7 @@ module.exports = {
       ;
 
       db.collection('teacher').findOne({
-        _id: ObjectId.createFromHexString(criteria.id)
+        _id: ObjectId(criteria.id)
       }, function(err, teacherData) {
           if (err) {
             console.log(err)
@@ -549,7 +549,7 @@ module.exports = {
       }
 
       db.collection('teacher').update({
-        _id: ObjectId.createFromHexString(teacher_id)
+        _id: ObjectId(teacher_id)
       },
         {
           $set: teacher_data
@@ -636,7 +636,7 @@ module.exports = {
       ;
 
       db.collection('teacher').remove({
-        _id: ObjectId.createFromHexString(teacher_id)
+        _id: ObjectId(teacher_id)
       }, function(err, resultRemove) {
           if (err) {
             console.log(err)
