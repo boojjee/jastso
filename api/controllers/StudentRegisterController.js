@@ -176,7 +176,7 @@ module.exports = {
       db.collection('student_regis_course').insert(student_regis_data, function(err, employeeData) {
         if (err){ console.log(err)};
         db.close();
-        res.redirect('/' + my_sc_code + '/student')
+        res.redirect('/' + my_sc_code + '/student/register')
       })
 
 

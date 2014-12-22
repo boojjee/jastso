@@ -6,7 +6,9 @@
 
       <form data-abide action="/<%=sc_code%>/classroom/create" method="POST" enctype="multipart/form-data" >
         <h4>ข้อมูลของพนักงาน</h4>
-
+        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+        <input type="hidden" name="sc_code" value="<%=sc_code%>">
+        
         <div class="name-thai-field">
           <label>ชื่อห้องเรียน *<small>required</small>
             <input name="name" type="text" required>
@@ -33,10 +35,7 @@
           </label>
           <small class="error">คำอธิบายของรายวิชา</small>
         </div>
-
-        <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-        <input type="hidden" name="sc_code" value="<%=sc_code%>">
-        
+ 
         
         <button type="submit">Submit</button>
       </form>

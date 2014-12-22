@@ -64,16 +64,22 @@
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-          <li class="active has-dropdown">
+
+          <% if(req.session.user_role == "0"){  %>
+          <li class="">
+             <a href="/school">School Management</a>
+          </li>
+           <% }  %>
+          <li class="active">
 
               <% if(req.session.user_role == "0" || req.session.user_role == "1"){  %>
                   <a href="#">
-                    <i class="fi-adult"></i> 
+                    <i class="fi-torso"></i> 
                       Admin
                   </a>
                 <% }else{  %>
                   <a href="#">
-                    <i class="fi-adult"></i> 
+                    <i class="fi-torsoq"></i> 
                     <%= req.session.employee_data.first_name + " " + req.session.employee_data.last_name %>
                   </a>
                   <ul class="dropdown">
@@ -81,14 +87,6 @@
                   </ul>
                 <% }  %>
           </li>
-          <% if(req.session.user_role == "0"){  %>
-          <li class="has-dropdown">
-            <a href="#"><i class="fi-widget"></i></a>
-            <ul class="dropdown">
-              <li><a href="/school">School Management</a></li>
-            </ul>
-          </li>
-           <% }  %>
           <li class="has-dropdown">
             <a href="#"><i class="fi-widget"></i></a>
             <ul class="dropdown">
@@ -105,7 +103,7 @@
               <li><a href="/<%=sc_code%>/student/new"><i class="fi-plus"></i> เพิ่มนักเรียน</a></li>
               <li><a href="/<%=sc_code%>/student/register"><i class="fi-download"></i> ลงทะเบียนเรียน</a></li>
               <li><a href="/<%=sc_code%>/student/timetable"><i class="fi-list"></i> ตารางเรียนนักเรียน</a></li>
-              <li><a href="/<%=sc_code%>/student"><i class="fi-folder"></i> การจัดการนักเรียน</a></li>
+              <li><a href="/<%=sc_code%>/student"><i class="fi-wrench"></i> การจัดการนักเรียน</a></li>
               <!-- <li><a href="/<%=sc_code%>/student/studytoday"><i class="fi-checkbox"></i> นักเรียนทีเรียนวันนี้</a></li> -->
             </ul>
           </li>
@@ -116,7 +114,7 @@
                 <a href="/<%=sc_code%>/teacher/new"><i class="fi-plus"></i> เพิ่มอาจารย์ผู้สอน</a>
               </li>
               <li>
-                <a href="/<%=sc_code%>/teacher"><i class="fi-folder"></i> การจัดการอาจารย์ผู้สอน</a>
+                <a href="/<%=sc_code%>/teacher"><i class="fi-wrench"></i> การจัดการอาจารย์ผู้สอน</a>
               </li>
               <li>
                 <a href="/<%=sc_code%>/teacher/timetable"><i class="fi-list"></i> ตารางสอนอาจารย์</a>
@@ -131,7 +129,7 @@
                 <a href="/<%=sc_code%>/classroom"><i class="fi-map"></i> แผนผังห้องรวม</a>
               </li> -->
               <li>
-                <a href="/<%=sc_code%>/classroom"><i class="fi-folder"></i> การจัดการห้องเรียน</a>
+                <a href="/<%=sc_code%>/classroom"><i class="fi-wrench"></i> การจัดการห้องเรียน</a>
               </li><!-- 
               <li>
                 <a href="#"><i class="fi-list-bullet"></i> ตารางเรียนตามวิชาเรียน </a>

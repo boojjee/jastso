@@ -240,7 +240,7 @@ module.exports = {
           db.collection('student_regis_course').find({ student_id: ObjectID.createFromHexString(std_id) }).toArray(function(err, studentRegistCostData){
             if (err) { console.log(err)}
             
-            console.log(studentData)
+            // console.log(studentData)
             db.close();
             res.view({
               title: schoolData.school_name_th,
