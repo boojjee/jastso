@@ -112,6 +112,7 @@ module.exports = {
 
       }, function (err, files) {
         if (err) console.log(err);
+
         console.log(files)
 
         room_data = {
@@ -124,12 +125,13 @@ module.exports = {
 
         
         db.collection('classroom').update( 
-            { _id :ObjectId(criteria.classroom_id) }
+            { "_id" : ObjectId(criteria.classroom_id) }
           , { $set: room_data }
           , function(err, resultUpdate){
 
           if(err) { console.log(err) }
           
+          console.log(ObjectId(criteria.classroom_id) )              
           console.log(room_data)              
           
           db.close();    
@@ -176,7 +178,7 @@ module.exports = {
       if (err_con) return next(err_con);
 
       db.collection('classroom').remove({
-        _id: ObjectId(classroom_id)
+        "_id": ObjectId(classroom_id)
       }, function(err, deletedClassroomData) {
         if (err) return next(err);
           
