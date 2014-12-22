@@ -123,6 +123,7 @@ module.exports = {
           room_plan: files
         }
 
+        console.log(criteria)              
         console.log(criteria.classroom_id)              
         console.log(ObjectID.createFromHexString(criteria.classroom_id) )
         console.log(ObjectID(criteria.classroom_id) )
