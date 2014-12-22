@@ -101,6 +101,7 @@ module.exports = {
       if(err)console.log(err);
       
       req.file('room_plan').upload( { 
+
         dirname: sails.config.appPath +"/assets/uploads/classroom", 
         saveAs:  function(file, cb){ 
           cb(null, file.filename);
@@ -145,8 +146,6 @@ module.exports = {
         }
       }, function (err, files) {
         if (err) console.log(err);
-
-      
 
         room_data = _.merge({}, criteria, { room_plan: files })
         db.collection('classroom').insert(room_data, function(err, classroomData){

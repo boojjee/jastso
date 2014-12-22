@@ -28,7 +28,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
   // migrate: 'safe' // never auto-migrate my database(s). I will do it myself, by hand.
-  migrate: 'alter'
+  migrate: 'safe'
   // migrate: 'safe'
 
 };
