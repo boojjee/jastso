@@ -101,7 +101,7 @@ module.exports = {
         if (err) { console.log(err) }
 
         db.collection('student').findOne({
-          _id: ObjectId(criteria.id)
+          _id: new ObjectID.createFromHexString(criteria.id)
         }, function(err, studentData) {
           if (err) { console.log(err) }
 
@@ -130,7 +130,7 @@ module.exports = {
         if (err) { console.log(err)}
 
         db.collection('student').findOne({
-          _id: ObjectId(criteria.id)
+          _id: new ObjectID.createFromHexString(criteria.id)
         }, function(err, studentData) {
           if (err) { console.log(err)}
           
@@ -156,7 +156,7 @@ module.exports = {
       if (err_con) { console.log(err_con)}
       
       db.collection('student').findAndModify({
-        _id: ObjectId(criteria.id)
+        _id: new ObjectID.createFromHexString(criteria.id)
       }, [
         ['_id', 'asc']
       ], criteria, {}, function(err, object) {
@@ -179,7 +179,7 @@ module.exports = {
       if (err_con) { console.log(err_con)}
 
       db.collection('student').remove({
-        _id: ObjectId(school_id)
+        _id: new ObjectID.createFromHexString(school_id)
       }, function(err, insertedTeacherData) {
         if (err) { console.log(err)}
         
@@ -232,12 +232,12 @@ module.exports = {
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err)}
 
-        db.collection('student').findOne({ _id: ObjectId(std_id) }, function(err, studentData){
+        db.collection('student').findOne({ _id: new ObjectID.createFromHexString(std_id) }, function(err, studentData){
           if (err) { console.log(err)}
           
           
 
-          db.collection('student_regis_course').find({ student_id: ObjectId(std_id) }).toArray(function(err, studentRegistCostData){
+          db.collection('student_regis_course').find({ student_id: new ObjectID.createFromHexString(std_id) }).toArray(function(err, studentRegistCostData){
             if (err) { console.log(err)}
             
             console.log(studentData)

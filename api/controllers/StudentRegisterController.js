@@ -74,7 +74,7 @@ module.exports = {
 
             db.collection('student').findOne({
               sc_code: my_sc_code,
-              _id: ObjectId(criteria.id)
+              _id: new ObjectID.createFromHexString(criteria.id)
             }, function(err, studentData) {
               
                 db.close();
@@ -108,13 +108,13 @@ module.exports = {
           db.collection('course').findOne(
             {
               sc_code: my_sc_code, 
-              _id: ObjectId(course_selected)
+              _id: new ObjectID.createFromHexString(course_selected)
             }
             , function(err, mycourse) {
 
               db.collection('student').findOne({
                 sc_code: my_sc_code,
-                _id: ObjectId(criteria.id)
+                _id: new ObjectID.createFromHexString(criteria.id)
               }, function(err, studentData) {
 
                   db.collection('teacher').find({

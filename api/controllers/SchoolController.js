@@ -72,7 +72,7 @@ module.exports = {
       if (err_con) { console.log(err_con)}
 
       db.collection('school').findOne({
-        _id: ObjectId(criteria.id)
+        _id: new ObjectID.createFromHexString(criteria.id)
       }, function(err, schoolData) {
         if (err) { console.log(err)}
 
@@ -94,7 +94,7 @@ module.exports = {
       if(err_con)console.log(err_con); 
       
       db.collection('school').findAndModify({
-        _id: ObjectId(criteria.id)
+        _id: new ObjectID.createFromHexString(criteria.id)
       }, [
         ['_id', 'asc']
       ], criteria, {}, function(err, object) {
@@ -147,7 +147,7 @@ module.exports = {
       if (err_con) { console.log(err_con)}
 
       db.collection('school').remove({
-        _id: ObjectId(school_id)
+        _id: new ObjectID.createFromHexString(school_id)
       }, function(err, insertedSchoolData) {
         if (err) { console.log(err)}
         
