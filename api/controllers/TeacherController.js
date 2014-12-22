@@ -173,7 +173,7 @@ module.exports = {
 
           db.collection('teacher').findOne({
             sc_code: my_sc_code,
-            _id: new ObjectID.createFromHexString(teacher_id)
+            _id: ObjectID.createFromHexString(teacher_id)
           }, function(err, teacherData) {
               if (err) {
                 console.log(err)
@@ -211,7 +211,7 @@ module.exports = {
                 db.collection('teacher_timetable').find(
                   {
                     sc_code: my_sc_code,
-                    teacher_id: new ObjectID.createFromHexString(teacher_id)
+                    teacher_id: ObjectID.createFromHexString(teacher_id)
                   })
                   .toArray(function(err, teacher_timetable) {
 
@@ -265,7 +265,7 @@ module.exports = {
 
           db.collection('teacher').findOne({
             sc_code: my_sc_code,
-            _id: new ObjectID.createFromHexString(teacher_id)
+            _id: ObjectID.createFromHexString(teacher_id)
           }, function(err, teacherData) {
               if (err) {
                 console.log(err)
@@ -303,7 +303,7 @@ module.exports = {
                 db.collection('teacher_timetable').findOne(
                   {
                     sc_code: my_sc_code,
-                    teacher_id: new ObjectID.createFromHexString(teacher_id)
+                    teacher_id: ObjectID.createFromHexString(teacher_id)
                   }, function(err, teacher_timetable) {
 
                     console.log(teacher_timetable)
@@ -373,14 +373,14 @@ module.exports = {
       }
 
       tmp.push({
-        course_id: new ObjectID.createFromHexString(data.course_id),
+        course_id: ObjectID.createFromHexString(data.course_id),
         time: tmp_time_data
       })
       tmp_time_data = [];
     })
 
     timetable_data = {
-      teacher_id: new ObjectID.createFromHexString(teacher_id),
+      teacher_id: ObjectID.createFromHexString(teacher_id),
       sc_code: my_sc_code,
       time_data: tmp
     }
@@ -388,7 +388,7 @@ module.exports = {
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       db.collection('teacher_timetable').find({
-        teacher_id: new ObjectID.createFromHexString(teacher_id)
+        teacher_id: ObjectID.createFromHexString(teacher_id)
       }).toArray(function(err, courseData) {
         if (err) {
           console.log(err)
@@ -405,7 +405,7 @@ module.exports = {
           console.log("update");
  
           db.collection('teacher_timetable').update({
-            teacher_id: new ObjectID.createFromHexString(teacher_id)
+            teacher_id: ObjectID.createFromHexString(teacher_id)
           },
             {
               $set: {
@@ -480,7 +480,7 @@ module.exports = {
       ;
 
       db.collection('teacher').findOne({
-        _id: new ObjectID.createFromHexString(criteria.id)
+        _id: ObjectID.createFromHexString(criteria.id)
       }, function(err, teacherData) {
           if (err) {
             console.log(err)
@@ -549,7 +549,7 @@ module.exports = {
       }
 
       db.collection('teacher').update({
-        _id: new ObjectID.createFromHexString(teacher_id)
+        _id: ObjectID.createFromHexString(teacher_id)
       },
         {
           $set: teacher_data
@@ -636,7 +636,7 @@ module.exports = {
       ;
 
       db.collection('teacher').remove({
-        _id: new ObjectID.createFromHexString(teacher_id)
+        _id: ObjectID.createFromHexString(teacher_id)
       }, function(err, resultRemove) {
           if (err) {
             console.log(err)

@@ -78,7 +78,7 @@ module.exports = {
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) { console.log(err) }
-        db.collection('classroom').findOne({ _id: new ObjectID.createFromHexString(criteria.id) }, function(err, classroomData){
+        db.collection('classroom').findOne({ _id: ObjectID.createFromHexString(criteria.id) }, function(err, classroomData){
           if(err) { console.log(err) }
 
           db.close();
@@ -125,13 +125,13 @@ module.exports = {
 
         
         db.collection('classroom').update( 
-            { "_id" : new ObjectID.createFromHexString(criteria.classroom_id) }
+            { "_id" : ObjectID.createFromHexString(criteria.classroom_id) }
           , { $set: room_data }
           , function(err, resultUpdate){
 
           if(err) { console.log(err) }
           
-          console.log(new ObjectID.createFromHexString(criteria.classroom_id) )              
+          console.log(ObjectID.createFromHexString(criteria.classroom_id) )              
           console.log(room_data)              
           
           db.close();    
@@ -178,7 +178,7 @@ module.exports = {
       if (err_con) return next(err_con);
 
       db.collection('classroom').remove({
-        "_id": new ObjectID.createFromHexString(classroom_id)
+        "_id": ObjectID.createFromHexString(classroom_id)
       }, function(err, deletedClassroomData) {
         if (err) return next(err);
           
