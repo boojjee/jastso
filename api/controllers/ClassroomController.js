@@ -109,7 +109,8 @@ module.exports = {
 
       }, function (err, files) {
         if (err) console.log(err);
-        console.log(files)
+        // console.log(files)
+
         room_data = {
           name : criteria.name,
           description : criteria.description,
@@ -124,7 +125,9 @@ module.exports = {
           , { $set: room_data }
           , function(err, resultUpdate){
           if(err) { console.log(err) }
-              
+          
+          console.log(resultUpdate)              
+          
           db.close();    
           res.redirect('/'+ my_sc_code +'/classroom')
         })
