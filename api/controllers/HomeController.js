@@ -14,6 +14,8 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
+ObjectId = require('mongodb').ObjectID;
+
 
 module.exports = {
     

@@ -16,6 +16,9 @@
  */
 var uuid = require('uuid');
 
+MongoClient = require('mongodb').MongoClient;
+ObjectId = require('mongodb').ObjectID;
+
 module.exports = {
 
   index: function(req, res, next) {
@@ -124,6 +127,7 @@ module.exports = {
             { _id :ObjectId(criteria.classroom_id) }
           , { $set: room_data }
           , function(err, resultUpdate){
+
           if(err) { console.log(err) }
           
           console.log(resultUpdate)              
