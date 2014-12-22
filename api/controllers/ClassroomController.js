@@ -100,6 +100,9 @@ module.exports = {
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
+
+    console.log(criteria)
+
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if(err_con) console.log(err_con);
       
@@ -122,12 +125,6 @@ module.exports = {
           sc_code : my_sc_code,
           room_plan: files
         }
-
-        console.log(req)              
-        console.log(req.body)              
-        console.log(criteria.classroom_id)              
-        console.log(ObjectID.createFromHexString(criteria.classroom_id) )
-        console.log(ObjectID(criteria.classroom_id) )
 
         db.collection('classroom').update( 
             { "_id" : ObjectID.createFromHexString(criteria.classroom_id) }
