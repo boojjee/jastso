@@ -113,7 +113,7 @@ module.exports = {
       }, function (err, files) {
         if (err) console.log(err);
 
-        console.log(files)
+        // console.log(files)
 
         room_data = {
           name : criteria.name,
@@ -123,7 +123,8 @@ module.exports = {
           room_plan: files
         }
 
-        console.log(criteria)              
+        console.log(req)              
+        console.log(req.body)              
         console.log(criteria.classroom_id)              
         console.log(ObjectID.createFromHexString(criteria.classroom_id) )
         console.log(ObjectID(criteria.classroom_id) )

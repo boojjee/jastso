@@ -3,7 +3,11 @@
 
       <h1>เพิ่มข้อมูลห้องเรียน</h1>
 
-      <form data-abide action="/<%=sc_code%>/classroom/<%=classroomData._id%>/update" method="POST" enctype="multipart/form-data" >
+      <form data-abide action="/<%=sc_code%>/classroom/<%=classroomData._id%>/update" 
+            method="POST" 
+            enctype="multipart/form-data" >
+
+            
         <h4>ข้อมูลของพนักงาน</h4>
 
         <div class="name-thai-field">
@@ -35,7 +39,7 @@
             <% }  %>
           </div>
           <label>รูปแผนผังห้องเรียน 
-            <input type="file" name="room_plan" id="">
+            <input type="file" name="room_plan" id="" />
           </label>
 
           <small class="error">คำอธิบายของรายวิชา</small>
