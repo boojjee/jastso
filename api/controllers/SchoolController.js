@@ -69,7 +69,7 @@ module.exports = {
   edit: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) { console.log(err)}
+      if (err_con) { console.log(err_con)}
 
       db.collection('school').findOne({
         _id: ObjectId.createFromHexString(criteria.id)
@@ -91,7 +91,7 @@ module.exports = {
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if(err)console.log(err); 
+      if(err_con)console.log(err_con); 
       
       db.collection('school').findAndModify({
         _id: ObjectId.createFromHexString(criteria.id)
@@ -144,7 +144,7 @@ module.exports = {
     school_id = criteria.id
     // console.log(criteria)
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) { console.log(err)}
+      if (err_con) { console.log(err_con)}
 
       db.collection('school').remove({
         _id: ObjectId.createFromHexString(school_id)

@@ -115,6 +115,7 @@ module.exports = {
     // console.log(criteria);
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
+      
         db.collection('school').findOne({
           sc_code: my_sc_code
         }, function(err, schoolData) {
@@ -270,8 +271,8 @@ module.exports = {
     my_sc_code = req.session.sc_code;
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-        if (err) {
-          console.log(err)
+        if (err_con) {
+          console.log(err_con)
         }
 
         db.collection('course').remove({

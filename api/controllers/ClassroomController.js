@@ -98,7 +98,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if(err)console.log(err);
+      if(err_con) console.log(err_con);
       
       req.file('room_plan').upload( { 
 
@@ -166,7 +166,7 @@ module.exports = {
     classroom_id = criteria.id
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) return next(err);
+      if (err_con) return next(err_con);
 
       db.collection('classroom').remove({
         _id: ObjectId.createFromHexString(classroom_id)

@@ -96,7 +96,7 @@ module.exports = {
   finishAdd: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) { console.log(err)}
+      if (err_con) { console.log(err_con)}
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err) }
 
@@ -125,7 +125,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) { console.log(err)}
+      if (err_con) { console.log(err_con)}
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err)}
 
@@ -153,7 +153,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) { console.log(err)}
+      if (err_con) { console.log(err_con)}
       
       db.collection('student').findAndModify({
         _id: ObjectId(criteria.id)
@@ -176,7 +176,7 @@ module.exports = {
     school_id = criteria.id
     console.log(criteria)
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) { console.log(err)}
+      if (err_con) { console.log(err_con)}
 
       db.collection('student').remove({
         _id: ObjectId.createFromHexString(school_id)

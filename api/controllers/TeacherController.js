@@ -474,8 +474,8 @@ module.exports = {
     my_sc_code = req.session.sc_code;
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) {
-        console.log(err)
+      if (err_con) {
+        console.log(err_con)
       }
       ;
 
@@ -519,7 +519,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
 
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) console.log(err);
+      if (err_con) console.log(err_con);
       teacher_id = criteria.teacher_id;
       teacher_course = []
       if (_.isArray(criteria.teacher_course)) {
@@ -630,8 +630,8 @@ module.exports = {
     teacher_id = criteria.id
     console.log(criteria)
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
-      if (err) {
-        console.log(err)
+      if (err_con) {
+        console.log(err_con)
       }
       ;
 
