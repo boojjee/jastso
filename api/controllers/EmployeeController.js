@@ -35,7 +35,7 @@
     // console.log("DDDD")
     // console.log(req.session)
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) { console.log(err)}
@@ -62,7 +62,7 @@
   new: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;	
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) { console.log(err)}
@@ -83,7 +83,7 @@
   edit: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body);	
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) { console.log(err)}
         db.collection('employee').findOne({ _id: ObjectId(criteria.id) }, function(err, employeeData){
@@ -109,7 +109,7 @@
 
   create: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       var employee_data = {
         first_name: criteria.first_name,
         last_name: criteria.last_name,
@@ -135,7 +135,7 @@
 
   update: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body);	
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       var employee_data = {
         first_name: criteria.first_name,
         last_name: criteria.last_name,
@@ -166,7 +166,7 @@
     employee_id = criteria.id
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) return next(err);
 
       db.collection('employee').remove({

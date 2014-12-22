@@ -35,7 +35,7 @@ module.exports = {
   index: function(req, res, next) {
 
     if(req.session.user_role == "0" || req.session.user_role == "1"){
-      MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+      MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
         // db.collection('service').find( { });
         // reset sc_code
         delete req.session.sc_code;
@@ -68,7 +68,7 @@ module.exports = {
 
   edit: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) { console.log(err)}
 
       db.collection('school').findOne({
@@ -90,7 +90,7 @@ module.exports = {
 
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if(err)console.log(err); 
       
       db.collection('school').findAndModify({
@@ -123,7 +123,7 @@ module.exports = {
       sc_code: sc_code
     }, req.params.all(), req.body);
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').insert(criteria, function(err, insertedSchoolData) {
@@ -143,7 +143,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     school_id = criteria.id
     // console.log(criteria)
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) { console.log(err)}
 
       db.collection('school').remove({

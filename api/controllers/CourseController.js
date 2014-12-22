@@ -30,7 +30,7 @@ module.exports = {
   index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
         // db.collection('service').find( { });
         db.collection('school').findOne({
           sc_code: my_sc_code
@@ -68,7 +68,7 @@ module.exports = {
   new: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
         // db.collection('service').find( { });
 
         db.collection('school').findOne({
@@ -114,7 +114,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     // console.log(criteria);
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
         db.collection('school').findOne({
           sc_code: my_sc_code
         }, function(err, schoolData) {
@@ -161,7 +161,7 @@ module.exports = {
   create: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
         // console.log(criteria)
         var transform_data = [];
         if (_.isArray(criteria.course_title)) {
@@ -211,7 +211,7 @@ module.exports = {
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
         // console.log(criteria)
 
         var transform_data = [];
@@ -269,7 +269,7 @@ module.exports = {
     course_id = criteria.id
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
         if (err) {
           console.log(err)
         }

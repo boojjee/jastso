@@ -40,7 +40,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
 
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){

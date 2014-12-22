@@ -40,7 +40,7 @@ module.exports = {
   create: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body);
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('register').insert(criteria,  function(err, insertedSchoolData){

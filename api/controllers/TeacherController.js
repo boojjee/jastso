@@ -25,7 +25,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({
@@ -73,7 +73,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({
@@ -116,7 +116,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({
@@ -160,7 +160,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
 
     teacher_id = criteria.id
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({
@@ -252,7 +252,7 @@ module.exports = {
 
     teacher_id = criteria.id;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({
@@ -386,7 +386,7 @@ module.exports = {
     }
 
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       db.collection('teacher_timetable').find({
         teacher_id: ObjectId(teacher_id)
       }).toArray(function(err, courseData) {
@@ -436,7 +436,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({
         sc_code: my_sc_code
@@ -473,7 +473,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) {
         console.log(err)
       }
@@ -518,7 +518,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) console.log(err);
       teacher_id = criteria.teacher_id;
       teacher_course = []
@@ -571,7 +571,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       var teacher_course = [];
       if (criteria.teacher_course) {
@@ -629,7 +629,7 @@ module.exports = {
 
     teacher_id = criteria.id
     console.log(criteria)
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) {
         console.log(err)
       }

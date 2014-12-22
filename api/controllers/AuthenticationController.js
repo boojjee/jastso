@@ -33,18 +33,20 @@ module.exports = {
       criteria = _.merge({}, req.params.all(), req.body);
 
       if(criteria.username == "sadmin" && criteria.password == "12345"){
-        req.session.authenticated = true;
-        req.session.user_role = "0";
-        req.session.user_id = "super admin";
 
-        // req.session.cookie.expires = new Date(new Date().getTime() * 60000 );
-        
+        req.session.regenerate(function (err) {
+          req.session.authenticated = true;
+          req.session.user_role = "0";
+          req.session.user_id = "super admin";
 
+          console.log(req.session)
+          res.redirect("/");
+        });
 
-        res.redirect("/");
-          
+         
       }else{
-        MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+        MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
+
           db.collection('employee').findOne({ email: criteria.username }, function(err, employeeData){
 
             if(_.isEmpty(employeeData)){
@@ -52,15 +54,17 @@ module.exports = {
             }else{
               if( bcrypt.compareSync(criteria.password, employeeData.password) ){
 
-                req.session.authenticated = true;
-                req.session.user_role = employeeData.position;
-                req.session.sc_code = employeeData.sc_code;
-                req.session.user_id = employeeData._id;
-                
-                req.session.employee_data = employeeData;
+                req.session.regenerate(function (err) {
+                  req.session.authenticated = true;
+                  req.session.user_role = employeeData.position;
+                  req.session.sc_code = employeeData.sc_code;
+                  req.session.user_id = employeeData._id;
+                  req.session.employee_data = employeeData;
 
-                db.close();
-                res.redirect(req.session.sc_code+"/schools/dashboard");
+                  db.close();
+                  res.redirect(req.session.sc_code+"/schools/dashboard");  
+                });
+                
               }else{
                 db.close();  
                 res.redirect('/login')

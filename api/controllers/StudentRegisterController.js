@@ -27,7 +27,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
     school_id = criteria.id;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err){ console.log(err)};
       db.collection('school').findOne({
         sc_code: my_sc_code
@@ -63,7 +63,7 @@ module.exports = {
     // req.session.register_isfinish = false;
 
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       db.collection('school').findOne({
         sc_code: my_sc_code
       }, function(err, schoolData) {
@@ -100,7 +100,7 @@ module.exports = {
     // req.session.register_isfinish = false;
 
     course_selected = criteria.course;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       db.collection('school').findOne({
         sc_code: my_sc_code
       }, function(err, schoolData) {
@@ -154,7 +154,7 @@ module.exports = {
     // req.session.register_step = 3;
     // req.session.register_isfinish = false;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       student_regis_data = {
         date_create: new Date(),
         student_id: ObjectId(criteria.id),

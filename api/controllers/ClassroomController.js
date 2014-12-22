@@ -23,7 +23,7 @@ module.exports = {
     
     my_sc_code = req.session.sc_code;
     
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err){ console.log(err); }
@@ -50,7 +50,7 @@ module.exports = {
   new: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code; 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) { console.log(err) }
@@ -72,7 +72,7 @@ module.exports = {
   edit: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if(err) { console.log(err) }
         db.collection('classroom').findOne({ _id: ObjectId.createFromHexString(criteria.id) }, function(err, classroomData){
@@ -97,7 +97,7 @@ module.exports = {
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if(err)console.log(err);
       
       req.file('room_plan').upload( { 
@@ -136,7 +136,7 @@ module.exports = {
   create: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       
       req.file('room_plan').upload( { 
         dirname: sails.config.appPath +"/assets/uploads/classroom", 
@@ -166,7 +166,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     classroom_id = criteria.id
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) return next(err);
 
       db.collection('classroom').remove({

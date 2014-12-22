@@ -26,7 +26,7 @@ module.exports = {
   index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err)}
@@ -55,7 +55,7 @@ module.exports = {
   new: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body); 
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
 
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
@@ -77,7 +77,7 @@ module.exports = {
   create: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
 
       db.collection('student').insert(criteria, function(err, employeeData){
         if (err) { console.log(err)}
@@ -95,7 +95,7 @@ module.exports = {
 
   finishAdd: function(req, res, next){
     criteria = _.merge({}, req.params.all(), req.body); 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) { console.log(err)}
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err) }
@@ -124,7 +124,7 @@ module.exports = {
   edit: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) { console.log(err)}
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err)}
@@ -152,7 +152,7 @@ module.exports = {
   update: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) { console.log(err)}
       
       db.collection('student').findAndModify({
@@ -175,7 +175,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     school_id = criteria.id
     console.log(criteria)
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       if (err) { console.log(err)}
 
       db.collection('student').remove({
@@ -197,7 +197,7 @@ module.exports = {
     criteria = _.merge({}, req.params.all(), req.body);
     my_sc_code = req.session.sc_code;
     std_id : criteria.id;
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err)}
@@ -227,7 +227,7 @@ module.exports = {
     my_sc_code = req.session.sc_code;
     std_id = criteria.id;
 
-    MongoClient.connect(sails.config.native_mongodb.url, function(err, db) {
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       // db.collection('service').find( { });
       db.collection('school').findOne({ sc_code: my_sc_code }, function(err, schoolData){
         if (err) { console.log(err)}
