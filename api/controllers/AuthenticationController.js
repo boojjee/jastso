@@ -17,7 +17,7 @@
 var bcrypt = require('bcryptjs')
 Mongo = require('mongodb')
 MongoClient = require('mongodb').MongoClient;
-ObjectId = require('mongodb').ObjectID;
+ObjectID = require('mongodb').ObjectID;
 
 module.exports = {
 

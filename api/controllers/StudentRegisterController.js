@@ -17,7 +17,7 @@
 
 Mongo = require('mongodb')
 MongoClient = require('mongodb').MongoClient;
-ObjectId = require('mongodb').ObjectID;
+ObjectID = require('mongodb').ObjectID;
 Moment = require('moment');
 
 module.exports = {
@@ -158,7 +158,7 @@ module.exports = {
     MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
       student_regis_data = {
         date_create: new Date(),
-        student_id: ObjectId(criteria.id),
+        student_id: ObjectID(criteria.id),
         date: criteria.date,
         mycourse_start: criteria.mycourse_start,
         mycourse_end: criteria.mycourse_end,
@@ -168,7 +168,7 @@ module.exports = {
       }
       // console.log(student_regis_data)
       // db.collection('student_regis_course').findOne({
-      //   student_id: ObjectId(criteria.id)
+      //   student_id: ObjectID(criteria.id)
       // }, function(err, findSTDregist){
       //   if(findSTDregist)
       // })

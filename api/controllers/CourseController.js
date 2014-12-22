@@ -16,7 +16,7 @@
  */
 Mongo = require('mongodb');
 MongoClient = require('mongodb').MongoClient;
-ObjectId = require('mongodb').ObjectID;
+ObjectID = require('mongodb').ObjectID;
 Moment = require('moment');
 
 module.exports = {
@@ -191,7 +191,7 @@ module.exports = {
           no_of_student: criteria.no_of_student,
           groups: criteria.groups,
           cost: criteria.cost,
-          classroom: ObjectId(criteria.classroom),
+          classroom: ObjectID(criteria.classroom),
           sc_code: my_sc_code,
         }
 
@@ -243,7 +243,7 @@ module.exports = {
           groups: criteria.groups,
           cost: criteria.cost,
           sc_code: my_sc_code,
-          classroom: ObjectId(criteria.classroom),
+          classroom: ObjectID(criteria.classroom),
         }
 
         // console.log(course_data);

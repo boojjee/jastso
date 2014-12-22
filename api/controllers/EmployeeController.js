@@ -16,7 +16,7 @@
  */
  Mongo = require('mongodb')
  MongoClient = require('mongodb').MongoClient;
- ObjectId = require('mongodb').ObjectID;
+ ObjectID = require('mongodb').ObjectID;
  Moment = require('moment');
  bcrypt = require('bcryptjs')
 
