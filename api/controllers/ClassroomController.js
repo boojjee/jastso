@@ -123,7 +123,10 @@ module.exports = {
           room_plan: files
         }
 
-        
+        console.log(criteria.classroom_id)              
+        console.log(ObjectID.createFromHexString(criteria.classroom_id) )
+        console.log(ObjectID(criteria.classroom_id) )
+
         db.collection('classroom').update( 
             { "_id" : ObjectID.createFromHexString(criteria.classroom_id) }
           , { $set: room_data }
@@ -131,8 +134,7 @@ module.exports = {
 
           if(err) { console.log(err) }
           
-          console.log(ObjectID.createFromHexString(criteria.classroom_id) )              
-          console.log(room_data)              
+          // console.log(room_data)              
           
           db.close();    
           res.redirect('/'+ my_sc_code +'/classroom')
