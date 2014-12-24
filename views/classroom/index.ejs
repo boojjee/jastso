@@ -10,39 +10,27 @@
   <div>
       <table id="" class="data-table-ui" cellspacing="0" width="100%">
         <thead>
-            <tr>
-              <th>ลำดับ</th>
+            <tr> 
               <th>ชื่อห้องเรียน</th>
               <th>รายละเอียด</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
+              <th width="200">&nbsp;</th> 
             </tr>
-        </thead>
- 
-        <tfoot>
-            <tr>
-              <th>ลำดับ</th>
-              <th>ชื่อห้องเรียน</th>
-              <th>รายละเอียด</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
-            </tr>
-        </tfoot>
+        </thead> 
  
         <tbody>
           <% _.each(classroomData, function(data){ %>
-          <tr>
-            <td><%=1%></td>
+          <tr> 
             <td class="center"><%=data.name%></td>
             <td class="center"><%=data.description%></td>
-            <td>
-              <a href="/<%=sc_code%>/classroom/<%=data._id%>/edit" class="button"  title="Edit">
-                <i class="fi-pencil"></i> แก้ไข
-              </a>
-            </td>
-            <td> 
-              <a href="/<%=sc_code%>/classroom/<%=data._id %>/destroy" class="button delete_btn"  title="delete">
-                <i class="fi-x"></i> ลบ
+            <td class="center">
+              <a href="/<%=sc_code%>/classroom/<%=data._id%>/edit" 
+                 data-tooltip aria-haspopup="true" class="button tip-top"  title="แก้ไข">
+                <i class="fi-pencil"></i> 
+              </a> 
+              <a href="/<%=sc_code%>/classroom/<%=data._id %>/destroy" 
+                data-tooltip aria-haspopup="true" 
+                class="button delete_btn tip-top"  title="ลบ">
+                <i class="fi-x"></i> 
               </a>
             </td>
           </tr>

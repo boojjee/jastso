@@ -2,14 +2,14 @@
   <h1 id="switch">ตารางเวลาการสอน</h1>
 
 
-  <table>
+  <table class="data-table-ui">
     <thead>
       <tr>
         <th>ชื่อ - นามสกุล</th>
         <th>ชื่อเล่น</th>
         <th>Email</th>
         <th>เบอร์โทร</th>
-        <th></th>
+        <th width="150"></th>
       </tr>
     </thead>
     <tbody>
@@ -29,8 +29,9 @@
             <%= data.phone%>
           </td>
           <td>
-            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/timetable/show" class="button"  title="Edit">
-              <i class="fi-pencil"></i> ดูตารางเวลาการสอน
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/timetable/show" 
+              data-tooltip aria-haspopup="true" class="button tip-top"  title="ดูตารางเวลาการสอน">
+              <i class="fi-eye"></i> 
             </a>
           </td>
         </tr>

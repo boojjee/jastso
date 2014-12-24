@@ -68,6 +68,54 @@ module.exports = {
 
 
   },
+  
+  teacher_time: function(req, res, next) {
+    criteria = _.merge({}, req.params.all(), req.body);
+    my_sc_code = req.session.sc_code;
+
+    MongoClient.connect(sails.config.native_mongodb.url, function(err_con, db) {
+      // db.collection('service').find( { });
+
+      db.collection('school').findOne({
+        sc_code: my_sc_code
+      }, function(err, schoolData) {
+          if (err) {
+            console.log(err)
+          }
+          ;
+
+          db.collection('teacher').find({
+            sc_code: my_sc_code
+          }).toArray(function(err, teacherData) {
+            if (err) {
+              console.log(err)
+            }
+            
+            db.collection('course').find({
+              sc_code: my_sc_code
+              }).toArray(function(err, courseData) {
+
+            db.close();
+
+            res.view({
+              title: schoolData.school_name_th,
+              sc_code: my_sc_code,
+              schoolData: schoolData,
+              teacherData: teacherData,
+              courseData: courseData,
+              layout: '/layout/school_layout'
+            })
+
+
+
+            })
+          })
+
+        })
+    })
+
+
+  },
 
   timetable_index: function(req, res, next) {
     criteria = _.merge({}, req.params.all(), req.body);

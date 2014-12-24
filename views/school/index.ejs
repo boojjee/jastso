@@ -7,13 +7,13 @@
     </a>
   </div>
 
-  <table>
+  <table  class="data-table-ui" >
     <thead>
       <tr>
-        <th width="200">ชื่อโรงเรียน</th>
-        <th width="200">ชื่อโรงเรียน ภาษาอังกฤษ</th> 
+        <th width="280">ชื่อโรงเรียน</th>
+        <th width="280">ชื่อโรงเรียน ภาษาอังกฤษ</th> 
         <th width="150">เบอร์โทรศัพท์</th>
-        <th width="200" colspan="3"></th>
+        <th></th> 
       </tr>
     </thead>
     <tbody>
@@ -25,19 +25,20 @@
         <td><%=data.school_name_en %></td> 
         <td><%=data.shool_phone %></td>
         <td>
-          <a href="/<%=data.sc_code%>/schools/dashboard" class="button" title="Setting">
-            <i class="fi-widget"></i>
-            จัดการ
-          </a>
-        </td>
-        <td>
-          <a href="/schools/<%=data._id%>/edit" class="button"  title="Edit">
-            <i class="fi-pencil"></i> แก้ไข
-          </a>
-        </td>
-        <td> 
-          <a href="/schools/<%=data._id %>/destroy" class="button delete_btn"  title="delete">
-            <i class="fi-x"></i> ลบ
+          <a href="/<%=data.sc_code%>/schools/dashboard" data-tooltip aria-haspopup="true" 
+             class="tip-top button" 
+             title="การจัดการโรงเรียน">
+            <i class="fi-widget"></i> 
+          </a> 
+          <a href="/schools/<%=data._id%>/edit" data-tooltip aria-haspopup="true" 
+             class="tip-top button" 
+             title="แก้ไขข้อมูล">
+            <i class="fi-pencil"></i>
+          </a> 
+          <a href="/schools/<%=data._id %>/destroy" data-tooltip aria-haspopup="true" 
+             class="tip-top button delete_btn"  
+             title="ลบข้อมูลโรงเรียน">
+            <i class="fi-x"></i>
           </a>
         </td>
       </tr>

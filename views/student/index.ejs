@@ -9,13 +9,10 @@
 
   <table id="" class="data-table-ui" cellspacing="0" width="100%">
     <thead>
-      <tr>
-        <th width="100"><center>#</center></th>        
-        <th width="100"><center>ชื่อ</center></th>
-        <th width="150"><center>นามสกุล</center></th>
-         <th width="150"><center>ชื่อเล่น</center></th>
-        <th width="150"><center>เบอร์โทรศัพท์</center></th>
-        <th width="200"></th>
+      <tr>       
+        <th><center>ชื่อ - นามสกุล</center></th> 
+        <th><center>ชื่อเล่น</center></th>
+        <th><center>เบอร์โทรศัพท์</center></th> 
         <th width="200"></th>
       </tr>
     </thead>
@@ -23,20 +20,20 @@
       
       <% _.each(studentData, function(data, i){ %>
 
-      <tr>
-        <td><center><%=i+1 %></center></td>         
-        <td><center><%=data.first_name_thai %></center></td>
-        <td><center><%=data.last_name_thai %></center></td>
+      <tr>      
+        <td><center><%=data.first_name_thai %> <%=data.last_name_thai %></center></td>
         <td><center><%=data.nickname %></center></td>
         <td><center><%=data.phone %></center></td>
         <td>
-          <a href="/<%=data.sc_code %>/student/<%=data._id%>/edit" class="button"  title="Edit">
-            <i class="fi-pencil"></i> แก้ไขข้อมูล
-          </a>
-        </td>
-        <td> 
-          <a href="/<%=data.sc_code %>/student/<%=data._id %>/destroy" class="button delete_btn"  title="delete">
-            <i class="fi-x"></i> ลบ
+          <a href="/<%=data.sc_code %>/student/<%=data._id%>/edit"
+            data-tooltip aria-haspopup="true" class="button tip-top" 
+            class="button"  title="แก้ไขข้อมูล">
+            <i class="fi-pencil"></i> 
+          </a> 
+          <a href="/<%=data.sc_code %>/student/<%=data._id %>/destroy" 
+              data-tooltip aria-haspopup="true" class="button tip-top" 
+              class="button delete_btn"  title="ลบ">
+            <i class="fi-x"></i> 
           </a>
         </td>
       </tr>

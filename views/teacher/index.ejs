@@ -7,15 +7,15 @@
     </a>
   </div>
 
-  <table>
+  <table  class="data-table-ui">
     <thead>
       <tr>
-        <th width="150"><center>ชื่อ - นามสกุล</center></th>
-        <th width="100"><center>ชื่อเล่น</center></th>
-        <th width="150"><center>Email</center></th>
-        <th width="150"><center>เบอร์โทร</center></th>
-        <th width="150"><center>สอนวิชา</center></th>
-        <th width="200" colspan="3"><center>รายการ</center></th>
+        <th><center>ชื่อ - นามสกุล</center></th>
+        <th><center>ชื่อเล่น</center></th>
+        <th><center>Email</center></th>
+        <th><center>เบอร์โทร</center></th>
+        <th><center>สอนวิชา</center></th>
+        <th width="250"><center></center></th>  
       </tr>
     </thead>
     <tbody>
@@ -53,19 +53,12 @@
             <%}) %>
             </center>
           </td>
-          <td>
-            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/timetable/manage" class="button"  title="Edit">
-              <i class="fi-pencil"></i> จัดเวลาการสอน
-            </a>
-          </td>
-          <td>
-            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/edit" class="button"  title="Edit">
-              <i class="fi-pencil"></i> แก้ไข
-            </a>
-          </td>
           <td> 
-            <a href="/<%=data.sc_code %>/teacher/<%=data._id %>/destroy" class="button delete_btn"  title="delete">
-              <i class="fi-x"></i> ลบ
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/edit" data-tooltip aria-haspopup="true"  class="button tip-top"  title="แก้ไข">
+              <i class="fi-pencil"></i>
+            </a> 
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id %>/destroy" data-tooltip aria-haspopup="true" class="button delete_btn tip-top"  title="ลบ">
+              <i class="fi-x"></i>
             </a>
           </td>
         </tr>

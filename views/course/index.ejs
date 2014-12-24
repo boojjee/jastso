@@ -10,11 +10,10 @@
   <table id="" class="data-table-ui" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th width="200"><center>วิชา</center></th>
-        <th width="150"><center>คำอธิบาย</center></th>
-        <th width="150"><center>Groups</center></th>
-        <th width="150"><center>จำนวนนักเรียน</center></th>
-        <th width="200" colspan="2"></th>
+        <th><center>วิชา</center></th>
+        <th width="300"><center>คำอธิบาย</center></th> 
+        <th><center>จำนวนนักเรียน</center></th>
+        <th width="200"></th> 
       </tr>
     </thead>
     <tbody>
@@ -23,17 +22,17 @@
 
       <tr>
         <td><center><%=data.syllabus %></center></td>
-        <td><center><%=data.discription %></center></td>
-        <td><center><%=data.groups %></center></td>
+        <td><center><%=data.discription %></center></td> 
         <td><center><%=data.no_of_student %></center></td>
         <td>
-          <a href="/<%=data.sc_code %>/course/<%=data._id%>/edit" class="button"  title="Edit">
-            <i class="fi-pencil"></i> แก้ไข
-          </a>
-        </td>
-        <td> 
-          <a href="/<%=data.sc_code %>/course/<%=data._id %>/destroy" class="button deltele_time delete_btn"  title="delete">
-            <i class="fi-x"></i> ลบ
+          <a href="/<%=data.sc_code %>/course/<%=data._id%>/edit"
+             data-tooltip aria-haspopup="true" class="button"  title="แก้ไข">
+            <i class="fi-pencil"></i> 
+          </a>  
+          <a href="/<%=data.sc_code %>/course/<%=data._id %>/destroy" 
+             data-tooltip aria-haspopup="true" 
+             class="button deltele_time delete_btn"  title="ลบ">
+            <i class="fi-x"></i> 
           </a>
         </td>
       </tr>

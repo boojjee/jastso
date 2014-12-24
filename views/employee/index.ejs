@@ -9,14 +9,12 @@
 
   <table id="" class="data-table-ui" cellspacing="0" width="100%">
     <thead>
-      <tr>
-        <th width="100">#</th>
-        <th width="200"><center>ชื่อ</center></th>
-        <th width="150"><center>นามสกุล</center></th>
-        <th><center>ตำแหน่ง</center></th>
+      <tr row="row"> 
+        <th width="250"><center>ชื่อ - นามสกุล</center></th> 
+        <th width="200"><center>ชื่อเล่น</center></th> 
+        <th width="150"><center>ตำแหน่ง</center></th>
         <th width="150"><center>เบอร์โทรศัพท์</center></th>
-        <th width="200"></th>
-        <th width="200"></th>
+        <th ></th>  
       </tr>
     </thead>
     <tbody>
@@ -24,19 +22,41 @@
       <% _.each(employeeData, function(data, i){ %>
 
       <tr>
-        <td><center><%=i+1 %></center></td>
-        <td><center><%=data.first_name %></center></td>
-        <td><center><%=data.last_name %></center></td>
-        <td><center><%=data.position %></center></td>
+        <!-- <td><center><%=i+1 %></center></td> -->
+        <td><center><%=data.first_name %> <%=data.last_name %></center></td>
+        <td>
+          <center>
+          <% if(data.nick_name){  %>
+          <%=data.nick_name %>
+          <% }else{ %>
+            -
+          <% } %>
+          </center>
+        </td>
+        <td><center>
+          <% if(data.position == "1") { %>
+            เจ้าของ
+          <% } else if(data.position == "2"){ %>
+            ผู้จัดการ
+          <% } else if(data.position == "3"){ %>
+            ผู้ช่วยผู้จัดการ
+          <% } else if(data.position == "4"){ %>
+            หัวหน้าธุรการ
+          <% } else if(data.position == "5"){ %>
+            ธุรการ
+          <% } %> 
+
+        </center></td>
         <td><center><%=data.phone %></center></td>
         <td>
-          <a href="/<%=data.sc_code %>/employee/<%=data._id%>/edit" class="button"  title="Edit">
-            <i class="fi-pencil"></i> แก้ไข
-          </a>
-        </td>
-        <td> 
-          <a href="/<%=data.sc_code %>/employee/<%=data._id %>/destroy" class="button delete_btn"  title="delete">
-            <i class="fi-x"></i> ลบ
+          <a href="/<%=data.sc_code %>/employee/<%=data._id%>/edit" data-tooltip aria-haspopup="true" 
+             class="button tip-top"  
+             title="แก้ไข">
+            <i class="fi-pencil"></i> 
+          </a> 
+          <a href="/<%=data.sc_code %>/employee/<%=data._id %>/destroy" class="button tip-top delete_btn" 
+             data-tooltip aria-haspopup="true" title="ลบ">
+            <i class="fi-x"></i>
           </a>
         </td>
       </tr>

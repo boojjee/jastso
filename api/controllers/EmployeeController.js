@@ -114,6 +114,7 @@
         first_name: criteria.first_name,
         last_name: criteria.last_name,
         thai_id_number: criteria.thai_id_number,
+        nick_name: criteria.nick_name,
         position: criteria.position,
         line_id: criteria.line_id,
         phone: criteria.phone,

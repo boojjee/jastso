@@ -249,6 +249,10 @@ module.exports.routes = {
     controller: 'Teacher',
     action: 'index'
   },
+  'get /:sc_code/teacher/time':{
+    controller: 'Teacher',
+    action: 'teacher_time'
+  },
   'get /:sc_code/teacher/timetable':{
     controller: 'Teacher',
     action: 'timetable_index'

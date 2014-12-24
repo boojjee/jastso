@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/styles/foundation-icons.css" />
     <link rel="stylesheet" href="/styles/style.css" />
     <script src="/js/vendor/jquery.js"></script>
-    <script src="/js/vendor/modernizr.js"></script>
+    
     <!--
 
       Stylesheets
@@ -62,43 +62,21 @@
     <!-- listen on socket.io for incoming messages -->
     <script type="text/javascript" src="/js/app.js"></script>
 
-    <!-- Your scripts here? -->
-    <!-- Your scripts here? -->
-    <!-- Your scripts here? -->
+    <!-- Your scripts here? --> 
 
     <script src="/js/foundation.min.js"></script>
+    <script src="/js/vendor/modernizr.js"></script>
+
+    <script src="/js/vendor/jquery.dataTables.min.js"></script>
+    <script src="/js/foundation/dataTables.foundation.js"></script>
+
     <script>
       $(document).foundation();
-    </script>
-
-    <!--
-
-      Looking for client-side CoffeeScript or TypeScript?
-      ================================================
-
-      CoffeeScript and TypeScript precompilation are not installed by default,
-      but if you'd like to mix those features in, it is straightforward to
-      `npm install` the relevant grunt community modules and modify your Gruntfile
-      to use them.
-
-    -->
-
-
-
-    <!--
-
-      Another way: The Asset Linker
-      ========================
-
-      Sails supports a Grunt-based asset linker, to automatically inject 
-      <link> and <script> tags, as well any client-side templates you're using
-      into your HTML layouts and views, respecting dependencies.
-
-      You created this Sails app with the asset linker disabled.
-      If you change your mind, check out the docs on the subject:
-      http://sailsjs.org/#!documentation/asset-management
-
-    -->
-
+      $(document).ready(function(){
+        $('table.data-table-ui').dataTable({
+        });  
+      })
+      
+    </script> 
     </body>
 </html>
