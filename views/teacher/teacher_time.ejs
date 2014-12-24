@@ -1,0 +1,79 @@
+<div class="row">
+  <h1 id="switch">จัดเวลาการสอนของครู</h1>
+
+  <table  class="data-table-ui">
+    <thead>
+      <tr>
+        <th><center>ชื่อ - นามสกุล</center></th>
+        <th><center>ชื่อเล่น</center></th>
+        <th><center>Email</center></th>
+        <th><center>เบอร์โทร</center></th>
+        <th><center>สอนวิชา</center></th>
+        <th><center></center></th>  
+      </tr>
+    </thead>
+    <tbody>
+
+      <% _.each(teacherData, function(data){ %>
+        <tr>
+          <td>
+            <center><%= data.first_name_th +' '+ data.last_name_th %></center>
+          </td>
+          <td>
+            <center><%= data.nickname%></center>
+          </td>
+          <td>
+            <center><%= data.email%></center>
+          </td>
+          <td>
+            <center><%= data.phone%></center>
+          </td>
+          <td>
+            <center>
+            <% var cCount = 1  %>
+            <% _.each(data.course, function(course){ %>
+              <%_.each(courseData, function(cData){   %>
+                <%if(cData._id == course){ %>
+                  <%=cData.syllabus %>
+                <% }  %>
+
+              <%}) %>
+              <% if(data.course.length > 1 && cCount < data.course.length){ %>
+                ,
+              <% }else if(data.course.length > 1 && (cCount == data.course.length)){ %>
+
+              <% }  %>
+              <% cCount++  %>
+            <%}) %>
+            </center>
+          </td>
+          <td>
+            <a href="/<%=data.sc_code %>/teacher/<%=data._id%>/timetable/manage" 
+               data-tooltip aria-haspopup="true" 
+               class="button"  title="จัดเวลาการสอน">
+              <i class="fi-pencil"></i> 
+            </a>  
+          </td>
+        </tr>
+      
+
+      <% }) %>
+
+    </tbody>
+  </table>
+
+</div>
+
+
+<script type="text/javascript">
+
+  $(".delete_btn").on("click", function () {
+    var r = confirm("ยืนยันการลบข้อมูล!");
+    if (r == true) {
+      return true;
+    } else {
+      return false;
+    }
+  })
+
+</script>
